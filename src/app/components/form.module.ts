@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AboutFormComponent } from './about-form/about-form.component';
 import { ExperienciaFormComponent } from './experiencia-form/experiencia-form.component';
 import { FormacionFormComponent } from './formacion-form/formacion-form.component';
+import { ModeToggleModule } from './mode-toggle/mode-toggle.module';
 
 @NgModule({
   declarations: [
@@ -11,12 +12,14 @@ import { FormacionFormComponent } from './formacion-form/formacion-form.componen
     FormacionFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ModeToggleModule
   ],
   exports: [
     AboutFormComponent,
     ExperienciaFormComponent,
-    FormacionFormComponent
+    FormacionFormComponent,
+    ModeToggleModule
   ]
 })
 export class FormModule { }

@@ -1,15 +1,16 @@
-  <header>
-    <h1>Sobre Mí</h1>
+  <header class="col-12 d-flex justify-content-center mt-2 mb-3" style="background-color: red;">
+    <h1 class="p-1 text-center">Sobre tí</h1>
   </header>
-  <article>
-    <h2>Contenido about</h2>
+  <article class="col-12 p-2 d-flex justify-content-center">
+    <article class="w-100 shadow-lg border border-secondary-subtle rounded p-2">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbout">
+        Click aqui
+      </button>
+      <app-about-form></app-about-form>
+    </article>
   </article>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalP">
-    Launch demo modal
-</button>
-<app-about-form></app-about-form>
   <!-- Modal -->
   <!-- <div class="modal fade" id="modalP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
