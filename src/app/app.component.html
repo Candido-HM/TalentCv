@@ -1,13 +1,16 @@
-<main class="container-xxl" style="height: 100vh;">
-    <div class="row d-flex-reverse" style="height: inherit;">
-        <aside class="col-auto col-2 p-1 d-flex flex-column justify-content-between min-vh-100">
-            <app-aside></app-aside>
-        </aside>
-        <section class="h-100 col-10">
-            <router-outlet></router-outlet>
-            <footer class="col-xxl-12 col-xl-12" style="height: 60px; background-color: rgb(97, 97, 42);">
-                no tengo idea de lo que voy aponer aquí (footer)
-            </footer>
-        </section>
-    </div>
+<main class="container-xxl p-0 d-flex">
+    <aside class="sidebar offcanvas-md" tabindex="-1" id="side_nav" aria-labelledby="title_aside">
+        <app-aside></app-aside>
+    </aside>
+    <section class="container-xxl d-flex flex-column">
+        <article class="d-flex pt-2 pb-2 justify-content-end d-md-none d-block">
+            <button class="btn " type="button" data-bs-toggle="sidebar" data-bs-target="#side_nav" aria-controls="side_nav">
+                <img width="30px" src="../assets/img/icon-menu.svg" alt="navbar">
+            </button>
+        </article>
+        <router-outlet></router-outlet>
+        <footer class="col-xxl-12 col-xl-12" style="height: 60px; background-color: rgb(97, 97, 42);">
+            no tengo idea de lo que voy aponer aquí (footer)
+        </footer>
+    </section>
 </main>

@@ -2,9 +2,31 @@
 
 body
     main
-        div
-            aside
-                background: linear-gradient(to bottom, rgba(31, 121, 250, 1) 0%,rgba(85, 142, 243, 0.5) 100%) !important
-                nav
-                    ul li:hover
+        width: 100%
+        height: 100vh
+        aside
+            min-width: 250px
+            max-width: 250px
+            transition: all 300ms
+            background: linear-gradient(to bottom, rgba(31, 121, 250, 1) 0%,rgba(85, 142, 243, 0.5) 100%) !important
+            nav
+                ul 
+                    li:hover
                         background: #25314467 !important
+                        border-radius: 10px
+            .h-color
+                background: #eee
+                opacity: .50
+                    
+
+// @media(max-width: 767px)
+//     #side_nav
+//         margin-left: -250px
+//         position: fixed
+//         min-height: 100vh
+//         z-index: 1
+    
+//     #side_nav .active
+//         margin-left: 0 
+    
+

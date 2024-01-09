@@ -1,33 +1,46 @@
-<section class="d-flex flex-column ps-1 pe-1 pt-3 pb-3 mt-2">
-    <figure class="w-100 d-flex justify-content-center">
-        <img class="rounded-circle" src="../../../assets/img/icon-user.png" alt="img-profile">
+<header class="header-box px-2 pt-3 pb-1 d-flex flex-column">
+    <button class="btn d-md-none d-block close-btn px-1 py-0 mb-3">
+        <img width="20px" src="../../../assets/img/icon-menu.svg" alt="navbar">
+    </button> 
+    <h1 class="fs-3 text-center" id="title_aside">
+        <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['home']">
+            <span class="text-white shadow px-2">TalentCv</span> 
+        </a>
+    </h1>
+    <hr class="h-color">
+</header>
+<section class="px-2 pt-2 mb-3">
+    <figure class="d-flex justify-content-center">
+        <img width="60px" class="rounded-circle" src="../../../assets/img/icon-user.png" alt="img-profile">
     </figure>
-    <h2 class="p-1 fs-5 d-none d-md-block">Candido Hernandez Martin</h2>
-    <h3 class="p-1 fs-6 d-none d-md-block">Desarrollador Web</h3>
+    <h2 class="fs-5 text-center">Candido Hernandez Martin</h2>
+    <h3 class="fs-6 text-center">Desarrollador Web</h3>
+    <hr class="h-color"> 
 </section>
 <nav>
-    <ul class="nav nav-pills flex-column">
-        <li class="d-flex mt-2 nav-link justify-content-md-center justify-content-lg-start" [routerLinkActive]="['active']">
-            <a class="w-100 nav-link align-middle px-0" [routerLink]="['about']">
-                <img class="icon bi me-2" width="30px" height="30px" src="../../../assets/img/icon-about.svg" alt="about">
-                <span class="text-aside fs-6 fw-medium d-none d-lg-inline">Sobre mí</span>
+    <ul class="list-unstyled px-2">
+        <li class="mb-1" [routerLinkActive]="['active']">
+            <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['about']">
+                <img class="icon bi me-2" width="25px" height="25px" src="../../../assets/img/icon-about.svg" alt="about">
+                Sobre mí
             </a>
         </li>
-        <li class="d-flex mt-2 nav-link justify-content-md-center justify-content-lg-start" [routerLinkActive]="['active']">
-            <a class="w-100 nav-link align-middle px-0" [routerLink]="['experiencia']">
-                <img class="icon bi me-2" width="30px" height="30px" src="../../../assets/img/icon-experiencia.svg" alt="experiencia">
-                <span class="text-aside fs-6 fw-medium d-none d-lg-inline">Experiencia</span>
+        <li class="mb-1" [routerLinkActive]="['active']">
+            <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['experiencia']">
+                <img class="icon bi me-2" width="25px" height="25px" src="../../../assets/img/icon-experiencia.svg" alt="experiencia">
+                Experiencia
             </a>
         </li>
-        <li class="d-flex mt-2 nav-link justify-content-md-center justify-content-lg-start" [routerLinkActive]="['active']">
-            <a class="w-100 nav-link align-middle px-0" [routerLink]="['formacion']">
-                <img class="icon bi me-2" width="30px" height="30px" src="../../../assets/img/icon-education.svg" alt="formacion">
-                <span class="text-aside fs-6 fw-medium d-none d-lg-inline">Formación</span>
+        <li class="mb-4" [routerLinkActive]="['active']">
+            <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['formacion']">
+                <img class="icon bi me-2" width="25px" height="25px" src="../../../assets/img/icon-education.svg" alt="formacion">
+                Formación
             </a>
         </li>
+        <hr class="h-color">
     </ul>
 </nav>
-<section class="d-flex justify-content-end flex-column pe-2 ps-2">
+<section class="list-unstyled px-2 mt-2">
     <app-mode-toggle></app-mode-toggle>
     <button>Cerrar</button>
 </section>
