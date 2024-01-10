@@ -1,5 +1,9 @@
-/*Estilos generales*/
+$body-bg:  #F0F5F9 
+$body-bg-dark: #1E1E1E 
+    
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss"
 
+/*Estilos generales*/
 body
     main
         width: 100%
@@ -8,7 +12,7 @@ body
             min-width: 250px
             max-width: 250px
             transition: all 300ms
-            background: linear-gradient(to bottom, rgba(31, 121, 250, 1) 0%,rgba(85, 142, 243, 0.5) 100%) !important
+            // background: linear-gradient(to bottom, rgba(31, 121, 250, 1) 0%,rgba(85, 142, 243, 0.5) 100%) !important
             nav
                 ul 
                     li:hover
@@ -17,6 +21,9 @@ body
             .h-color
                 background: #eee
                 opacity: .50
+        .content
+            min-height: 100vh
+            width: 100%
                     
 
 // @media(max-width: 767px)

@@ -1,17 +1,35 @@
 /************************** Estilos Modo Oscuro **************************/
 
+    // --primary-100:#0085ff
+    // --primary-200:#69b4ff
+    // --primary-300:#e0ffff
+    // --accent-100:#006fff
+    // --accent-200:#e1ffff
+    // --text-100:#FFFFFF
+    // --text-200:#9e9e9e
+    // --bg-100:#1E1E1E
+    // --bg-200:#2d2d2d
+    // --bg-300:#454545
+      
+
+
 [data-bs-theme='dark']
-    aside
-        nav
-            ul li a
-                color: white !important
-                .icon
-                    filter: invert(1)
-        .active
-            background-color: #202428 !important
-            color: #1F79FA !important
-            border-radius: 10px
-            a
+    main
+        aside
+            nav
+                ul li a
+                    color: white !important
+                    .icon
+                        filter: invert(1)
+            .active
+                background-color: #202428 !important
                 color: #1F79FA !important
-                .icon
-                    filter: invert(0.4) sepia(1) hue-rotate(195deg) saturate(1000%) !important
+                border-radius: 10px
+                a
+                    color: #1F79FA !important
+                    .icon
+                        filter: invert(0.4) sepia(1) hue-rotate(195deg) saturate(1000%) !important
+[data-bs-theme='dark'] aside
+        border: 1px solid #454545
+        border-radius: 0px 15px 15px 0px
+        box-shadow: -2px 2px 6px 0px #454545 inset

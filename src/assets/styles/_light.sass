@@ -1,16 +1,33 @@
 /************************** Estilos Modo Claro **************************/
+    // --primary-100:#1E2022
+    // --primary-200:#34373b
+    // --accent-100:#788189
+    // --accent-200:#e1e4e6
+    // --text-100:#1E2022
+    // --text-200:#52616B
+    // --bg-100:#F0F5F9
+    // --bg-200:#C9D6DF
+    // --bg-300:#bfc7d1
+
+// $bg-light: #F0F5F9
 
 [data-bs-theme='light']
-    aside
-        nav
-            ul li a
-                color: #212529 !important
+    main
+        .aside
+            
+            nav
+                ul li a
+                    color: #212529 !important
 
-        .active
-            background-color: white !important
-            color: #1F79FA !important
-            border-radius: 10px
-            a
+            .active
+                background-color: white !important
                 color: #1F79FA !important
-                .icon
-                    filter: invert(0.4) sepia(1) hue-rotate(195deg) saturate(1000%) !important
+                border-radius: 10px
+                a
+                    color: #1F79FA !important
+                    .icon
+                        filter: invert(0.4) sepia(1) hue-rotate(195deg) saturate(1000%) !important
+[data-bs-theme='light'] aside
+        border: 1px solid #BFC7D1
+        border-radius: 0px 15px 15px 0px
+        box-shadow: -2px 2px 6px 0px #BFC7D1 inset
