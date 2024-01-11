@@ -10,24 +10,30 @@
     // --bg-300:#bfc7d1
 
 // $bg-light: #F0F5F9
-
 [data-bs-theme='light']
-    main
-        .aside
-            
-            nav
-                ul li a
-                    color: #212529 !important
+    aside
+        nav ul li a
+            color: #212529 !important
 
-            .active
-                background-color: white !important
-                color: #1F79FA !important
-                border-radius: 10px
-                a
-                    color: #1F79FA !important
-                    .icon
-                        filter: invert(0.4) sepia(1) hue-rotate(195deg) saturate(1000%) !important
+[data-bs-theme='light'] aside
+    nav ul li a
+        color: #212529 !important
+    li:hover
+        box-shadow: 0px 0px 15px 3px #C1CED6 inset
+        border-radius: 10px
+    .active
+        box-shadow: 0px 0px 25px 3px #BFC7D1 inset
+        border: 1px solid #BFC7D1
+        border-radius: 10px
+        a
+            color: #212529
+            opacity: .90
 [data-bs-theme='light'] aside
         border: 1px solid #BFC7D1
         border-radius: 0px 15px 15px 0px
         box-shadow: -2px 2px 6px 0px #BFC7D1 inset
+
+[data-bs-theme='light'] .module
+    background-color: #C9D6DF
+    border: 1px solid #C1CED6
+    box-shadow: 0px 0px 10px 1px #C1CED6 inset

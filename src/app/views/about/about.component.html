@@ -1,31 +1,27 @@
-  <header class="col-12 d-flex justify-content-center mt-2 mb-3">
-    <h1 class="p-1 text-center">Sobre tí</h1>
-  </header>
-  <article class="col-12 p-2 d-flex justify-content-center">
-    <article class="w-100 shadow-lg border border-secondary-subtle rounded p-2">
+<header class="d-flex justify-content-center pt-3 mb-5">
+  <h1 class="text-center">Sobre tí</h1>
+</header>
+<article class="d-flex justify-content-center">
+  <article class="w-100 rounded px-3 p-lg-4 module">
+    <header class="d-flex justify-content-end">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbout">
-        Click aqui
+      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalAbout">
+        <img width="30px" src="../../../assets/img/icon-edit.svg" alt="icon-edit">
       </button>
-      <app-about-form></app-about-form>
-    </article>
-  </article>
-
-  <!-- Modal -->
-  <!-- <div class="modal fade" id="modalP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+    </header>
+    <div class="main-module" style="margin-top: -40px;">
+      <div style="height: 130px;" class="d-flex flex-column flex-sm-row">
+        <figure style="height: 120px;" class="bg-primary">
+          aqui va ir una imagen
+        </figure>
+        <div class="d-flex flex-column bg-warning">
+          <span>soy el 1</span>
+          <span>soy el 2</span>
+          <span>soy el 3</span>
         </div>
       </div>
+      aqui va ir info
     </div>
-  </div> -->
+    <app-about-form></app-about-form>
+  </article>
+</article>
