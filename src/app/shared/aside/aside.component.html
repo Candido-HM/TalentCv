@@ -1,49 +1,52 @@
-<header class="header-box px-2 pt-3 pb-1 d-flex flex-column">
-    <button class="btn d-md-none d-block close-btn px-1 py-0 mb-3" data-bs-dismiss="offcanvas" aria-label="Close">
-        <img width="20px" src="../../../assets/img/icon-menu.svg" alt="navbar">
-    </button> 
-    <h1 class="fs-3 text-center" id="title_aside">
-        <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['home']">
-            <span class="text-white shadow px-2">TalentCv</span> 
-        </a>
-    </h1>
-    <hr class="h-color">
-</header>
-<section class="px-2 pt-2 mb-3">
-    <figure class="d-flex justify-content-center">
-        <img width="60px" class="rounded-circle" src="../../../assets/img/icon-user.png" alt="img-profile">
-    </figure>
-    <h2 class="fs-5 text-center">Candido Hernandez Martin</h2>
-    <h3 class="fs-6 text-center">Desarrollador Web</h3>
-    <hr class="h-color"> 
-</section>
-<nav>
-    <ul class="list-unstyled px-2">
-        <li class="mb-1" [routerLinkActive]="['active']">
-            <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['about']">
-                <img class="icon bi me-2" width="25px" height="25px" src="../../../assets/img/icon-about.svg" alt="about">
-                Sobre mí
+<aside class="offcanvas-md offcanvas-start" data-bs-scroll="true" tabindex="-1" id="aside-main" aria-labelledby="title_aside">
+    <header class="header-box px-2 pt-3 pb-1 d-flex flex-column">
+        <div class="d-flex justify-content-center d-md-none mb-3">
+            <button type="button" class="btn btn-close" data-bs-toggle="collapse" data-bs-target="#aside-main" aria-controls="aside-main" aria-label="Close">
+            </button> 
+        </div>
+        <figure class="d-flex justify-content-center">
+            <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['home']">
+                <img class="TalentCv-logo" width="80px" src="../../../assets/img/logo-TalentCv.svg" alt="TalentCv">
             </a>
-        </li>
-        <li class="mb-1" [routerLinkActive]="['active']">
-            <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['experiencia']">
-                <img class="icon bi me-2" width="25px" height="25px" src="../../../assets/img/icon-experiencia.svg" alt="experiencia">
-                Experiencia
-            </a>
-        </li>
-        <li class="mb-4" [routerLinkActive]="['active']">
-            <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['formacion']">
-                <img class="icon bi me-2" width="25px" height="25px" src="../../../assets/img/icon-education.svg" alt="formacion">
-                Formación
-            </a>
-        </li>
+        </figure> 
         <hr class="h-color">
-    </ul>
-</nav>
-<section class="list-unstyled px-2 mt-2">
-    <app-mode-toggle></app-mode-toggle>
-    <button class="btn w-100 text-right mb-1">
-        <img width="25px" height="25px" src="../../../assets/img/icon-sign-off.svg" alt="login">
-        Cerrar Sesión
-    </button>
-</section>
+    </header>
+    <section class="px-2 pt-1 mb-3">
+        <figure class="d-flex justify-content-center">
+            <img width="60px" class="rounded-circle" src="../../../assets/img/icon-user.png" alt="img-profile">
+        </figure>
+        <h2 class="fs-5 text-center">Candido Hernandez Martin</h2>
+        <h3 class="fs-6 text-center">Desarrollador Web</h3>
+        <hr class="h-color"> 
+    </section>
+    <nav>
+        <ul class="list-unstyled px-2">
+            <li class="mb-1" [routerLinkActive]="['active']">
+                <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['about']">
+                    <img class="icon bi me-2" width="25px" height="25px" src="../../../assets/img/icon-about.svg" alt="about">
+                    Sobre mí
+                </a>
+            </li>
+            <li class="mb-1" [routerLinkActive]="['active']">
+                <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['experiencia']">
+                    <img class="icon bi me-2" width="25px" height="25px" src="../../../assets/img/icon-experiencia.svg" alt="experiencia">
+                    Experiencia
+                </a>
+            </li>
+            <li class="mb-4" [routerLinkActive]="['active']">
+                <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['formacion']">
+                    <img class="icon bi me-2" width="25px" height="25px" src="../../../assets/img/icon-education.svg" alt="formacion">
+                    Formación
+                </a>
+            </li>
+            <hr class="h-color">
+        </ul>
+    </nav>
+    <section class="list-unstyled px-2 mt-2">
+        <app-mode-toggle></app-mode-toggle>
+        <button class="btn w-100 text-right mb-1">
+            <img width="25px" height="25px" src="../../../assets/img/icon-sign-off.svg" alt="login">
+            Cerrar Sesión
+        </button>
+    </section>
+</aside>

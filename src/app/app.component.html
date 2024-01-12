@@ -1,10 +1,10 @@
 <main class="container-xxl p-0 d-flex h-100">
-    <aside class="offcanvas-md offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="title_aside">
-        <app-aside></app-aside>
-    </aside>
+    <!-- <aside class="offcanvas-md offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="title_aside"> -->
+    <app-aside></app-aside>
+    <!-- </aside> -->
     <section class="content px-3 px-lg-5">
         <article class="d-flex pt-2 pb-2 justify-content-end d-md-none d-block">
-            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#aside-main" aria-controls="aside-main">
                 <img width="30px" src="../assets/img/icon-menu.svg" alt="navbar">
             </button>
         </article>
