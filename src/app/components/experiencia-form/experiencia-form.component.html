@@ -8,7 +8,35 @@
             </header>
             <article class="modal-body">
                 <form>
-                    Aqui va ir el formulario
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="cargoInput" placeholder="Cargo" required>
+                        <label for="cargoInput">Cargo</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="empresaInput" placeholder="Empresa" required>
+                        <label for="empresaInput">Nombre de la empresa</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="status">
+                        <label class="form-check-label" for="status">
+                            Actualmente desempeña el cargo
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="month" class="form-control" id="cargoInput" placeholder="Cargo" required>
+                        <label for="cargoInput">Fecha de inicio</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="month" class="form-control" id="cargoInput" placeholder="Cargo">
+                        <label for="cargoInput">Fecha de finalización</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Descripción del cargo" id="floatingDescripcion" style="height: 150px;"></textarea>
+                        <label for="floatingDescripcion">Descripción</label>
+                      </div>
+                      <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Guardar</button>
+                      </div>
                 </form>
             </article>
         </article>
