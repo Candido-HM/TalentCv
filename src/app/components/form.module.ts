@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { FormsModule } from '@angular/forms';
 
 import { AboutFormComponent } from './about-form/about-form.component';
@@ -15,7 +16,9 @@ import { ModeToggleModule } from './mode-toggle/mode-toggle.module';
   ],
   imports: [
     CommonModule,
-    ModeToggleModule
+    ModeToggleModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     AboutFormComponent,

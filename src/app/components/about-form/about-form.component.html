@@ -1,5 +1,5 @@
 <!-- Inicia Modal -->
-<section class="modal fade" id="modalAbout" tabindex="-1" aria-labelledby="modalAboutLabel" aria-hidden="true">
+<section class="modal fade" id="modalAbout" tabindex="-1" aria-labelledby="modalAboutLabel" data-bs-backdrop="static" aria-hidden="true">
     <article class="modal-dialog modal-dialog-centered">
         <article class="modal-content">
             <header class="modal-header">
@@ -7,22 +7,32 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </header>
             <article class="modal-body">
-                <form>
+                <form [formGroup]="formAbout" (ngSubmit)="guardar()">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="candido" required>
-                        <label for="floatingInput">Nombre</label>
+                        <input type="text" class="form-control" id="floatingInput" placeholder="nombre"
+                            formControlName="nombre"
+                            [class.is-invalid]="campoNoValido('nombre')">
+                        <label for="floatingInput">Nombre*</label>
+                        <small *ngIf="campoNoValido('nombre')" class="invalid-feedback">
+                            Ingresa un nombre
+                        </small>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="hernandez" required>
-                        <label for="floatingInput">Apellidos</label>
+                        <input type="text" class="form-control" id="floatingInput" placeholder="hernandez" 
+                            formControlName="apellido"
+                            [class.is-invalid]="campoNoValido('apellido')">
+                        <label for="floatingInput">Apellidos*</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="desarrollador web" required>
-                        <label for="floatingInput">Perfil profesional</label>
+                        <input type="text" class="form-control" id="floatingInput" placeholder="desarrollador web"
+                            formControlName="perfil"
+                            [class.is-invalid]="campoNoValido('perfil')">
+                        <label for="floatingInput">Perfil profesional*</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 150px;" required></textarea>
-                        <label for="floatingTextarea">Descripción del perfil</label>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 150px;"
+                            formControlName="descripcion"></textarea>
+                        <label for="floatingTextarea">Descripción del perfil*</label>
                     </div>
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Guardar</button>
