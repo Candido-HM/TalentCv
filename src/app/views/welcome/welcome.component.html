@@ -1,7 +1,44 @@
-<main class="container-xxl p-0 d-flex flex-column h-100">
-    <h1>¡Welcome to TalentCv!</h1>
-
-    <p>Es una vista de prueba para ver el comportamiento de la pagina web</p>
-
-    <a [routerLink]="['/profile']">Ir a Home</a>
+<main class="container-xxl p-0 main-welcome">
+    <section class="d-flex justify-content-end mb-3 section-btn">
+        <div class="border rounded theme">
+            <app-mode-toggle></app-mode-toggle>
+        </div>
+    </section>
+    <section class="d-flex flex-column
+        flex-md-row align-items-md-center justify-content-evenly px-3 welcome">
+        <section class="p-3 mb-5 mb-md-0 rounded-3 card-welcome">
+            <h1 class="text-center mb-3 fs-2">¡Bienvenido! <br> a TalentCv</h1>
+            <figure class="d-flex justify-content-center">
+                <img width="70%" height="70%" class="rounded-3" src="../../../assets/img/img-welcome.webp" alt="welcome">
+            </figure>
+        </section>
+    
+        <section class="p-3 rounded-3 module">
+            <h2 class="text-center fs-2 mb-3">Iniciar Sesión</h2>
+            <figure class="d-flex justify-content-center mb-4">
+                <img class="TalentCv-logo" width="60px" src="../../../assets/img/logo-TalentCv.svg" alt="TalentCv">
+            </figure>
+           <form class="p-2" [formGroup]="formLogin" (ngSubmit)="login()">
+                <div class="form-floating mb-4">
+                    <input type="email" class="form-control" id="correoInput" placeholder="correo"
+                        formControlName="correo"
+                        [class.is-invalid]="invalidField('correo')">
+                    <label for="correoInput">Correo Electronico</label>
+                    <small *ngIf="invalidField('correo')" class="invalid-feedback">
+                        Ingresa un correo valido
+                    </small>
+                </div>
+                <div class="form-floating mb-4">
+                    <input type="password" class="form-control" id="passInput" placeholder="password"
+                        formControlName="password"
+                        [class.is-invalid]="invalidField('password')">
+                    <label for="passInput">Contraseña</label>
+                    <small *ngIf="invalidField('password')" class="invalid-feedback">
+                        Ingresa tu contraseña
+                    </small>
+                </div>
+                <button class="btn btn-primary w-100" type="submit" routerLink="/profile">Acceder</button>
+            </form> 
+        </section> 
+    </section>  
 </main>

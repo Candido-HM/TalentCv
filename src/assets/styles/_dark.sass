@@ -1,4 +1,15 @@
 /************************** Estilos Modo Oscuro **************************/
+
+//Mixin
+@mixin sombreado($size)
+    border: 1px solid #454545
+    border-radius: 0px 15px 15px 0px
+    box-shadow: -2px 2px $size 0px #454545 inset
+
+[data-bs-theme='dark'] .card-welcome
+    @include sombreado(20px)
+    
+/* Estilos generales*/
 [data-bs-theme='dark']
     aside
         nav ul li a
@@ -16,9 +27,7 @@
                 color: white !important
                 opacity: .90
 [data-bs-theme='dark'] aside
-        border: 1px solid #454545
-        border-radius: 0px 15px 15px 0px
-        box-shadow: -2px 2px 6px 0px #454545 inset
+    @include sombreado(6px)
 
 [data-bs-theme='dark'] .TalentCv-logo
         filter: invert(1)

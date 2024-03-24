@@ -1,12 +1,16 @@
-<aside class="offcanvas-md offcanvas-start" data-bs-scroll="true" tabindex="-1" id="aside-main" aria-labelledby="title_aside">
+<aside class="offcanvas-md offcanvas-start" 
+    data-bs-scroll="true" tabindex="-1" id="aside-main" aria-labelledby="title_aside">
+
     <header class="header-box px-2 pt-3 pb-1 d-flex flex-column">
         <div class="d-flex justify-content-center d-md-none mb-3">
-            <button type="button" class="btn btn-close" data-bs-toggle="collapse" data-bs-target="#aside-main" aria-controls="aside-main" aria-label="Close">
+            <button type="button" class="btn btn-close" data-bs-toggle="collapse" 
+                data-bs-target="#aside-main" aria-controls="aside-main" aria-label="Close">
             </button> 
         </div>
         <figure class="d-flex justify-content-center">
             <a class="text-decoration-none px-3 py-2 d-block" [routerLink]="['home']">
-                <img class="TalentCv-logo" width="80px" src="../../../assets/img/logo-TalentCv.svg" alt="TalentCv">
+                <img class="TalentCv-logo" width="80px" 
+                    src="../../../assets/img/logo-TalentCv.svg" alt="TalentCv">
             </a>
         </figure> 
         <hr class="h-color">
@@ -44,7 +48,7 @@
     </nav>
     <section class="list-unstyled px-2 mt-2">
         <app-mode-toggle></app-mode-toggle>
-        <button class="btn w-100 text-right mb-1">
+        <button class="btn w-100 text-right mb-1" routerLink="/">
             <img width="25px" height="25px" src="../../../assets/img/icon-sign-off.svg" alt="login">
             Cerrar Sesión
         </button>
