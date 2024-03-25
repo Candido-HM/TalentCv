@@ -21,10 +21,10 @@
            <form class="p-2" [formGroup]="formLogin" (ngSubmit)="login()">
                 <div class="form-floating mb-4">
                     <input type="email" class="form-control" id="correoInput" placeholder="correo"
-                        formControlName="correo"
-                        [class.is-invalid]="invalidField('correo')">
-                    <label for="correoInput">Correo Electronico</label>
-                    <small *ngIf="invalidField('correo')" class="invalid-feedback">
+                        formControlName="email"
+                        [class.is-invalid]="invalidField('email')">
+                    <label for="emailInput">Correo Electronico</label>
+                    <small *ngIf="invalidField('email')" class="invalid-feedback">
                         Ingresa un correo valido
                     </small>
                 </div>
@@ -37,7 +37,7 @@
                         Ingresa tu contraseña
                     </small>
                 </div>
-                <button class="btn btn-primary w-100" type="submit" routerLink="/profile">Acceder</button>
+                <button class="btn btn-primary w-100" type="submit">Acceder</button>
             </form> 
         </section> 
     </section>  

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { loginModel } from 'src/app/models/loginUser.model';
 
 @Component({
   selector: 'app-welcome',
@@ -8,7 +11,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class WelcomeComponent {
   formLogin!: FormGroup; 
-  constructor( private formBuilder: FormBuilder) {
+  constructor( private formBuilder: FormBuilder,
+                private router: Router,
+                private auth: AuthService) {
     this.createFormLogin();
   }
 
@@ -18,12 +23,22 @@ export class WelcomeComponent {
 
   createFormLogin(){
     this.formLogin = this.formBuilder.group({
-      correo: ['', [Validators.required, Validators.email, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', Validators.required]
     })
   }
 
   login(){
     console.log( this.formLogin)
+    const formData: loginModel = this.formLogin.value
+    console.log(formData);
+    if(this.formLogin.invalid) {
+      return this.formLogin.markAllAsTouched();
+    } 
+    this.auth.login(formData).subscribe(response => {
+      // console.log(response);
+      this.router.navigateByUrl('/profile');
+    })
+
   }
 }
