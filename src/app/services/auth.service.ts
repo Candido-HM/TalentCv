@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { loginModel } from '../models/loginUser.model';
 import { Observable } from 'rxjs';
 
@@ -16,4 +16,5 @@ export class AuthService {
     let direccion = this.API_URL + 'login';
     return this.http.post<Response>(direccion, user);
   }
+  
 }
