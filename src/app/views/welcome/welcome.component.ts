@@ -18,12 +18,8 @@ export class WelcomeComponent {
                 private auth: AuthService) {
     this.userToken = '';
     this.createFormLogin();
-    this.readToken();
+    this.loadingToken();
   }
-
-  // ngOnInit(): void {
-  //   this.authenticated();
-  // }
 
   invalidField( campo: string){
     return this.formLogin.get(campo)?.invalid && this.formLogin.get(campo)?.touched;
@@ -38,37 +34,23 @@ export class WelcomeComponent {
 
   login(){
     console.log( this.formLogin)
-    const formData: loginModel = this.formLogin.value
-    // console.log(formData);
+    const formData: loginModel = this.formLogin.value;
     if(this.formLogin.invalid) {
       return this.formLogin.markAllAsTouched();
     } 
     this.auth.login(formData).subscribe((res: any) => {
       console.log(res);
-      this.saveToken(res.access_token)
+      this.auth.saveToken(res.access_token);
       this.router.navigate(['profile']);
     })
   }
 
-  saveToken(tokenId: string) {
-    this.userToken = tokenId;
-    localStorage.setItem('user_token', tokenId);
-  }
-
-  readToken() {
-    if(localStorage.getItem('user_token')){
-      this.userToken = localStorage.getItem('user_token');
+  loadingToken() {
+    let token = this.auth.leerToken();
+    if(token !== ''){
+      this.router.navigate(['/profile']);
     } else {
-      this.userToken = '';
+      this.router.navigate(['']);
     }
-    return this.userToken;
-  }
-
-  authenticated(): boolean {
-    if(this.userToken.length < 20 ){
-      return false;
-      // this.router.navigate(['profile']);
-    }
-    return true;
   }
 }

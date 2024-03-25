@@ -10,11 +10,40 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   private API_URL: string = environment.apiURL;
-  constructor( private http: HttpClient) { }
+  userToken: any;
+  constructor( private http: HttpClient) {
+    this.userToken = '';
+  }
 
   login( user: loginModel): Observable<Response> {
     let direccion = this.API_URL + 'login';
     return this.http.post<Response>(direccion, user);
+  }
+
+  saveToken(tokenId: string) {
+    this.userToken = tokenId;
+    localStorage.setItem('user_token', tokenId);
+  }
+
+  leerToken() {
+    if(localStorage.getItem('user_token')) {
+      this.userToken = localStorage.getItem('user_token');
+    } else {
+      this.userToken = '';
+    }
+    return this.userToken;
+  }
+
+  authenticated(): boolean {
+    if (this.userToken.length < 20) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('user_token');
   }
   
 }
