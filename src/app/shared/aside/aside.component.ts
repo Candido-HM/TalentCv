@@ -13,7 +13,12 @@ export class AsideComponent {
                 private auth: AuthService) { }
 
   salir() {
-    this.auth.logout();
-    this.router.navigateByUrl('/');
+    this.auth.logout().subscribe({
+      next: () => {
+        localStorage.removeItem('user_token');
+        this.router.navigateByUrl('/');
+      }
+    });
+    
   }
 }

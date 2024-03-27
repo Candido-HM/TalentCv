@@ -42,8 +42,13 @@ export class AuthService {
     }
   }
 
-  logout() {
-    localStorage.removeItem('user_token');
+  logout(): Observable<Response> {
+    let direccion = this.API_URL + 'logout';
+    return this.http.get<Response>(direccion);
   }
+
+  // logout() {
+  //   localStorage.removeItem('user_token');
+  // }
   
 }
