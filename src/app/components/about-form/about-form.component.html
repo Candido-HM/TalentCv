@@ -22,18 +22,21 @@
                             formControlName="apellido"
                             [class.is-invalid]="campoNoValido('apellido')">
                         <label for="floatingInput">Apellidos*</label>
+                        <small *ngIf="campoNoValido('apellido')" class="invalid-feedback">
+                            Ingre sus apellidos
+                        </small>
                     </div>
-                    <div class="form-floating mb-3">
+                    <!-- <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="desarrollador web"
                             formControlName="perfil"
                             [class.is-invalid]="campoNoValido('perfil')">
                         <label for="floatingInput">Perfil profesional*</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                    </div> -->
+                    <!-- <div class="form-floating mb-3">
                         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 150px;"
                             formControlName="descripcion"></textarea>
                         <label for="floatingTextarea">Descripción del perfil*</label>
-                    </div>
+                    </div> -->
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Guardar</button>
                       </div>

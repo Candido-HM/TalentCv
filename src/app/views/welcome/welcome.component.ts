@@ -33,7 +33,7 @@ export class WelcomeComponent {
   }
 
   login(){
-    console.log( this.formLogin)
+    // console.log( this.formLogin)
     const formData: loginModel = this.formLogin.value;
     if(this.formLogin.invalid) {
       return this.formLogin.markAllAsTouched();

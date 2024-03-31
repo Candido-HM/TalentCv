@@ -17,13 +17,20 @@
           </figure>
         </div>
         <div class="d-flex flex-column w-100 mt-2 mt-sm-0">
-          <h3 class="text-center fs-4">Candido Hernandez Martin</h3>
-          <h4 class="text-center fs-5">Desarrollador Web</h4>
-          <span>Zoquiapan Puebla, México</span>
+          <h3 class="text-center fs-4">{{ user.name }} {{ user.last_name }}</h3>
+          <!-- <h4 class="text-center fs-5">Desarrollador Web</h4> -->
+          <span>
+            <img class="me-1 filter icon-url" src="../../../assets/img/icon-location.svg" alt="location">
+            {{ user.city }} ,{{ user.country }}
+          </span>
+          <span>
+            <img class="me-1 filter icon-url" src="../../../assets/img/icon-email.svg" alt="email">
+            {{ user.email }}
+          </span>
           <!-- <span class="bg-primary">Puebla, México</span> -->
         </div>
       </div>
-      <ul class="d-flex flex-wrap flex-row p-0">
+      <!-- <ul class="d-flex flex-wrap flex-row p-0">
         <li class="me-2 p-1 list">
           <img class="me-1 filter icon-url" src="../../../assets/img/icon-email.svg" alt="email">
           <span>correo@gmail.com</span>
@@ -48,8 +55,9 @@
           <img class="me-1 filter icon-url" src="../../../assets/img/icon-url.svg" alt="url">
           <span>linktr.ee/user_links</span>
         </li>
-      </ul>  
+      </ul>   -->
       <div>
+        <h4 class="text-center fs-5">Desarrollador Web</h4> 
         <p>
           Adapta tu sección de "Sobre mí" al puesto al que te postulas. Destaca las habilidades y logros que son más relevantes para el puesto.
         </p>
