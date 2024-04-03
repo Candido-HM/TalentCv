@@ -27,7 +27,7 @@
             <img class="me-1 filter icon-url" src="../../../assets/img/icon-email.svg" alt="email">
             {{ user.email }}
           </span>
-          <!-- <span class="bg-primary">Puebla, México</span> -->
+          <!-- <span class="bg-primary">Puebla, México</span>  -->
         </div>
       </div>
       <!-- <ul class="d-flex flex-wrap flex-row p-0">
@@ -57,10 +57,37 @@
         </li>
       </ul>   -->
       <div>
-        <h4 class="text-center fs-5">Desarrollador Web</h4> 
-        <p>
-          Adapta tu sección de "Sobre mí" al puesto al que te postulas. Destaca las habilidades y logros que son más relevantes para el puesto.
-        </p>
+        <!-- Button trigger modal -->
+        <button *ngIf="!validatorProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProfile">Agregar perfil profesional</button>
+        <div *ngIf="validatorProfile">
+          <h4 class="text-center fs-5">{{ profileData.title }}</h4> 
+          <p>
+            {{ profileData.description }}  
+            <!-- Adapta tu sección de "Sobre mí" al puesto al que te postulas. Destaca las habilidades y logros que son más relevantes para el puesto. -->
+          </p>
+        </div>
+        <ul class="d-flex flex-wrap flex-row p-0">
+          <li class="me-2 p-1 list">
+            <img class="me-1 filter icon-url" src="../../../assets/img/icon-phone.svg" alt="phone">
+            <span>+52 123 456 7890</span>
+          </li>
+          <li class="me-2 p-1 list">
+            <img class="me-1 filter icon-url" src="../../../assets/img/icon-url.svg" alt="url-portfolio">
+            <span>portfolio_web.com</span>
+          </li>
+          <li class="me-2 p-1 list">
+            <img class="me-1 filter icon-url" src="../../../assets/img/icon-linkedin.svg" alt="linkedin">
+            <span>linkedin.com/in/user-profile-link/</span>
+          </li>
+          <li class="me-2 p-1 list">
+            <img class="me-1 filter icon-url" src="../../../assets/img/icon-github.svg" alt="url-github">
+            <span>github.com/User-Link</span>
+          </li>
+          <li class="me-2 p-1 list">
+            <img class="me-1 filter icon-url" src="../../../assets/img/icon-url.svg" alt="url">
+            <span>linktr.ee/user_links</span>
+          </li>
+        </ul>  
         <div class="mb-3">
           <h5 class="mb-3 text-left fs-4">Mis habilidades</h5>
           <div class="btn-group me-2">
@@ -91,5 +118,6 @@
       </div>
     </div>
     <app-about-form></app-about-form>
+    <app-profile-form></app-profile-form>
   </article>
 </article>

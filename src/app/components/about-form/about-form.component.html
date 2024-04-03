@@ -23,7 +23,25 @@
                             [class.is-invalid]="campoNoValido('apellido')">
                         <label for="floatingInput">Apellidos*</label>
                         <small *ngIf="campoNoValido('apellido')" class="invalid-feedback">
-                            Ingre sus apellidos
+                            Ingrese sus apellidos
+                        </small>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="ciudad" 
+                            formControlName="ciudad"
+                            [class.is-invalid]="campoNoValido('ciudad')">
+                        <label for="floatingInput">Ciudad*</label>
+                        <small *ngIf="campoNoValido('ciudad')" class="invalid-feedback">
+                            Ingrese una ciudad
+                        </small>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="pais" 
+                            formControlName="pais"
+                            [class.is-invalid]="campoNoValido('pais')">
+                        <label for="floatingInput">Pais*</label>
+                        <small *ngIf="campoNoValido('pais')" class="invalid-feedback">
+                            Ingrese su pais
                         </small>
                     </div>
                     <!-- <div class="form-floating mb-3">

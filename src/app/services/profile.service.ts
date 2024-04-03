@@ -3,6 +3,7 @@ import { HttpClient} from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { userModel } from '../models/user.model';
+import { profileModel } from '../models/profile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,10 @@ export class ProfileService {
   getProfile(): Observable<Response> {
     let ruta = this.API_URL + 'profile';
     return this.http.get<Response>(ruta);
+  }
+
+  createProfile( profile: profileModel): Observable<Response> {
+    let ruta = this.API_URL + 'profile';
+    return this.http.post<Response>(ruta, profile);
   }
 }

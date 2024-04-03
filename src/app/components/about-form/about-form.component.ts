@@ -22,8 +22,8 @@ export class AboutFormComponent {
     this.formAbout = this.formBuider.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       apellido: ['', [Validators.required, Validators.minLength(5)]],
-      perfil: ['', [Validators.required, Validators.minLength(5)]],
-      descripcion: ['']
+      ciudad: [''],
+      pais: ['']
     });
   }
 
