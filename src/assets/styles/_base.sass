@@ -3,6 +3,10 @@ $body-bg-dark: #1E1E1E
     
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss"
 
+@mixin icon-size()
+    width: 22px
+    height: 22px
+    
 /*Estilos generales*/
 body
     /******************************* Componente Welcome ******************************/
@@ -41,14 +45,13 @@ body
             width: 100%
 
             .icon-edit img
-                width: 25px
-                height: 25px
+                @include icon-size()
+                
         /********************* Estilos generales Componentes **********************************************/
         section
             article .icon-url
-                width: 20px
-            .main-module
-                margin-top: -40px !important
+                @include icon-size()
+                
         /********************************** Estilos About Component *******************************************/
         .main-module
             .fig-user
@@ -59,6 +62,9 @@ body
                 img
                     width: inherit
                     height: inherit
+            .icon-size
+                @include icon-size()
+                
             ul
                 .list
                     list-style: none
