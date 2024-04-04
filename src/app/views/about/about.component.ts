@@ -10,23 +10,24 @@ import { profileModel } from 'src/app/models/profile.model';
 })
 export class AboutComponent implements OnInit {
 
-  user: userModel;
+  user!: userModel;
   profileData: profileModel;
   validatorProfile: boolean;
   constructor( private profile: ProfileService) {
-    this.viewUser();
-    this.user = new userModel('');
     this.profileData = new profileModel('');
     this.validatorProfile = false;
   }
 
   ngOnInit(): void {
+    this.viewUser();
     this.viewProfile();
+    // console.log('Soy el padre: '+this.user)
   }
 
   viewUser(){
     this.profile.getUser().subscribe( (user: userModel) => {
       this.user = user;
+      // console.log('Soy el padre: '+JSON.stringify(user))
     });
   }
 

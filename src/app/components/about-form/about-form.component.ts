@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { userModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-about-form',
   templateUrl: './about-form.component.html',
   styleUrls: ['./about-form.component.sass']
 })
-export class AboutFormComponent {
-
+export class AboutFormComponent implements OnChanges {
+  @Input() dateUser: any;
   formAbout!: FormGroup;
 
   constructor( private formBuider: FormBuilder) {
     this.createAbout();
+  }
+
+  ngOnChanges(): void {
+    this.getUser();
   }
 
   campoNoValido(campo: string) {
@@ -25,6 +30,17 @@ export class AboutFormComponent {
       ciudad: [''],
       pais: ['']
     });
+  }
+
+  getUser() {
+    if(this.dateUser){
+      this.formAbout.reset({
+        nombre: this.dateUser.name,
+        apellido: this.dateUser.last_name,
+        ciudad: this.dateUser.city,
+        pais: this.dateUser.country 
+      })
+    } 
   }
 
   guardar() {

@@ -28,44 +28,17 @@
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="ciudad" 
-                            formControlName="ciudad"
-                            [class.is-invalid]="campoNoValido('ciudad')">
-                        <label for="floatingInput">Ciudad*</label>
-                        <small *ngIf="campoNoValido('ciudad')" class="invalid-feedback">
-                            Ingrese una ciudad
-                        </small>
+                            formControlName="ciudad">
+                        <label for="floatingInput">Ciudad</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="pais" 
-                            formControlName="pais"
-                            [class.is-invalid]="campoNoValido('pais')">
-                        <label for="floatingInput">Pais*</label>
-                        <small *ngIf="campoNoValido('pais')" class="invalid-feedback">
-                            Ingrese su pais
-                        </small>
+                            formControlName="pais">
+                        <label for="floatingInput">Pais</label>
                     </div>
-                    <!-- <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="desarrollador web"
-                            formControlName="perfil"
-                            [class.is-invalid]="campoNoValido('perfil')">
-                        <label for="floatingInput">Perfil profesional*</label>
-                    </div> -->
-                    <!-- <div class="form-floating mb-3">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 150px;"
-                            formControlName="descripcion"></textarea>
-                        <label for="floatingTextarea">Descripción del perfil*</label>
-                    </div> -->
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Guardar</button>
                       </div>
-                    <!-- <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Correo Electronico</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="tel" class="form-control" id="floatingInput" placeholder="hernandez">
-                        <label for="floatingInput">Teléfono</label>
-                    </div> -->
                 </form>
             </article>
         </article>
