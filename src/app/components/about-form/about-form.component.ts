@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { userModel } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 // import { userModel } from 'src/app/models/user.model';
 
 @Component({
@@ -11,7 +13,8 @@ export class AboutFormComponent implements OnChanges {
   @Input() dateUser: any;
   formAbout!: FormGroup;
 
-  constructor( private formBuider: FormBuilder) {
+  constructor( private formBuider: FormBuilder,
+                private userService: UserService) {
     this.createAbout();
   }
 
@@ -25,28 +28,34 @@ export class AboutFormComponent implements OnChanges {
 
   createAbout() {
     this.formAbout = this.formBuider.group({
-      nombre: ['', [Validators.required, Validators.minLength(3)]],
-      apellido: ['', [Validators.required, Validators.minLength(5)]],
-      ciudad: [''],
-      pais: ['']
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      last_name: ['', [Validators.required, Validators.minLength(5)]],
+      city: [''],
+      country: ['']
     });
   }
 
   getUser() {
     if(this.dateUser){
       this.formAbout.reset({
-        nombre: this.dateUser.name,
-        apellido: this.dateUser.last_name,
-        ciudad: this.dateUser.city,
-        pais: this.dateUser.country 
+        name: this.dateUser.name,
+        last_name: this.dateUser.last_name,
+        city: this.dateUser.city,
+        country: this.dateUser.country 
       })
     } 
   }
 
   guardar() {
     console.log(this.formAbout);
+    console.log(this.dateUser.id);
+    const formUser: userModel = this.formAbout.value; 
+    const idUser = this.dateUser.id;
     if( this.formAbout.invalid) {
       return this.formAbout.markAllAsTouched();
     }
+    this.userService.updateUser(idUser, formUser).subscribe((res: any) => {
+      console.log(res);
+    })
   }
 }

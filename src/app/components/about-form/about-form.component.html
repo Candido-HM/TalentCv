@@ -10,30 +10,30 @@
                 <form [formGroup]="formAbout" (ngSubmit)="guardar()">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="nombre"
-                            formControlName="nombre"
-                            [class.is-invalid]="campoNoValido('nombre')">
+                            formControlName="name"
+                            [class.is-invalid]="campoNoValido('name')">
                         <label for="floatingInput">Nombre*</label>
-                        <small *ngIf="campoNoValido('nombre')" class="invalid-feedback">
+                        <small *ngIf="campoNoValido('name')" class="invalid-feedback">
                             Ingresa un nombre
                         </small>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="hernandez" 
-                            formControlName="apellido"
-                            [class.is-invalid]="campoNoValido('apellido')">
+                            formControlName="last_name"
+                            [class.is-invalid]="campoNoValido('last_name')">
                         <label for="floatingInput">Apellidos*</label>
-                        <small *ngIf="campoNoValido('apellido')" class="invalid-feedback">
+                        <small *ngIf="campoNoValido('last_name')" class="invalid-feedback">
                             Ingrese sus apellidos
                         </small>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="ciudad" 
-                            formControlName="ciudad">
+                            formControlName="city">
                         <label for="floatingInput">Ciudad</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="pais" 
-                            formControlName="pais">
+                            formControlName="country">
                         <label for="floatingInput">Pais</label>
                     </div>
                     <div class="col-12">

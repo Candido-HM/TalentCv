@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import { userModel } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 import { profileModel } from 'src/app/models/profile.model';
 
 @Component({
@@ -13,7 +14,8 @@ export class AboutComponent implements OnInit {
   user!: userModel;
   profileData: profileModel;
   validatorProfile: boolean;
-  constructor( private profile: ProfileService) {
+  constructor(  private userService: UserService,
+                private profileService: ProfileService) {
     this.profileData = new profileModel('');
     this.validatorProfile = false;
   }
@@ -21,18 +23,16 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.viewUser();
     this.viewProfile();
-    // console.log('Soy el padre: '+this.user)
   }
 
   viewUser(){
-    this.profile.getUser().subscribe( (user: userModel) => {
+    this.userService.getUser().subscribe( (user: userModel) => {
       this.user = user;
-      // console.log('Soy el padre: '+JSON.stringify(user))
     });
   }
 
   viewProfile(){
-    this.profile.getProfile().subscribe((data: any) => {
+    this.profileService.getProfile().subscribe((data: any) => {
       if(data.success){
         this.profileData = data.data;
         this.validatorProfile = true;

@@ -46,9 +46,5 @@ export class AuthService {
     let direccion = this.API_URL + 'logout';
     return this.http.get<Response>(direccion);
   }
-
-  // logout() {
-  //   localStorage.removeItem('user_token');
-  // }
   
 }
