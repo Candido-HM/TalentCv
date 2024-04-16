@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
 import { profileModel } from 'src/app/models/profile.model';
@@ -8,12 +8,17 @@ import { profileModel } from 'src/app/models/profile.model';
   templateUrl: './profile-form.component.html',
   styleUrls: ['./profile-form.component.sass']
 })
-export class ProfileFormComponent {
+export class ProfileFormComponent implements OnChanges {
+  @Input() dateProfile: any;
   formProfile!: FormGroup;
 
   constructor( private formBuilder: FormBuilder,
                 private profileService: ProfileService) {
     this.createProfile();
+  }
+
+  ngOnChanges(): void {
+    this.getProfile();
   }
 
   campoNoValido(campo: string) {
@@ -27,15 +32,33 @@ export class ProfileFormComponent {
     });
   }
 
+  getProfile() {
+    if(this.dateProfile){
+      this.formProfile.reset({
+        title: this.dateProfile.title,
+        description: this.dateProfile.description
+      })
+    }
+  }
+
   guardar(){
     const formData: profileModel = this.formProfile.value;
     console.log(this.formProfile);
     if( this.formProfile.invalid) {
       return this.formProfile.markAllAsTouched();
     }
-    this.profileService.createProfile(formData).subscribe((res: any) => {
-      console.log(res);
-      
-    })
+
+    if(this.dateProfile && this.dateProfile.id) {
+      console.log('Ahora toca actualizar');
+      this.profileService.updateProfile(this.dateProfile.id, formData).subscribe(( res: any) => {
+        console.log('UPDATE EJECUTADO: ',res);
+      });
+    } else {
+      this.profileService.createProfile(formData).subscribe((res: any) => {
+        console.log(res);
+        console.log('DEBERIA DE GUARDAR:')
+      });
+    }
+    
   }
 }

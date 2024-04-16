@@ -2,7 +2,6 @@ import { AfterViewInit, Component, Input, OnChanges, OnInit } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
-// import { userModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-about-form',

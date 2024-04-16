@@ -12,11 +12,11 @@ import { profileModel } from 'src/app/models/profile.model';
 export class AboutComponent implements OnInit {
 
   user!: userModel;
-  profileData: profileModel;
+  profile!: profileModel;
+  // profileData: profileModel;
   validatorProfile: boolean;
   constructor(  private userService: UserService,
                 private profileService: ProfileService) {
-    this.profileData = new profileModel('');
     this.validatorProfile = false;
   }
 
@@ -32,9 +32,11 @@ export class AboutComponent implements OnInit {
   }
 
   viewProfile(){
-    this.profileService.getProfile().subscribe((data: any) => {
-      if(data.success){
-        this.profileData = data.data;
+    this.profileService.getProfile().subscribe((profile: profileModel) => {
+      // this.profile = profile;
+      if(profile){
+        this.profile = profile;
+        console.log(profile);
         this.validatorProfile = true;
       } else {
         this.validatorProfile = false;

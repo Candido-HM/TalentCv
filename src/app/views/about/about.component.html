@@ -44,9 +44,9 @@
             </button>
           </div>
           <div class="d-flex flex-column flex-grow-1" style="margin-inline-end: -48px;">
-            <h4 class="text-center fs-5">{{ profileData.title }}</h4> 
+            <h4 class="text-center fs-5">{{ profile.title }}</h4> 
             <p>
-              {{ profileData.description }}  
+              {{ profile.description }}  
             </p>
           </div>
         </div>
@@ -102,6 +102,6 @@
       </div>
     </div>
     <app-about-form [dateUser]="user"></app-about-form>
-    <app-profile-form></app-profile-form>
+    <app-profile-form [dateProfile]="profile"></app-profile-form>
   </article>
 </article>
