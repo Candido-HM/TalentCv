@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -47,7 +47,6 @@ export class AboutFormComponent implements OnChanges {
 
   guardar() {
     console.log(this.formAbout);
-    console.log(this.dateUser.id);
     const formUser: userModel = this.formAbout.value; 
     const idUser = this.dateUser.id;
     if( this.formAbout.invalid) {

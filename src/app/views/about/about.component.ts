@@ -34,7 +34,6 @@ export class AboutComponent implements OnInit {
     this.profileService.getProfile().subscribe((profile: profileModel) => {
       if(profile){
         this.profile = profile;
-        console.log(profile);
         this.validatorProfile = true;
       } else {
         this.validatorProfile = false;

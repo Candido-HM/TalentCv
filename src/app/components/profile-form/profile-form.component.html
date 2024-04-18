@@ -19,7 +19,8 @@
                     </div>
                     <div class="form-floating mb-3">
                         <textarea type="text" class="form-control" placeholder="description" id="floatingTextarea" style="height: 150px;"
-                            formControlName="description"></textarea>
+                            formControlName="description"
+                            [class.is-invalid]="campoNoValido('description')"></textarea>
                         <label for="floatingTextarea">Descripción del perfil*</label>
                         <small *ngIf="campoNoValido('description')" class="invalid-feedback">
                             Ingresa una descripción

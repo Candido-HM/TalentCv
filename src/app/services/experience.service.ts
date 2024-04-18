@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, reduce } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { experienceModel } from '../models/experience.model';
 
@@ -22,8 +22,9 @@ export class ExperienceService {
     // Aqui va el codigo para guardar
   }
 
-  getExperience() {
-    //Aquí va el codigo consulta por ID
+  getExperience(id: number): Observable<experienceModel> { 
+    let ruta = `${this.API_URL}experience/${id}`;
+    return this.http.get<experienceModel>(ruta);
   }
 
   updateExperience() {

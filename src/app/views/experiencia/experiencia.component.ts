@@ -26,4 +26,11 @@ export class ExperienciaComponent {
     })
   }
 
+  viewExperiencie(id: number) {
+    console.log('EXPERIENCIA ID:'+ id);
+    this.experienceService.getExperience(id).subscribe( (data: experienceModel) => {
+      console.log('VIEW: ',data);
+    })
+  }
+
 }
