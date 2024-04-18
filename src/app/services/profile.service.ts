@@ -28,7 +28,6 @@ export class ProfileService {
   }
 
   updateProfile( id: number, profile: profileModel ): Observable<Response> {
-    // let ruta = this.API_URL + 
     let ruta = `${this.API_URL}profile/${id}`;
     return this.http.put<any>(ruta, profile);
   }

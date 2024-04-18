@@ -13,7 +13,6 @@ export class AboutComponent implements OnInit {
 
   user!: userModel;
   profile!: profileModel;
-  // profileData: profileModel;
   validatorProfile: boolean;
   constructor(  private userService: UserService,
                 private profileService: ProfileService) {
@@ -33,7 +32,6 @@ export class AboutComponent implements OnInit {
 
   viewProfile(){
     this.profileService.getProfile().subscribe((profile: profileModel) => {
-      // this.profile = profile;
       if(profile){
         this.profile = profile;
         console.log(profile);

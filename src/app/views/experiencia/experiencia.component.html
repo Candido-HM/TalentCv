@@ -2,28 +2,42 @@
   <h1 class="text-center">Experiencia</h1>
 </header>
 <article class="d-flex justify-content-center">
-  <article class="w-100 rounded px-3 p-lg-4 module">
-    <header class="d-flex justify-content-end">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalExperiencia">
-        <img src="../../../assets/img/icon-edit.svg" alt="icon-edit">
-      </button>
-    </header>
-    <article class="main-module pe-sm-5 mt-1">
-      <div class="d-flex flex-column mb-2">
+  <article class="w-100 rounded p-3 p-lg-4 module"> 
+    <ng-container *ngIf="validationExperience">
+      <article *ngFor="let experience of experiences">
+        <header class="d-flex justify-content-end">
+          <section class="flex-grow-1">
+            <h5>{{ experience.cargo }} </h5>
+          </section>
+          <section class="d-flex justify-content-end">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalExperiencia">
+              <img src="../../../assets/img/icon-edit.svg" alt="icon-edit">
+            </button>
+            <button class="btn icon-edit">
+              <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
+            </button>
+          </section>
+        </header>
         <div name="experiencia-laboral">
-          <h5>Técnico en el Área de Sistemas</h5>
-          <h6>Corporativo Grupo Ríos</h6>
+          <h6>{{ experience.company_name }}</h6>
           <figure>
             <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
-            <span>Agosto 2021</span> -
-            <span>Enero 2022</span>
+            <span>{{ experience.start_date }}</span> -
+            <span>{{ experience.finish_date }}</span>
           </figure>
-          <p>
-            Descripcion detallada del perfil profesional del usuario. Aqui podra escribir informacion relevante 
-            acerca de su carrera quien es, como se desempeña en el area, extras que considere importante mencionar.
-          </p>
+          <p>{{ experience.description }}</p>
         </div>
+      </article>
+    </ng-container>
+     <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalExperiencia">
+      <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
+      Experiencia Laboral
+    </button>
+    
+    <article class="main-module pe-sm-5 mt-1">
+      <div class="d-flex flex-column mb-2">
         <div name="proyectos">
           <h4>Proyectos</h4>
           <h5>Portfolio Web Candido</h5>
@@ -38,6 +52,11 @@
             en el proyecto. Y mas detalles....
           </p>
         </div>
+        <!-- Button trigger modal *ngIf="!validatorProfile" -->
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalProfile">
+          <img class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
+          Experiencia Laboral
+        </button>
       </div>
     </article>
     <app-experiencia-form></app-experiencia-form>
