@@ -34,7 +34,7 @@
                         </label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="month" class="form-control" id="initInput" placeholder="fecha"
+                        <input type="date" class="form-control" id="initInput" placeholder="fecha"
                         formControlName="start_date"
                         [class.is-invalid]="campoNoValido('start_date')">
                         <label for="initInput">Fecha de inicio</label>
@@ -42,8 +42,8 @@
                             Campo requerido
                         </small>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="month" class="form-control" id="finishInput" placeholder="fecha"
+                    <div *ngIf="!formExperience.value.status" class="form-floating mb-3">
+                        <input type="date" class="form-control" id="finishInput" placeholder="fecha"
                         formControlName="finish_date">
                         <label for="finishInput">Fecha de finalización</label>
                     </div>

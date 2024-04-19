@@ -25,10 +25,10 @@ export class ExperienciaFormComponent {
     this.formExperience = this.formBuilder.group({
       cargo: ['', [Validators.required, Validators.minLength(5)]],
       company_name: ['', [Validators.required, Validators.minLength(5)]],
-      status: [''],
+      status: [false],
       start_date: ['', [Validators.required]],
       finish_date: [''],
-      description: ['', [Validators.required, Validators.maxLength(5)]]
+      description: ['', [Validators.required, Validators.minLength(5)]]
     });
   }
 
@@ -36,6 +36,9 @@ export class ExperienciaFormComponent {
     console.log(this.formExperience);
     this.formExperience.markAllAsTouched();
     const experience: experienceModel = this.formExperience.value;
+    this.experienceService.saveExperience(experience).subscribe((res: any) => {
+      console.log(res);
+    });
   }
 
 }
