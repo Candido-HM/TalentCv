@@ -33,9 +33,11 @@ export class ExperienciaFormComponent {
   }
 
   save() {
-    console.log(this.formExperience);
     this.formExperience.markAllAsTouched();
+    console.log(this.formExperience);
+    const validationStatus = this.formExperience.value.status ? 'Laborando' : 'Finalizado';
     const experience: experienceModel = this.formExperience.value;
+    experience.status = validationStatus;
     this.experienceService.saveExperience(experience).subscribe((res: any) => {
       console.log(res);
     });
