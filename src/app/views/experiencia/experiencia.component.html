@@ -15,7 +15,8 @@
               (click)="viewExperiencie(experience.id)">
               <img src="../../../assets/img/icon-edit.svg" alt="icon-edit">
             </button>
-            <button class="btn icon-edit">
+            <button class="btn icon-edit"
+              (click)="delete(experience.id)">
               <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
             </button>
           </section>
@@ -60,7 +61,7 @@
         </button>
       </div>
     </article>
-    <app-experiencia-form></app-experiencia-form>
+    <app-experiencia-form [dataExperiencie]="experiencie"></app-experiencia-form>
   </article>
 </article>
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceModel } from 'src/app/models/experience.model';
@@ -8,7 +8,8 @@ import { experienceModel } from 'src/app/models/experience.model';
   templateUrl: './experiencia-form.component.html',
   styleUrls: ['./experiencia-form.component.sass']
 })
-export class ExperienciaFormComponent {
+export class ExperienciaFormComponent implements OnChanges {
+  @Input() dataExperiencie: any;
 
   formExperience!: FormGroup;
 
@@ -17,15 +18,31 @@ export class ExperienciaFormComponent {
     this.createExperiencie();
   }
 
+  ngOnChanges(): void {
+    this.getExperiencie();
+  }
+
   campoNoValido(campo: string) {
     return this.formExperience.get(campo)?.invalid && this.formExperience.get(campo)?.touched;
+  }
+
+  getExperiencie() {
+    this.formExperience.reset({
+    // this.formExperience.setValue({
+      cargo: this.dataExperiencie.cargo,
+      company_name: this.dataExperiencie.company_name,
+      status: this.dataExperiencie.status,
+      start_date: this.dataExperiencie.start_date,
+      finish_date: this.dataExperiencie.finish_date,
+      description: this.dataExperiencie.description
+    });
   }
 
   createExperiencie() {
     this.formExperience = this.formBuilder.group({
       cargo: ['', [Validators.required, Validators.minLength(5)]],
       company_name: ['', [Validators.required, Validators.minLength(5)]],
-      status: [false],
+      status: ['' , [Validators.required]],
       start_date: ['', [Validators.required]],
       finish_date: [''],
       description: ['', [Validators.required, Validators.minLength(5)]]
@@ -33,14 +50,23 @@ export class ExperienciaFormComponent {
   }
 
   save() {
-    this.formExperience.markAllAsTouched();
     console.log(this.formExperience);
-    const validationStatus = this.formExperience.value.status ? 'Laborando' : 'Finalizado';
     const experience: experienceModel = this.formExperience.value;
-    experience.status = validationStatus;
-    this.experienceService.saveExperience(experience).subscribe((res: any) => {
-      console.log(res);
-    });
+    if(this.formExperience.invalid) {
+      this.formExperience.markAllAsTouched();
+    }
+
+    if( this.dataExperiencie && this.dataExperiencie.id) {
+      this.experienceService.updateExperience(this.dataExperiencie.id, experience).subscribe((res: any) => {
+        console.log('Registro actualizado');
+        console.log(res);
+      });
+    } else {
+      console.log('GUARDAR REGISTRO');
+      this.experienceService.saveExperience(experience).subscribe((res: any) => {
+        console.log(res);
+      });
+    }
   }
 
 }

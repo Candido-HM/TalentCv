@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { experienceModel } from '../models/experience.model';
 
@@ -25,15 +25,21 @@ export class ExperienceService {
 
   getExperience(id: number): Observable<experienceModel> { 
     let ruta = `${this.API_URL}experience/${id}`;
-    return this.http.get<experienceModel>(ruta);
+    return this.http.get<experienceModel>(ruta).pipe(
+      map((resp:any) => {
+        return new experienceModel(resp.data);
+      })
+    );
   }
 
-  updateExperience() {
-    // Aqui va el codigo actualizar
+  updateExperience(id: number, experience: experienceModel): Observable<Response> {
+    let ruta = `${this.API_URL}experience/${id}`;
+    return this.http.put<Response>(ruta, experience);
   }
 
-  deleteExperience() {
-    //Aqui va el codigo de eliminacion
+  deleteExperience(id: number): Observable<Response> {
+    let ruta = `${this.API_URL}experience/${id}`;
+    return this.http.delete<Response>(ruta);
   }
 
 }
