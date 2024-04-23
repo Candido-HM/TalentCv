@@ -27,15 +27,16 @@ export class ExperienciaFormComponent implements OnChanges {
   }
 
   getExperiencie() {
-    this.formExperience.reset({
-    // this.formExperience.setValue({
-      cargo: this.dataExperiencie.cargo,
-      company_name: this.dataExperiencie.company_name,
-      status: this.dataExperiencie.status,
-      start_date: this.dataExperiencie.start_date,
-      finish_date: this.dataExperiencie.finish_date,
-      description: this.dataExperiencie.description
-    });
+    if(this.formExperience) {
+      this.formExperience.reset({
+        cargo: this.dataExperiencie?.cargo,
+        company_name: this.dataExperiencie?.company_name,
+        status: this.dataExperiencie?.status,
+        start_date: this.dataExperiencie?.start_date,
+        finish_date: this.dataExperiencie?.finish_date,
+        description: this.dataExperiencie?.description
+      });
+    }
   }
 
   createExperiencie() {

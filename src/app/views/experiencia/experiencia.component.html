@@ -32,36 +32,50 @@
         </div>
       </article>
     </ng-container>
-     <!-- Button trigger modal -->
+    <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalExperiencia">
       <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
       Experiencia Laboral
     </button>
     
-    <article class="main-module pe-sm-5 mt-1">
-      <div class="d-flex flex-column mb-2">
-        <div name="proyectos">
-          <h4>Proyectos</h4>
-          <h5>Portfolio Web Candido</h5>
+    <section class="mb-3">
+      <h4>Proyectos</h4>
+    </section>
+    <ng-container *ngIf="validationProject">
+      <article *ngFor="let project of projects" class="main-module mt-1 mb-1" style="background-color: blueviolet;">
+        <header class="d-flex justify-content-end">
+          <section class="flex-grow-1">
+            <h5>{{ project.project_name }}</h5>
+          </section>
+          <section class="d-flex justify-content-end">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalProject"
+            (click)="viewProject(project.id)">
+              <img src="../../../assets/img/icon-edit.svg" alt="icon-edit">
+            </button>
+            <button class="btn icon-edit"
+            (click)="deleteProject(project.id)">
+              <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
+            </button>
+          </section>
+        </header> 
+        <div name="proyectos" style="background-color: brown;">
           <figure>
             <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
-            <span>Agosto 2023</span> -
-            <span>Diciembre 2023</span>
+              <span>{{ project.start_date }}</span> -
+              <span>{{ project.finish_date }}</span>
           </figure>
-          <p>
-            Aqui voy a mencionar algunos detalles de mis proyectos personales que he realizado, 
-            incluso que habilidades logre obtener o hacer mención las personas que colaborarón conmigo 
-            en el proyecto. Y mas detalles....
-          </p>
+          <p>{{project.description}}</p>
         </div>
-        <!-- Button trigger modal *ngIf="!validatorProfile" -->
-        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalProfile">
-          <img class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
-          Experiencia Laboral
-        </button>
-      </div>
-    </article>
+      </article>
+    </ng-container>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalProject">
+      <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
+      Proyectos personales
+    </button>
     <app-experiencia-form [dataExperiencie]="experiencie"></app-experiencia-form>
+    <app-project-form [dataProject]="project"></app-project-form>
   </article>
 </article>
 

@@ -4,7 +4,7 @@ export class profileModel {
     description: string;
 
     constructor (data: any) {
-        this.id = data.id || null;
+        this.id = data.id || 0;
         this.title = data.title || '';
         this.description = data.description || ''; 
     }

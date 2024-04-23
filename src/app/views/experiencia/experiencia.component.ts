@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceModel } from 'src/app/models/experience.model';
+import { ProjectService } from 'src/app/services/project.service';
+import { projectModel } from 'src/app/models/project.model';
 
 @Component({
   selector: 'app-experiencia',
@@ -9,13 +11,20 @@ import { experienceModel } from 'src/app/models/experience.model';
 })
 export class ExperienciaComponent {
   public experiences: experienceModel[];
+  public projects: projectModel[];
   public experiencie!: experienceModel;
+  public project!: projectModel;
   validationExperience: boolean;
+  validationProject: boolean;
 
-  constructor( private experienceService: ExperienceService){
-    this.validationExperience = false;
-    this.viewExperiencies();
+  constructor( private experienceService: ExperienceService,
+                private projectService: ProjectService ){
     this.experiences = [];
+    this.projects = [];
+    this.validationExperience = false;
+    this.validationProject = false;
+    this.viewExperiencies();
+    this.viewProjects();
   }
 
   viewExperiencies() {
@@ -41,4 +50,24 @@ export class ExperienciaComponent {
     })
   }
 
+  viewProjects() {
+    this.projectService.getProjects().subscribe( (data: any) => {
+      this.projects = data.data;
+      console.log(this.projects);
+      if (this.projects) {
+        this.validationProject = true;
+      }
+    });
+  }
+
+  viewProject(id: number) {
+    this.projectService.getProject(id).subscribe( (project: projectModel) => {
+      this.project = project;
+      console.log(project);
+    });
+  }
+
+  deleteProject(id: number) {
+    console.log('PROJECT A ELIMINAR ES:'+id);
+  }
 }
