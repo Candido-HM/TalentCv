@@ -42,7 +42,7 @@
       <h4>Proyectos</h4>
     </section>
     <ng-container *ngIf="validationProject">
-      <article *ngFor="let project of projects" class="main-module mt-1 mb-1" style="background-color: blueviolet;">
+      <article *ngFor="let project of projects" class="main-module mt-1 mb-1">
         <header class="d-flex justify-content-end">
           <section class="flex-grow-1">
             <h5>{{ project.project_name }}</h5>
@@ -59,7 +59,7 @@
             </button>
           </section>
         </header> 
-        <div name="proyectos" style="background-color: brown;">
+        <div name="proyectos">
           <figure>
             <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
               <span>{{ project.start_date }}</span> -

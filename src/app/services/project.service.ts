@@ -18,7 +18,10 @@ export class ProjectService {
     return this.http.get<projectModel[]>(ruta);
   }
 
-  saveProject() {}
+  saveProject(project: projectModel): Observable<Response> {
+    let ruta = `${this.API_URL}project`;
+    return this.http.post<Response>(ruta, project);
+  }
 
   getProject(id: number): Observable<projectModel> {
     let ruta = `${this.API_URL}project/${id}`;
@@ -29,7 +32,13 @@ export class ProjectService {
     );
   }
 
-  updateProject() {}
+  updateProject(id: number, project: projectModel): Observable<Response> {
+    let ruta = `${this.API_URL}project/${id}`;
+    return this.http.put<Response>(ruta, project);
+  }
 
-  deleteProject() {}
+  deleteProject(id: number): Observable<Response> {
+    let ruta = `${this.API_URL}project/${id}`;
+    return this.http.delete<Response>(ruta);
+  }
 }

@@ -68,6 +68,9 @@ export class ExperienciaComponent {
   }
 
   deleteProject(id: number) {
+    this.projectService.deleteProject(id).subscribe((resp: any) => {
+      console.log(resp);
+    });
     console.log('PROJECT A ELIMINAR ES:'+id);
   }
 }

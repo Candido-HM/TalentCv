@@ -45,11 +45,23 @@ export class ProjectFormComponent implements OnChanges {
     });
   }
 
-  save(){
+  save() {
     console.log(this.formProject);
+    const project: projectModel = this.formProject.value;
     if(this.formProject.invalid) {
       this.formProject.markAllAsTouched();
     }
-    console.log('****CLICK SAVE****');
+    console.log('PROJECT ID: ', this.dataProject?.id);
+    if( this.dataProject && this.dataProject.id) {
+      this.projectService.updateProject( this.dataProject.id, project).subscribe((res: any) => {
+        console.log(res);
+      });
+      console.log('FUNCIO UPDATE');
+    } else {
+      this.projectService.saveProject(project).subscribe( (res: any) => {
+        console.log(res);
+      });
+      console.log('FUNCION CREAR PROJECT');
+    }
   }
 }
