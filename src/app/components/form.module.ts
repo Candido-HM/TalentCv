@@ -8,6 +8,7 @@ import { FormacionFormComponent } from './formacion-form/formacion-form.componen
 import { ModeToggleModule } from './mode-toggle/mode-toggle.module';
 import { ProfileFormComponent } from './profile-form/profile-form.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
+import { CourseFormComponent } from './course-form/course-form.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProjectFormComponent } from './project-form/project-form.component';
     ExperienciaFormComponent,
     FormacionFormComponent,
     ProfileFormComponent,
-    ProjectFormComponent
+    ProjectFormComponent,
+    CourseFormComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { ProjectFormComponent } from './project-form/project-form.component';
     ExperienciaFormComponent,
     ProjectFormComponent,
     FormacionFormComponent,
+    CourseFormComponent,
     ModeToggleModule
   ]
 })

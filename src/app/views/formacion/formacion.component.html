@@ -3,15 +3,16 @@
 </header>
 <article class="d-flex justify-content-center">
   <article class="w-100 rounded p-3 p-lg-4 module">
-    <ng-container>
-      <article name="formation of formations">
+    <ng-container *ngIf="validationFormation">
+      <article *ngFor="let formation of formations">
         <header class="d-flex justify-content-end">
           <section class="flex-grow-1">
-            <h5>Ingeniería informática</h5>
+            <h5>{{ formation.professional_area }}</h5>
           </section>
           <section class="d-flex justify-content-end">
             <!-- Button trigger modal -->
-            <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalFormacion">
+            <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalFormacion"
+              (click)="viewFormation(formation.id)">
               <img src="../../../assets/img/icon-edit.svg" alt="icon-edit">
             </button>
             <button class="btn icon-edit">
@@ -21,11 +22,11 @@
           </section>
         </header>
         <div name="formacion">
-          <h6>Instituto Técnologico Superior de Zacapoaxtla</h6>
+          <h6>{{ formation.university_name }}</h6>
           <figure>
             <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
-            <span>Agosto 2017</span> -
-            <span>Mayo 2022</span>
+            <span>{{ formation.start_date }}</span> -
+            <span>{{ formation.finish_date }}</span>
           </figure>
         </div>
       </article>
@@ -46,7 +47,7 @@
           </section>
           <section class="d-flex justify-content-end">
             <!-- Button trigger modal -->
-            <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalFormacion">
+            <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalCourse">
               <img src="../../../assets/img/icon-edit.svg" alt="icon-edit">
             </button>
             <button class="btn icon-edit">
@@ -70,10 +71,11 @@
       </article>
     </ng-container>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalFormacion">
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalCourse">
       <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
       Proyectos personales
     </button>
     <app-formacion-form></app-formacion-form>
+    <app-course-form></app-course-form>
   </article>
 </article>

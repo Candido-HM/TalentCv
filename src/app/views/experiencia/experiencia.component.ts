@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceModel } from 'src/app/models/experience.model';
 import { ProjectService } from 'src/app/services/project.service';
@@ -53,7 +53,6 @@ export class ExperienciaComponent {
   viewProjects() {
     this.projectService.getProjects().subscribe( (data: any) => {
       this.projects = data.data;
-      console.log(this.projects);
       if (this.projects) {
         this.validationProject = true;
       }
