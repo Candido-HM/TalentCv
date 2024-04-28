@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormationService } from 'src/app/services/formation.service';
 import { formationModel } from 'src/app/models/formation.model';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-formacion',
@@ -35,6 +36,12 @@ export class FormacionComponent {
     this.formationService.getFormation(id).subscribe( (formation: formationModel) => {
       this.formation = formation;
       console.log('VIEW: ', formation)
+    })
+  }
+
+  deleteFormation(id: number) {
+    this.formationService.deleteFormation(id).subscribe( (data: any) => {
+      console.log(data);
     })
   }
 

@@ -7,27 +7,57 @@
                 <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close"></button>
             </header>
             <article class="modal-body">
-                <form>
+                <form [formGroup]="formFormation" (ngSubmit)="save()">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="institucionInput" placeholder="Institucion" required>
+                        <input type="text" class="form-control" id="institucionInput" placeholder="Institucion"
+                        formControlName="university_name"
+                        [class.is-invalid]="campoNoValido('university_name')">
                         <label for="institucionInput">Institución Educativa</label>
+                        <small *ngIf="campoNoValido('university_name')" class="invalid-feedback">
+                            Ingresa una institucion válido
+                        </small>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="cargoInput" placeholder="Cargo" required>
-                        <label for="cargoInput">Disciplina Académica</label>
+                        <input type="text" class="form-control" id="profesionInput" placeholder="carrera"
+                        formControlName="professional_area"
+                        [class.is-invalid]="campoNoValido('professional_area')">
+                        <label for="profesionInput">Disciplina Académica</label>
+                        <small *ngIf="campoNoValido('professional_area')" class="invalid-feedback">
+                            Campo requerido
+                        </small>
                     </div>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="status">
+                    <div class="form-check mb-3 px-0">
                         <label class="form-check-label" for="status">
-                            Cursando actualmente
+                            Actualmente está cursando
                         </label>
+                        <div class="col-8">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio"
+                                formControlName="status"
+                                value="Cursando">
+                              <label class="form-check-label">Sí</label>
+                            </div>
+                      
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio"
+                                formControlName="status"
+                                value="Finalizado">
+                              <label class="form-check-label">No</label>
+                            </div>
+                          </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="month" class="form-control" id="cargoInput" placeholder="Cargo" required>
+                        <input type="date" class="form-control" id="cargoInput" placeholder="Cargo"
+                        formControlName="start_date"
+                        [class.is-invalid]="campoNoValido('start_date')">
                         <label for="cargoInput">Fecha de inicio</label>
+                        <small *ngIf="campoNoValido('start_date')" class="invalid-feedback">
+                            Campo requerido
+                        </small>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="month" class="form-control" id="cargoInput" placeholder="Cargo">
+                    <div *ngIf="formFormation.value.status === 'Finalizado'" class="form-floating mb-3">
+                        <input type="date" class="form-control" id="cargoInput" placeholder="Cargo"
+                        formControlName="finish_date">
                         <label for="cargoInput">Fecha de finalización</label>
                     </div>
                     <div class="col-12">

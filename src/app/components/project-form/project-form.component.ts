@@ -51,7 +51,7 @@ export class ProjectFormComponent implements OnChanges {
     if(this.formProject.invalid) {
       this.formProject.markAllAsTouched();
     }
-    console.log('PROJECT ID: ', this.dataProject?.id);
+    
     if( this.dataProject && this.dataProject.id) {
       this.projectService.updateProject( this.dataProject.id, project).subscribe((res: any) => {
         console.log(res);

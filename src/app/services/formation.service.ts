@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { formationModel } from '../models/formation.model';
+import { ResolveEnd } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,10 @@ export class FormationService {
     return this.http.get<formationModel[]>(ruta);
   }
 
-  saveFormation() { }
+  saveFormation(formation: formationModel): Observable<Response> {
+    let ruta = `${this.API_URL}formation`;
+    return this.http.post<Response>(ruta, formation);
+   }
 
   getFormation(id: number): Observable<formationModel> {
     let ruta = `${this.API_URL}formation/${id}`;
@@ -29,7 +33,13 @@ export class FormationService {
     );
    }
 
-  updateFormation() { }
+  updateFormation(id: number, formation: formationModel): Observable<Response> {
+    let ruta = `${this.API_URL}formation/${id}`;
+    return this.http.put<Response>(ruta, formation);
+  }
 
-  deleteFormation() { }
+  deleteFormation(id: number): Observable<Response> {
+    let ruta = `${this.API_URL}formation/${id}`;
+    return this.http.delete<Response>(ruta);
+   }
 }
