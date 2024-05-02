@@ -28,7 +28,6 @@ export class FormacionComponent {
       if(this.formations) {
         this.validationFormation = true;
       }
-      console.log('FORMACION: ', this.formations);
     })
   }
 

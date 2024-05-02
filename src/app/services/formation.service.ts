@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { formationModel } from '../models/formation.model';
-import { ResolveEnd } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
