@@ -50,8 +50,22 @@ export class CourseFormComponent implements OnChanges {
   save() {
     console.log(this.formCourse);
 
+    const course: courseModel = this.formCourse.value;
+
     if(this.formCourse.invalid) {
       this.formCourse.markAllAsTouched();
+    }
+
+    if(this.dataCourse && this.dataCourse.id) {
+      this.courseService.updateCourse(this.dataCourse.id, course).subscribe((res: any) => {
+        console.log(res);
+      });
+      console.log('REGISTRO ACTUALIZADO');
+    } else {
+      this.courseService.saveCourse(course).subscribe((res: any) => {
+        console.log(res);
+      })
+      console.log('REGISTRO GUARDADO')
     }
   }
 }

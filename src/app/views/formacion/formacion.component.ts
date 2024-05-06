@@ -57,7 +57,6 @@ export class FormacionComponent {
   viewCourses() {
     this.courseService.getCourses().subscribe((data: any) => {
       this.courses = data.data;
-      console.log(this.courses);
       if(this.courses) {
         this.validationCourse = true;
       }
@@ -67,12 +66,13 @@ export class FormacionComponent {
   viewCourse(id: number) {
     this.courseService.getCourse(id).subscribe( (course: courseModel) => {
       this.course = course;
-      // console.log('COURSE VIEW:', course)
     })
   }
 
   deleteCourse(id: number) {
-    console.log('CURSO A ELIMINAR', id);
+    this.courseService.deleteCourse(id).subscribe((data: any) => {
+      console.log(data);
+    });
   }
 
 }
