@@ -47,11 +47,12 @@
           </section>
           <section class="d-flex justify-content-end">
             <!-- Button trigger modal -->
-            <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalCourse">
+            <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalCourse"
+              (click)="viewCourse(course.id)">
               <img src="../../../assets/img/icon-edit.svg" alt="icon-edit">
             </button>
-            <button class="btn icon-edit">
-              <!-- (click)="delete(experience.id)" -->
+            <button class="btn icon-edit"
+              (click)="deleteCourse(course.id)">
               <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
             </button>
           </section>
@@ -76,6 +77,6 @@
       Cursos o certificaciones
     </button>
     <app-formacion-form [dataFormation]="formation"></app-formacion-form>
-    <app-course-form></app-course-form>
+    <app-course-form [dataCourse]="course"></app-course-form>
   </article>
 </article>

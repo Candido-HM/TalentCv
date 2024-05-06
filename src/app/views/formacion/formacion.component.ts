@@ -64,4 +64,15 @@ export class FormacionComponent {
     })
   }
 
+  viewCourse(id: number) {
+    this.courseService.getCourse(id).subscribe( (course: courseModel) => {
+      this.course = course;
+      // console.log('COURSE VIEW:', course)
+    })
+  }
+
+  deleteCourse(id: number) {
+    console.log('CURSO A ELIMINAR', id);
+  }
+
 }
