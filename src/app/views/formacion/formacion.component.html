@@ -39,11 +39,11 @@
     <section class="mb-3">
       <h4>Cursos</h4>
     </section>
-    <ng-container>
-      <article name="let project of projects" class="main-module mt-1 mb-1">
+    <ng-container *ngIf="validationCourse">
+      <article *ngFor="let course of courses" name="let project of projects" class="main-module mt-1 mb-1">
         <header class="d-flex justify-content-end">
           <section class="flex-grow-1">
-            <h5>Mastér en Css con Victor Robles Web</h5>
+            <h5>{{ course.course_name }}</h5>
           </section>
           <section class="d-flex justify-content-end">
             <!-- Button trigger modal -->
@@ -57,11 +57,11 @@
           </section>
         </header>
         <div name="cursos">
-          <h6>Udemy</h6>
+          <h6>{{ course.company_training }}</h6>
           <figure>
             <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
-            <span>Enero 2023</span> -
-            <span>Febrero 2023</span>
+            <span>{{ course.start_date }}</span> -
+            <span>{{ course.finish_date }}</span>
           </figure>
           <p>
             Descripcion detallada del perfil profesional del usuario. Aqui podra escribir informacion relevante 
@@ -73,7 +73,7 @@
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalCourse">
       <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
-      Proyectos personales
+      Cursos o certificaciones
     </button>
     <app-formacion-form [dataFormation]="formation"></app-formacion-form>
     <app-course-form></app-course-form>

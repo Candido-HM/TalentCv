@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormationService } from 'src/app/services/formation.service';
 import { formationModel } from 'src/app/models/formation.model';
-import { ProjectService } from 'src/app/services/project.service';
+import { CourseService } from 'src/app/services/course.service';
+import { courseModel } from 'src/app/models/course.model';
 
 @Component({
   selector: 'app-formacion',
@@ -11,15 +12,24 @@ import { ProjectService } from 'src/app/services/project.service';
 export class FormacionComponent {
   public formations: formationModel[];
   public formation!: formationModel;
+
+  public courses: courseModel[];
+  public course!: courseModel;
   
   validationFormation: boolean;
+  validationCourse: boolean;
 
-  constructor ( private formationService: FormationService) {
+  constructor ( private formationService: FormationService,
+                private courseService: CourseService
+  ) {
     this.formations = [];
+    this.courses = [];
 
     this.validationFormation = false;
+    this.validationCourse = false;
 
     this.viewFormations();
+    this.viewCourses();
   }
 
   viewFormations() {
@@ -41,6 +51,16 @@ export class FormacionComponent {
   deleteFormation(id: number) {
     this.formationService.deleteFormation(id).subscribe( (data: any) => {
       console.log(data);
+    })
+  }
+
+  viewCourses() {
+    this.courseService.getCourses().subscribe((data: any) => {
+      this.courses = data.data;
+      console.log(this.courses);
+      if(this.courses) {
+        this.validationCourse = true;
+      }
     })
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { courseModel } from '../models/course.model';
 
@@ -20,7 +20,14 @@ export class CourseService {
 
   saveCourse() { }
 
-  getCourse() { /**por ID */}
+  getCourse(id: number): Observable<courseModel> { 
+    let ruta = `${this.API_URL}course/${id}`;
+    return this.http.get<courseModel>(ruta).pipe(
+      map((resp: any) => {
+        return new courseModel(resp.data);
+      })
+    )
+  } 
 
   updateCourse() { }
 
