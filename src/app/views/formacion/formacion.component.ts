@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormationService } from 'src/app/services/formation.service';
 import { formationModel } from 'src/app/models/formation.model';
 import { CourseService } from 'src/app/services/course.service';
 import { courseModel } from 'src/app/models/course.model';
+import { FormacionFormComponent } from 'src/app/components/formacion-form/formacion-form.component';
+import { CourseFormComponent } from 'src/app/components/course-form/course-form.component';
 
 @Component({
   selector: 'app-formacion',
@@ -10,6 +12,9 @@ import { courseModel } from 'src/app/models/course.model';
   styleUrls: ['./formacion.component.sass']
 })
 export class FormacionComponent {
+  @ViewChild(FormacionFormComponent) formationForm!: FormacionFormComponent;
+  @ViewChild(CourseFormComponent) courseForm!: CourseFormComponent;
+
   public formations: formationModel[];
   public formation!: formationModel;
 
@@ -30,6 +35,10 @@ export class FormacionComponent {
 
     this.viewFormations();
     this.viewCourses();
+  }
+
+  cleanFormation() {
+    this.formationForm.createFormation();
   }
 
   viewFormations() {
@@ -53,6 +62,10 @@ export class FormacionComponent {
       console.log(data);
       this.viewFormations();
     })
+  }
+
+  cleanCourse() {
+    this.courseForm.createCourse();
   }
 
   viewCourses() {
