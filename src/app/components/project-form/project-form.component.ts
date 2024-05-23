@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProjectService } from 'src/app/services/project.service';
 import { projectModel } from 'src/app/models/project.model';
@@ -10,6 +10,8 @@ import { projectModel } from 'src/app/models/project.model';
 })
 export class ProjectFormComponent implements OnChanges {
   @Input() dataProject: any;
+  @Output() loadingProjects = new EventEmitter;
+
   formProject!: FormGroup;
   
   constructor( private formBuilder: FormBuilder,
@@ -55,13 +57,13 @@ export class ProjectFormComponent implements OnChanges {
     if( this.dataProject && this.dataProject.id) {
       this.projectService.updateProject( this.dataProject.id, project).subscribe((res: any) => {
         console.log(res);
+        this.loadingProjects.emit();
       });
-      console.log('FUNCIO UPDATE');
     } else {
       this.projectService.saveProject(project).subscribe( (res: any) => {
         console.log(res);
+        this.loadingProjects.emit();
       });
-      console.log('FUNCION CREAR PROJECT');
     }
   }
 }

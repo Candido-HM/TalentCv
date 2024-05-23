@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormationService } from 'src/app/services/formation.service';
 import { formationModel } from 'src/app/models/formation.model';
@@ -10,6 +10,7 @@ import { formationModel } from 'src/app/models/formation.model';
 })
 export class FormacionFormComponent implements OnChanges {
   @Input() dataFormation: any;
+  @Output() formationEvent = new EventEmitter<void>();
 
   formFormation!: FormGroup;
 
@@ -56,12 +57,14 @@ export class FormacionFormComponent implements OnChanges {
 
     if(this.dataFormation && this.dataFormation.id) {
       this.formationService.updateFormation(this.dataFormation.id, formation).subscribe((res: any) => {
-        console.log(res)
+        console.log(res);
+        this.formationEvent.emit();
       });
       console.log('REGISTRO ACTUALIZADO');
     } else {
       this.formationService.saveFormation(formation).subscribe((res: any) => {
         console.log(res);
+        this.formationEvent.emit();
       });
       console.log('REGISTRO GUaRDADO');
     }

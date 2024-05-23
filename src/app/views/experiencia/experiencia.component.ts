@@ -47,6 +47,7 @@ export class ExperienciaComponent {
     this.experienceService.deleteExperience(id).subscribe( (data: any) => {
       console.log('DELETE');
       console.log(data);
+      this.viewExperiencies();
     })
   }
 
@@ -69,7 +70,7 @@ export class ExperienciaComponent {
   deleteProject(id: number) {
     this.projectService.deleteProject(id).subscribe((resp: any) => {
       console.log(resp);
+      this.viewProjects();
     });
-    console.log('PROJECT A ELIMINAR ES:'+id);
   }
 }

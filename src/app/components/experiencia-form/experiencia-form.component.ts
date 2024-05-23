@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceModel } from 'src/app/models/experience.model';
@@ -10,6 +10,7 @@ import { experienceModel } from 'src/app/models/experience.model';
 })
 export class ExperienciaFormComponent implements OnChanges {
   @Input() dataExperiencie: any;
+  @Output() loadingExperience = new EventEmitter();
 
   formExperience!: FormGroup;
 
@@ -61,11 +62,13 @@ export class ExperienciaFormComponent implements OnChanges {
       this.experienceService.updateExperience(this.dataExperiencie.id, experience).subscribe((res: any) => {
         console.log('Registro actualizado');
         console.log(res);
+        this.loadingExperience.emit();
       });
     } else {
       console.log('GUARDAR REGISTRO');
       this.experienceService.saveExperience(experience).subscribe((res: any) => {
         console.log(res);
+        this.loadingExperience.emit(res);
       });
     }
   }
