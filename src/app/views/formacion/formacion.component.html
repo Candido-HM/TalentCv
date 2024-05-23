@@ -76,7 +76,9 @@
       <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
       Cursos o certificaciones
     </button>
-    <app-formacion-form [dataFormation]="formation"></app-formacion-form>
-    <app-course-form [dataCourse]="course"></app-course-form>
+    <app-formacion-form [dataFormation]="formation"
+      (loadingFormations)="viewFormations()"></app-formacion-form>
+    <app-course-form [dataCourse]="course"
+      (loadingCourses)="viewCourses()"></app-course-form>
   </article>
 </article>

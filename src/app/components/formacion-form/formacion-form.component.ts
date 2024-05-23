@@ -10,7 +10,7 @@ import { formationModel } from 'src/app/models/formation.model';
 })
 export class FormacionFormComponent implements OnChanges {
   @Input() dataFormation: any;
-  @Output() formationEvent = new EventEmitter<void>();
+  @Output() loadingFormations = new EventEmitter();
 
   formFormation!: FormGroup;
 
@@ -58,13 +58,13 @@ export class FormacionFormComponent implements OnChanges {
     if(this.dataFormation && this.dataFormation.id) {
       this.formationService.updateFormation(this.dataFormation.id, formation).subscribe((res: any) => {
         console.log(res);
-        this.formationEvent.emit();
+        this.loadingFormations.emit();
       });
       console.log('REGISTRO ACTUALIZADO');
     } else {
       this.formationService.saveFormation(formation).subscribe((res: any) => {
         console.log(res);
-        this.formationEvent.emit();
+        this.loadingFormations.emit();
       });
       console.log('REGISTRO GUaRDADO');
     }

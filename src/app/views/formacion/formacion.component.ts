@@ -51,6 +51,7 @@ export class FormacionComponent {
   deleteFormation(id: number) {
     this.formationService.deleteFormation(id).subscribe( (data: any) => {
       console.log(data);
+      this.viewFormations();
     })
   }
 
@@ -72,6 +73,7 @@ export class FormacionComponent {
   deleteCourse(id: number) {
     this.courseService.deleteCourse(id).subscribe((data: any) => {
       console.log(data);
+      this.viewCourses();
     });
   }
 

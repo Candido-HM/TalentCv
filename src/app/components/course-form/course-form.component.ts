@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CourseService } from 'src/app/services/course.service';
 import { courseModel } from 'src/app/models/course.model';
@@ -10,6 +10,8 @@ import { courseModel } from 'src/app/models/course.model';
 })
 export class CourseFormComponent implements OnChanges {
   @Input() dataCourse: any;
+  @Output() loadingCourses = new EventEmitter();
+
   formCourse!: FormGroup;
 
   constructor( private formBuilder: FormBuilder,
@@ -59,13 +61,13 @@ export class CourseFormComponent implements OnChanges {
     if(this.dataCourse && this.dataCourse.id) {
       this.courseService.updateCourse(this.dataCourse.id, course).subscribe((res: any) => {
         console.log(res);
+        this.loadingCourses.emit();
       });
-      console.log('REGISTRO ACTUALIZADO');
     } else {
       this.courseService.saveCourse(course).subscribe((res: any) => {
         console.log(res);
+        this.loadingCourses.emit();
       })
-      console.log('REGISTRO GUARDADO')
     }
   }
 }
