@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceModel } from 'src/app/models/experience.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { projectModel } from 'src/app/models/project.model';
+import { ExperienciaFormComponent } from 'src/app/components/experiencia-form/experiencia-form.component';
+import { ProjectFormComponent } from 'src/app/components/project-form/project-form.component';
 
 @Component({
   selector: 'app-experiencia',
@@ -10,6 +12,9 @@ import { projectModel } from 'src/app/models/project.model';
   styleUrls: ['./experiencia.component.sass']
 })
 export class ExperienciaComponent {
+  @ViewChild(ExperienciaFormComponent) experiencieForm!: ExperienciaFormComponent;
+  @ViewChild(ProjectFormComponent) projectForm!: ProjectFormComponent;
+
   public experiences: experienceModel[];
   public projects: projectModel[];
   public experiencie!: experienceModel;
@@ -25,6 +30,10 @@ export class ExperienciaComponent {
     this.validationProject = false;
     this.viewExperiencies();
     this.viewProjects();
+  }
+
+  cleanExperience() {
+    this.experiencieForm.createExperiencie();
   }
 
   viewExperiencies() {
@@ -49,6 +58,10 @@ export class ExperienciaComponent {
       console.log(data);
       this.viewExperiencies();
     })
+  }
+
+  cleanProject() {
+    this.projectForm.createProject();
   }
 
   viewProjects() {
