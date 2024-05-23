@@ -104,7 +104,9 @@
         </div>
       </div>
     </div>
-    <app-about-form [dateUser]="user"></app-about-form>
-    <app-profile-form [dateProfile]="profile"></app-profile-form>
+    <app-about-form [dateUser]="user"
+      (loadingUser)="viewUser()"></app-about-form>
+    <app-profile-form [dateProfile]="profile"
+      (loadingProfile)="viewProfile()"></app-profile-form>
   </article>
 </article>

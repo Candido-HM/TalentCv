@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OutletContext } from '@angular/router';
 import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,6 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AboutFormComponent implements OnChanges {
   @Input() dateUser: any;
+  @Output() loadingUser = new EventEmitter();
+
   formAbout!: FormGroup;
 
   constructor( private formBuider: FormBuilder,
@@ -54,6 +57,7 @@ export class AboutFormComponent implements OnChanges {
     }
     this.userService.updateUser(idUser, formUser).subscribe((res: any) => {
       console.log(res);
+      this.loadingUser.emit();
     })
   }
 }

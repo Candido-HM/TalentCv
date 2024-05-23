@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
 import { profileModel } from 'src/app/models/profile.model';
@@ -10,6 +10,8 @@ import { profileModel } from 'src/app/models/profile.model';
 })
 export class ProfileFormComponent implements OnChanges {
   @Input() dateProfile: any;
+  @Output() loadingProfile = new EventEmitter();
+
   formProfile!: FormGroup;
 
   constructor( private formBuilder: FormBuilder,
@@ -49,14 +51,14 @@ export class ProfileFormComponent implements OnChanges {
     }
 
     if(this.dateProfile && this.dateProfile.id) {
-      console.log('Ahora toca actualizar');
       this.profileService.updateProfile(this.dateProfile.id, formData).subscribe(( res: any) => {
         console.log('UPDATE EJECUTADO: ',res);
+        this.loadingProfile.emit();
       });
     } else {
       this.profileService.createProfile(formData).subscribe((res: any) => {
-        console.log(res);
-        console.log('DEBERIA DE GUARDAR:')
+        console.log('DEBERIA DE GUARDAR:', res);
+        this.loadingProfile.emit();
       });
     }
     
