@@ -57,6 +57,7 @@ export class ProjectFormComponent implements OnChanges {
     if( this.dataProject && this.dataProject.id) {
       this.projectService.updateProject( this.dataProject.id, project).subscribe((res: any) => {
         console.log(res);
+        this.dataProject.id = null;
         this.loadingProjects.emit();
       });
     } else {

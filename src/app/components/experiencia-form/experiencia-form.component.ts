@@ -60,14 +60,14 @@ export class ExperienciaFormComponent implements OnChanges {
 
     if( this.dataExperiencie && this.dataExperiencie.id) {
       this.experienceService.updateExperience(this.dataExperiencie.id, experience).subscribe((res: any) => {
-        console.log('Registro actualizado');
         console.log(res);
+        this.dataExperiencie.id = null;
         this.loadingExperience.emit();
       });
+      console.log('Registro actualizado', this.dataExperiencie);
     } else {
       console.log('GUARDAR REGISTRO');
       this.experienceService.saveExperience(experience).subscribe((res: any) => {
-        console.log(res);
         this.loadingExperience.emit(res);
       });
     }

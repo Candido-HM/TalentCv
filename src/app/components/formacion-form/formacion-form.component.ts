@@ -58,6 +58,7 @@ export class FormacionFormComponent implements OnChanges {
     if(this.dataFormation && this.dataFormation.id) {
       this.formationService.updateFormation(this.dataFormation.id, formation).subscribe((res: any) => {
         console.log(res);
+        this.dataFormation.id = null;
         this.loadingFormations.emit();
       });
       console.log('REGISTRO ACTUALIZADO');

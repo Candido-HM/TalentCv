@@ -61,6 +61,7 @@ export class CourseFormComponent implements OnChanges {
     if(this.dataCourse && this.dataCourse.id) {
       this.courseService.updateCourse(this.dataCourse.id, course).subscribe((res: any) => {
         console.log(res);
+        this.dataCourse.id = null;
         this.loadingCourses.emit();
       });
     } else {
