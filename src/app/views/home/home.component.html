@@ -1,15 +1,28 @@
 <header class="d-flex justify-content-center pt-3 mb-5">
     <h1 class="text-center">TalentCv</h1>
 </header>
-<article class="p-2 d-flex justify-content-between" style="background-color: burlywood;">
+<article class="p-2 d-flex flex-column">
 
-    <section style="background-color: yellowgreen;">
-        Nuevo Cv
+    <section style="width: 200px; height: 50px;" class="w-100">
+        <button type="button" class="btn btn-primary" (click)="redirect(0)">
+            <img style="width: 22px; height: 22px;" src="../../../assets/img/icon-add.svg" alt="add">
+            Nuevo Cv
+        </button>  
     </section>
-    <section style="background-color: violet;">
-        CV existente
+    <section class="d-flex">
+        <div class="card" *ngFor="let profile of profiles">
+            <img src="..." class="card-img-top" alt="cv-captura">
+            <div class="card-body">
+                <h5 class="card-title">{{ profile.title}}</h5>
+                <!-- <a href="#" class="btn btn-primary">Editar</a> -->
+                <button class="btn btn-primary" (click)="viewProfile(profile.id)">Editar</button>
+            </div>
+            <div class="card-footer">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+        </div>
     </section>
-    <div style="background-color: yellow;">
+    <!-- <div class="border rounded border-dashed">
         Voy hacer la seccion principal de la pagina: <br>
         Ideas para el dashboard <br>
         *Mostrar las plantillas. <br>
@@ -17,5 +30,5 @@
         *Recomendaciones de un buen CV. <br>
         *Sugerencias a la app web. <br>
         *Ajustes finales finales para generar el CV.
-    </div>
+    </div> -->
 </article>

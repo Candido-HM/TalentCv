@@ -13,9 +13,26 @@ export class ProfileService {
 
   constructor( private http: HttpClient) { }
 
+  getProfiles(): Observable<profileModel[]> { 
+    let ruta = `${this.API_URL}profile`;
+    return this.http.get<profileModel[]>(ruta);
+  }
+
   getProfile(): Observable<profileModel> {
-    let ruta = this.API_URL + 'profile';
-    return this.http.get<any>(ruta).pipe(
+    let id = 1;
+    let  ruta = `${this.API_URL}profile/${id}`;
+    return this.http.get<profileModel>(ruta).pipe(
+      map((resp: any) => {
+        return new profileModel(resp.data);
+      })
+    );
+  }
+
+  getProfile1(id: number): Observable<profileModel> {
+    // id: number
+    // let id = 1;
+    let  ruta = `${this.API_URL}profile/${id}`;
+    return this.http.get<profileModel>(ruta).pipe(
       map((resp: any) => {
         return new profileModel(resp.data);
       })

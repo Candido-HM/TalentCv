@@ -41,14 +41,14 @@ export class WelcomeComponent {
     this.auth.login(formData).subscribe((res: any) => {
       console.log(res);
       this.auth.saveToken(res.access_token);
-      this.router.navigate(['profile']);
+      this.router.navigate(['dashboard']);
     })
   }
 
   loadingToken() {
     let token = this.auth.leerToken();
     if(token !== ''){
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/dashboard']);
     } else {
       this.router.navigate(['']);
     }

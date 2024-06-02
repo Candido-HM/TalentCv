@@ -11,9 +11,10 @@ import { ProfileComponent } from './views/profile/profile.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [authGuard], children: [
+  {path: 'dashboard', component: ProfileComponent, canActivate: [authGuard], children: [
     {path: 'home', component: HomeComponent },
-    {path: 'about', component: AboutComponent},
+    {path: 'profile/:id', component: AboutComponent },
+    // {path: 'about', component: AboutComponent},
     {path: 'experiencia', component: ExperienciaComponent},
     {path: 'formacion', component: FormacionComponent},
     {path: '', pathMatch: 'full', redirectTo: 'home'},
