@@ -18,8 +18,8 @@ export class ProfileService {
     return this.http.get<profileModel[]>(ruta);
   }
 
-  getProfile(): Observable<profileModel> {
-    let id = 1;
+  getProfile(id: number): Observable<profileModel> {
+    // let id = 1;
     let  ruta = `${this.API_URL}profile/${id}`;
     return this.http.get<profileModel>(ruta).pipe(
       map((resp: any) => {

@@ -1,9 +1,9 @@
 <header class="d-flex justify-content-center pt-3 mb-5">
   <h1 class="text-center">Sobre tí</h1>
 </header>
-<article class="d-flex justify-content-center module mb-5">
+<!-- <article class="d-flex justify-content-center module mb-5">
   {{profile1 | json }}
-</article>
+</article> -->
 <article class="d-flex justify-content-center">
   <article class="w-100 rounded px-3 pt-3 p-lg-4 module">
     <div class="main-module mt-1">
@@ -109,7 +109,16 @@
     </div>
     <app-about-form [dateUser]="user"
       (loadingUser)="viewUser()"></app-about-form>
-    <app-profile-form [dateProfile]="profile"
-      (loadingProfile)="viewProfile()"></app-profile-form>
+    <!-- <app-profile-form [dateProfile]="profile"
+      (loadingProfile)="viewProfile()"></app-profile-form> -->
   </article>
 </article>
+
+<article class="d-flex justify-content-between mt-3 mb-5">
+  <a class="btn btn-outline-primary btn-sm" [routerLink]="['home']">
+    Regresar
+  </a>
+  <a class="btn btn-outline-primary btn-sm" [routerLink]="['experiencia']">
+    Siguiente
+  </a>
+</article> 
