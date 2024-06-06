@@ -4,7 +4,7 @@
 <article class="p-2 d-flex flex-column">
 
     <section style="width: 200px; height: 50px;" class="w-100">
-        <button type="button" class="btn btn-primary" (click)="redirect(0)">
+        <button type="button" class="btn btn-primary" (click)="redirect()">
             <img style="width: 22px; height: 22px;" src="../../../assets/img/icon-add.svg" alt="add">
             Nuevo Cv
         </button>  
@@ -14,8 +14,11 @@
             <img src="..." class="card-img-top" alt="cv-captura">
             <div class="card-body">
                 <h5 class="card-title">{{ profile.title}}</h5>
-                <!-- <a href="#" class="btn btn-primary">Editar</a> -->
                 <button class="btn btn-primary" (click)="viewProfile(profile.id)">Editar</button>
+                <button class="btn icon-edit">
+                    <!-- (click)="deleteProject(project.id)" -->
+                    <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
+                </button>
             </div>
             <div class="card-footer">
                 <small class="text-body-secondary">Last updated 3 mins ago</small>

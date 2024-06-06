@@ -14,7 +14,6 @@ export class AboutComponent implements OnInit {
 
   user!: userModel;
   profile!: profileModel;
-  profile1!: profileModel;
   validatorProfile: boolean;
   idProfile: number;
   constructor(  private userService: UserService,
@@ -25,18 +24,13 @@ export class AboutComponent implements OnInit {
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
-      this.viewProfile(this.idProfile)
-      this.viewProfile1(this.idProfile)
-      console.log('ES EL ID->PROFILE: ',this.idProfile);
+      console.log('ID PROFILE ES: ',this.idProfile);
+      this.viewProfile(this.idProfile);
     });
   }
 
   ngOnInit(): void {
     this.viewUser();
-    // this.viewProfile();
-    // this.viewProfile1();
-
-    
   }
 
   viewUser(){
@@ -46,25 +40,19 @@ export class AboutComponent implements OnInit {
   }
 
   viewProfile(id: number){
+    console.log('VIEWPROFILE ES:', id);
+
     this.profileService.getProfile(id).subscribe((profile: profileModel) => {
       if(profile){
         this.profile = profile;
+        this.idProfile = profile.id;
+        console.log('TRUE: ',profile);
         this.validatorProfile = true;
       } else {
+        console.log('FALSE: ',profile);
         this.validatorProfile = false;
       }
     });
   }
-
-  viewProfile1(id: number){
-    this.profileService.getProfile1(id).subscribe((profile: profileModel) => {
-      if(profile){
-        this.profile1 = profile;
-        console.log('YA SE ARMO: ', profile)
-        this.validatorProfile = true;
-      } else {
-        this.validatorProfile = false;
-      }
-    });
-  }
+  
 }

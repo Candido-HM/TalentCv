@@ -24,24 +24,17 @@ export class HomeComponent {
   viewProfiles(){
     this.profileService.getProfiles().subscribe((data: any) => {
       this.profiles = data.data;
-      // console.log(this.profiles);
     })
   }
 
-  redirect(id: number) {
-    this.router.navigate(['dashboard/profile/', id]);
+  redirect() {
+    this.router.navigate(['dashboard/profile/new']);
   }
 
   viewProfile(id: number){
-    this.profileService.getProfile1(id).subscribe((profile: profileModel) => {
-      // if(profile){
+    this.profileService.getProfile(id).subscribe((profile: profileModel) => {
         this.profile = profile;
-        // console.log('PROFILE: ', profile);
         this.router.navigate(['dashboard/profile/', id]);
-        // this.validatorProfile = true;
-      // } else {
-        // this.validatorProfile = false;
-      // }
     });
   }
 
