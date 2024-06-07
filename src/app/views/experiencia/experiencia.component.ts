@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceModel } from 'src/app/models/experience.model';
 import { ProjectService } from 'src/app/services/project.service';
@@ -23,13 +24,22 @@ export class ExperienciaComponent {
   validationProject: boolean;
 
   constructor( private experienceService: ExperienceService,
-                private projectService: ProjectService ){
+                private projectService: ProjectService,
+                private router: Router ){
     this.experiences = [];
     this.projects = [];
     this.validationExperience = false;
     this.validationProject = false;
     this.viewExperiencies();
     this.viewProjects();
+  }
+
+  returnProfile() {
+    this.router.navigate(['dashboard/profile']);
+  }
+
+  nextFormation() {
+    this.router.navigate(['dashboard/formacion']);
   }
 
   cleanExperience() {

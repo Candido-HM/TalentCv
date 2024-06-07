@@ -114,10 +114,10 @@
 </article>
 
 <article class="d-flex justify-content-between mt-3 mb-5">
-  <a class="btn btn-outline-primary btn-sm" [routerLink]="['home']">
+  <button class="btn btn-outline-primary btn-sm" (click)="returnHome()" [routerLink]="['home']">
     Regresar
-  </a>
-  <a class="btn btn-outline-primary btn-sm" [routerLink]="['experiencia']">
+  </button>
+  <button class="btn btn-outline-primary btn-sm" (click)="nextExperience()">
     Siguiente
-  </a>
+  </button>
 </article> 

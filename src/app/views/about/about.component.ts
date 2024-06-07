@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -18,7 +18,8 @@ export class AboutComponent implements OnInit {
   idProfile: number;
   constructor(  private userService: UserService,
                 private profileService: ProfileService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private router: Router) {
     this.validatorProfile = false;
     this.idProfile = 0;
 
@@ -31,6 +32,14 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewUser();
+  }
+
+  returnHome() {
+    this.router.navigate(['dashboard/home']);
+  }
+
+  nextExperience() {
+    this.router.navigate(['dashboard/experiencia']);
   }
 
   viewUser(){

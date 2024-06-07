@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormationService } from 'src/app/services/formation.service';
 import { formationModel } from 'src/app/models/formation.model';
 import { CourseService } from 'src/app/services/course.service';
@@ -25,7 +26,8 @@ export class FormacionComponent {
   validationCourse: boolean;
 
   constructor ( private formationService: FormationService,
-                private courseService: CourseService
+                private courseService: CourseService,
+                private router: Router
   ) {
     this.formations = [];
     this.courses = [];
@@ -35,6 +37,10 @@ export class FormacionComponent {
 
     this.viewFormations();
     this.viewCourses();
+  }
+
+  returnExperience() {
+    this.router.navigate(['dashboard/experiencia']);
   }
 
   cleanFormation() {
