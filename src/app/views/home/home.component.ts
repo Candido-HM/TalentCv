@@ -38,4 +38,12 @@ export class HomeComponent {
     });
   }
 
+  deleteProfile(id: number){
+    console.log('EL PERFIL A ELIMINAR ES:', id);
+    this.profileService.deleteProfile(id).subscribe( (data: any) => {
+      console.log(data);
+      this.viewProfiles();
+    })
+  }
+
 }

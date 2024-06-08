@@ -15,7 +15,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ profile.title}}</h5>
                 <button class="btn btn-primary" (click)="viewProfile(profile.id)">Editar</button>
-                <button class="btn icon-edit">
+                <button class="btn icon-edit" (click)="deleteProfile(profile.id)">
                     <!-- (click)="deleteProject(project.id)" -->
                     <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
                 </button>

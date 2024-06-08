@@ -36,4 +36,9 @@ export class ProfileService {
     let ruta = `${this.API_URL}profile/${id}`;
     return this.http.put<any>(ruta, profile);
   }
+
+  deleteProfile(id: number): Observable<Response> {
+    let ruta = `${this.API_URL}profile/${id}`;
+    return this.http.delete<Response>(ruta);
+  }
 }
