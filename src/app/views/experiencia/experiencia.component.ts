@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceModel } from 'src/app/models/experience.model';
 import { ProjectService } from 'src/app/services/project.service';
@@ -22,16 +22,25 @@ export class ExperienciaComponent {
   public project!: projectModel;
   validationExperience: boolean;
   validationProject: boolean;
+  idProfile: number;
 
   constructor( private experienceService: ExperienceService,
                 private projectService: ProjectService,
-                private router: Router ){
+                private route: ActivatedRoute,
+                private router: Router){
     this.experiences = [];
     this.projects = [];
     this.validationExperience = false;
     this.validationProject = false;
-    this.viewExperiencies();
+    // this.viewExperiencies();
     this.viewProjects();
+    this.idProfile = 0;
+
+    this.route.params.subscribe( params =>  {
+      this.idProfile = params['id'];
+      console.log('IDPROFILE DESDE ABOUT: ',this.idProfile)
+      this.viewExperiencies(this.idProfile);
+    })
   }
 
   returnProfile() {
@@ -46,8 +55,8 @@ export class ExperienciaComponent {
     this.experiencieForm.createExperiencie();
   }
 
-  viewExperiencies() {
-    this.experienceService.getExperiences().subscribe( (data: any) => {
+  viewExperiencies(id: number) {
+    this.experienceService.getExperiences(id).subscribe( (data: any) => {
       this.experiences = data.data;
       if(this.experiences) {
         this.validationExperience = true;
@@ -66,7 +75,7 @@ export class ExperienciaComponent {
     this.experienceService.deleteExperience(id).subscribe( (data: any) => {
       console.log('DELETE');
       console.log(data);
-      this.viewExperiencies();
+      // this.viewExperiencies();
     })
   }
 

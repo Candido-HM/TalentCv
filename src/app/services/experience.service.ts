@@ -13,8 +13,8 @@ export class ExperienceService {
 
   constructor( private http: HttpClient) { }
 
-  getExperiences(): Observable<experienceModel[]> {
-    let ruta = `${this.API_URL}experience`;
+  getExperiences(idProfile: number): Observable<experienceModel[]> {
+    let ruta = `${this.API_URL}${idProfile}/experience`;
     return this.http.get<experienceModel[]>(ruta);
   }
 

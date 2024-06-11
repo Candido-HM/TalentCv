@@ -25,7 +25,6 @@ export class AboutComponent implements OnInit {
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
-      console.log('ID PROFILE ES: ',this.idProfile);
       this.viewProfile(this.idProfile);
     });
   }
@@ -38,8 +37,8 @@ export class AboutComponent implements OnInit {
     this.router.navigate(['dashboard/home']);
   }
 
-  nextExperience() {
-    this.router.navigate(['dashboard/experiencia']);
+  nextExperience(id: number) {
+    this.router.navigate(['dashboard/experiencia', id]);
   }
 
   viewUser(){
@@ -55,7 +54,7 @@ export class AboutComponent implements OnInit {
       if(profile){
         this.profile = profile;
         this.idProfile = profile.id;
-        console.log('TRUE: ',profile);
+        // console.log('TRUE: ',profile);
         this.validatorProfile = true;
       } else {
         console.log('FALSE: ',profile);
