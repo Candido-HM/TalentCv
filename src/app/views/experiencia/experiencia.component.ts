@@ -32,7 +32,6 @@ export class ExperienciaComponent {
     this.projects = [];
     this.validationExperience = false;
     this.validationProject = false;
-    // this.viewExperiencies();
     this.viewProjects();
     this.idProfile = 0;
 
@@ -53,10 +52,12 @@ export class ExperienciaComponent {
 
   cleanExperience() {
     this.experiencieForm.createExperiencie();
+    this.experiencie.id = 0;
+    console.log('ID EXPERIENCIA:',this.experiencie.id);
   }
 
-  viewExperiencies(id: number) {
-    this.experienceService.getExperiences(id).subscribe( (data: any) => {
+  viewExperiencies(idProfile: number) {
+    this.experienceService.getExperiences(idProfile).subscribe( (data: any) => {
       this.experiences = data.data;
       if(this.experiences) {
         this.validationExperience = true;
@@ -65,17 +66,17 @@ export class ExperienciaComponent {
   }
 
   viewExperiencie(id: number) {
-    this.experienceService.getExperience(id).subscribe( (experience: experienceModel) => {
+    this.experienceService.getExperience(this.idProfile, id).subscribe( (experience: experienceModel) => {
       this.experiencie = experience;
       console.log('VIEW: ',this.experiencie);
     })
   }
 
   delete(id: number) {
-    this.experienceService.deleteExperience(id).subscribe( (data: any) => {
+    this.experienceService.deleteExperience(this.idProfile, id).subscribe( (data: any) => {
       console.log('DELETE');
       console.log(data);
-      // this.viewExperiencies();
+      this.viewExperiencies(this.idProfile);
     })
   }
 

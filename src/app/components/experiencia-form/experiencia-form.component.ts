@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceModel } from 'src/app/models/experience.model';
@@ -12,11 +13,18 @@ export class ExperienciaFormComponent implements OnChanges {
   @Input() dataExperiencie: any;
   @Output() loadingExperience = new EventEmitter();
 
+  idProfile: number;
   formExperience!: FormGroup;
 
-  constructor( private formBuilder: FormBuilder,
+  constructor( private route: ActivatedRoute,
+                private formBuilder: FormBuilder,
                 private experienceService: ExperienceService) {
     this.createExperiencie();
+    this.idProfile = 0;
+
+    this.route.params.subscribe( params => {
+      this.idProfile = params['id'];
+    })
   }
 
   ngOnChanges(): void {
@@ -53,13 +61,15 @@ export class ExperienciaFormComponent implements OnChanges {
 
   save() {
     console.log(this.formExperience);
+    console.log('EL ID DESDE EL MODAL->SAVE: ', this.idProfile);
     const experience: experienceModel = this.formExperience.value;
     if(this.formExperience.invalid) {
       this.formExperience.markAllAsTouched();
+      return; //Detenemos la ejecución si el formulario no es válido.
     }
 
-    if( this.dataExperiencie && this.dataExperiencie.id) {
-      this.experienceService.updateExperience(this.dataExperiencie.id, experience).subscribe((res: any) => {
+    if( this.dataExperiencie && this.dataExperiencie.id != 0) {
+      this.experienceService.updateExperience( this.idProfile, this.dataExperiencie.id, experience).subscribe((res: any) => {
         console.log(res);
         this.dataExperiencie.id = null;
         this.loadingExperience.emit();
@@ -67,7 +77,7 @@ export class ExperienciaFormComponent implements OnChanges {
       console.log('Registro actualizado', this.dataExperiencie);
     } else {
       console.log('GUARDAR REGISTRO');
-      this.experienceService.saveExperience(experience).subscribe((res: any) => {
+      this.experienceService.saveExperience(this.idProfile, experience).subscribe((res: any) => {
         this.loadingExperience.emit(res);
       });
     }

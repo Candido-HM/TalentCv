@@ -18,13 +18,13 @@ export class ExperienceService {
     return this.http.get<experienceModel[]>(ruta);
   }
 
-  saveExperience(experience: experienceModel): Observable<Response> {
-    let ruta = `${this.API_URL}experience`;
+  saveExperience(idProfile:number, experience: experienceModel): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/experience`;
     return this.http.post<Response>(ruta, experience);
   }
 
-  getExperience(id: number): Observable<experienceModel> { 
-    let ruta = `${this.API_URL}experience/${id}`;
+  getExperience(idProfile:number, id: number): Observable<experienceModel> { 
+    let ruta = `${this.API_URL}${idProfile}/experience/${id}`;
     return this.http.get<experienceModel>(ruta).pipe(
       map((resp:any) => {
         return new experienceModel(resp.data);
@@ -32,13 +32,13 @@ export class ExperienceService {
     );
   }
 
-  updateExperience(id: number, experience: experienceModel): Observable<Response> {
-    let ruta = `${this.API_URL}experience/${id}`;
+  updateExperience(idProfile: number, id: number, experience: experienceModel): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/experience/${id}`;
     return this.http.put<Response>(ruta, experience);
   }
 
-  deleteExperience(id: number): Observable<Response> {
-    let ruta = `${this.API_URL}experience/${id}`;
+  deleteExperience(idProfile:number, id: number): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/experience/${id}`;
     return this.http.delete<Response>(ruta);
   }
 

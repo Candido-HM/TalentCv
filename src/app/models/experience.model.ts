@@ -6,6 +6,7 @@ export class experienceModel {
     finish_date: Date;
     description: string;
     status: string;
+    profile_id: number;
 
     constructor(data: any) {
         this.id = data.id || null;
@@ -15,5 +16,6 @@ export class experienceModel {
         this.finish_date = data.finish_date || null;
         this.description = data.description || '';
         this.status = data.status || '';
+        this.profile_id = data.profile_id || null;
     }
 }
