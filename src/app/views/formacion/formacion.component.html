@@ -79,7 +79,7 @@
       Cursos o certificaciones
     </button>
     <app-formacion-form [dataFormation]="formation"
-      (loadingFormations)="viewFormations()"></app-formacion-form>
+      (loadingFormations)="viewFormations(idProfile)"></app-formacion-form>
     <app-course-form [dataCourse]="course"
       (loadingCourses)="viewCourses()"></app-course-form>
   </article>

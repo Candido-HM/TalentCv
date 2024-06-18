@@ -13,18 +13,18 @@ export class FormationService {
 
   constructor( private http: HttpClient ) { }
 
-  getFormations(): Observable<formationModel[]> { 
-    let ruta = `${this.API_URL}formation`;
+  getFormations(idProfile: number): Observable<formationModel[]> { 
+    let ruta = `${this.API_URL}${idProfile}/formation`;
     return this.http.get<formationModel[]>(ruta);
   }
 
-  saveFormation(formation: formationModel): Observable<Response> {
-    let ruta = `${this.API_URL}formation`;
+  saveFormation(idProfile: number, formation: formationModel): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/formation`;
     return this.http.post<Response>(ruta, formation);
    }
 
-  getFormation(id: number): Observable<formationModel> {
-    let ruta = `${this.API_URL}formation/${id}`;
+  getFormation(idProfile: number, id: number): Observable<formationModel> {
+    let ruta = `${this.API_URL}${idProfile}/formation/${id}`;
     return this.http.get<formationModel>(ruta).pipe(
       map((resp: any) => {
         return new formationModel(resp.data);
@@ -32,13 +32,13 @@ export class FormationService {
     );
    }
 
-  updateFormation(id: number, formation: formationModel): Observable<Response> {
-    let ruta = `${this.API_URL}formation/${id}`;
+  updateFormation(idProfile: number, id: number, formation: formationModel): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/formation/${id}`;
     return this.http.put<Response>(ruta, formation);
   }
 
-  deleteFormation(id: number): Observable<Response> {
-    let ruta = `${this.API_URL}formation/${id}`;
+  deleteFormation(idProfile: number, id: number): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/formation/${id}`;
     return this.http.delete<Response>(ruta);
    }
 }

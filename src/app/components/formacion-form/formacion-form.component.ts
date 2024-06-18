@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormationService } from 'src/app/services/formation.service';
 import { formationModel } from 'src/app/models/formation.model';
@@ -13,10 +14,17 @@ export class FormacionFormComponent implements OnChanges {
   @Output() loadingFormations = new EventEmitter();
 
   formFormation!: FormGroup;
+  idProfile: number;
 
-  constructor( private formBuilder: FormBuilder,
+  constructor(  private route: ActivatedRoute,
+                private formBuilder: FormBuilder,
                 private formationService: FormationService) {
     this.createFormation();
+    this.idProfile = 0;
+
+    this.route.params.subscribe( params => {
+      this.idProfile = params['id'];
+    });
   }
 
   ngOnChanges() {
@@ -53,17 +61,18 @@ export class FormacionFormComponent implements OnChanges {
 
     if(this.formFormation.invalid) {
       this.formFormation.markAllAsTouched();
+      return;
     }
 
-    if(this.dataFormation && this.dataFormation.id) {
-      this.formationService.updateFormation(this.dataFormation.id, formation).subscribe((res: any) => {
+    if(this.dataFormation && this.dataFormation.id != 0) {
+      this.formationService.updateFormation(this.idProfile, this.dataFormation.id, formation).subscribe((res: any) => {
         console.log(res);
         this.dataFormation.id = null;
         this.loadingFormations.emit();
       });
       console.log('REGISTRO ACTUALIZADO');
     } else {
-      this.formationService.saveFormation(formation).subscribe((res: any) => {
+      this.formationService.saveFormation(this.idProfile, formation).subscribe((res: any) => {
         console.log(res);
         this.loadingFormations.emit();
       });

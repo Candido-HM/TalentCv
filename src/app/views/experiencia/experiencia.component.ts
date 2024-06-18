@@ -32,7 +32,6 @@ export class ExperienciaComponent {
     this.projects = [];
     this.validationExperience = false;
     this.validationProject = false;
-    // this.viewProjects();
     this.idProfile = 0;
 
     this.route.params.subscribe( params =>  {
@@ -40,7 +39,7 @@ export class ExperienciaComponent {
       console.log('IDPROFILE DESDE ABOUT: ',this.idProfile)
       this.viewExperiencies(this.idProfile);
       this.viewProjects(this.idProfile);
-    })
+    });
   }
 
   returnProfile() {

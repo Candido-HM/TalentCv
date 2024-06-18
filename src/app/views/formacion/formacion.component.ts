@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormationService } from 'src/app/services/formation.service';
 import { formationModel } from 'src/app/models/formation.model';
 import { CourseService } from 'src/app/services/course.service';
@@ -24,31 +24,41 @@ export class FormacionComponent {
   
   validationFormation: boolean;
   validationCourse: boolean;
+  idProfile: number;
 
   constructor ( private formationService: FormationService,
                 private courseService: CourseService,
-                private router: Router
+                private router: Router,
+                private route: ActivatedRoute
   ) {
     this.formations = [];
     this.courses = [];
 
     this.validationFormation = false;
     this.validationCourse = false;
+    this.idProfile = 0;
 
-    this.viewFormations();
+    // this.viewFormations();
     this.viewCourses();
+
+    this.route.params.subscribe( params => {
+      this.idProfile = params['id'];
+      this.viewFormations(this.idProfile);
+    });
   }
 
   returnExperience() {
-    this.router.navigate(['dashboard/experiencia']);
+    this.router.navigate(['dashboard/experiencia', this.idProfile]);
   }
 
   cleanFormation() {
     this.formationForm.createFormation();
+    this.formation.id = 0;
+    console.log('ID FORMACION: ', this.formation.id);
   }
 
-  viewFormations() {
-    this.formationService.getFormations().subscribe((data: any) => {
+  viewFormations(idProfile: number) {
+    this.formationService.getFormations(idProfile).subscribe((data: any) => {
       this.formations = data.data;
       if(this.formations) {
         this.validationFormation = true;
@@ -57,16 +67,16 @@ export class FormacionComponent {
   }
 
   viewFormation(id: number) {
-    this.formationService.getFormation(id).subscribe( (formation: formationModel) => {
+    this.formationService.getFormation(this.idProfile, id).subscribe( (formation: formationModel) => {
       this.formation = formation;
       console.log('VIEW: ', formation)
     })
   }
 
   deleteFormation(id: number) {
-    this.formationService.deleteFormation(id).subscribe( (data: any) => {
+    this.formationService.deleteFormation(this.idProfile, id).subscribe( (data: any) => {
       console.log(data);
-      this.viewFormations();
+      this.viewFormations(this.idProfile);
     })
   }
 
