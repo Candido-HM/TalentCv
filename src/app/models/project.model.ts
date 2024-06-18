@@ -6,6 +6,7 @@ export class projectModel {
     description: string;
     url_project: string;
     status: string;
+    profile_id: number;
 
     constructor (data: any) {
         this.id = data.id || null;
@@ -15,5 +16,6 @@ export class projectModel {
         this.description = data.description || '';
         this.url_project = data.url_project || '';
         this.status = data.status || '';
+        this.profile_id =  data.profile_id || null;
     }
 }

@@ -24,7 +24,7 @@ export class ExperienciaFormComponent implements OnChanges {
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
-    })
+    });
   }
 
   ngOnChanges(): void {

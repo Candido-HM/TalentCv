@@ -13,18 +13,18 @@ export class ProjectService {
 
   constructor( private http: HttpClient) { }
 
-  getProjects(): Observable<projectModel[]> {
-    let ruta = `${this.API_URL}project`;
+  getProjects(idProfile: number): Observable<projectModel[]> {
+    let ruta = `${this.API_URL}${idProfile}/project`;
     return this.http.get<projectModel[]>(ruta);
   }
 
-  saveProject(project: projectModel): Observable<Response> {
-    let ruta = `${this.API_URL}project`;
+  saveProject(idProfile:number, project: projectModel): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/project`;
     return this.http.post<Response>(ruta, project);
   }
 
-  getProject(id: number): Observable<projectModel> {
-    let ruta = `${this.API_URL}project/${id}`;
+  getProject(idProfile:number, id: number): Observable<projectModel> {
+    let ruta = `${this.API_URL}${idProfile}/project/${id}`;
     return this.http.get<projectModel>(ruta).pipe(
       map( (resp: any) => {
         return new projectModel(resp.data);
@@ -32,13 +32,13 @@ export class ProjectService {
     );
   }
 
-  updateProject(id: number, project: projectModel): Observable<Response> {
-    let ruta = `${this.API_URL}project/${id}`;
+  updateProject(idProfile: number, id: number, project: projectModel): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/project/${id}`;
     return this.http.put<Response>(ruta, project);
   }
 
-  deleteProject(id: number): Observable<Response> {
-    let ruta = `${this.API_URL}project/${id}`;
+  deleteProject(idProfile: number, id: number): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/project/${id}`;
     return this.http.delete<Response>(ruta);
   }
 }

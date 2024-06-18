@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProjectService } from 'src/app/services/project.service';
 import { projectModel } from 'src/app/models/project.model';
@@ -12,11 +13,18 @@ export class ProjectFormComponent implements OnChanges {
   @Input() dataProject: any;
   @Output() loadingProjects = new EventEmitter;
 
+  idProfile: number;
   formProject!: FormGroup;
   
-  constructor( private formBuilder: FormBuilder,
+  constructor(  private route: ActivatedRoute,
+                private formBuilder: FormBuilder,
                 private projectService: ProjectService) {
     this.createProject();
+    this.idProfile = 0;
+
+    this.route.params.subscribe( params => {
+      this.idProfile = params['id'];
+    });
     }
 
   ngOnChanges(): void {
@@ -52,16 +60,17 @@ export class ProjectFormComponent implements OnChanges {
     const project: projectModel = this.formProject.value;
     if(this.formProject.invalid) {
       this.formProject.markAllAsTouched();
+      return;
     }
     
-    if( this.dataProject && this.dataProject.id) {
-      this.projectService.updateProject( this.dataProject.id, project).subscribe((res: any) => {
+    if( this.dataProject && this.dataProject.id != 0) {
+      this.projectService.updateProject(this.idProfile, this.dataProject.id, project).subscribe((res: any) => {
         console.log(res);
         this.dataProject.id = null;
         this.loadingProjects.emit();
       });
     } else {
-      this.projectService.saveProject(project).subscribe( (res: any) => {
+      this.projectService.saveProject(this.idProfile, project).subscribe( (res: any) => {
         console.log(res);
         this.loadingProjects.emit();
       });

@@ -32,22 +32,23 @@ export class ExperienciaComponent {
     this.projects = [];
     this.validationExperience = false;
     this.validationProject = false;
-    this.viewProjects();
+    // this.viewProjects();
     this.idProfile = 0;
 
     this.route.params.subscribe( params =>  {
       this.idProfile = params['id'];
       console.log('IDPROFILE DESDE ABOUT: ',this.idProfile)
       this.viewExperiencies(this.idProfile);
+      this.viewProjects(this.idProfile);
     })
   }
 
   returnProfile() {
-    this.router.navigate(['dashboard/profile']);
+    this.router.navigate(['dashboard/profile', this.idProfile]);
   }
 
   nextFormation() {
-    this.router.navigate(['dashboard/formacion']);
+    this.router.navigate(['dashboard/formacion', this.idProfile]);
   }
 
   cleanExperience() {
@@ -82,10 +83,12 @@ export class ExperienciaComponent {
 
   cleanProject() {
     this.projectForm.createProject();
+    this.project.id = 0;
+    console.log('ID PROYECTO:',this.project.id);
   }
 
-  viewProjects() {
-    this.projectService.getProjects().subscribe( (data: any) => {
+  viewProjects(idProfile: number) {
+    this.projectService.getProjects(idProfile).subscribe( (data: any) => {
       this.projects = data.data;
       if (this.projects) {
         this.validationProject = true;
@@ -94,16 +97,16 @@ export class ExperienciaComponent {
   }
 
   viewProject(id: number) {
-    this.projectService.getProject(id).subscribe( (project: projectModel) => {
+    this.projectService.getProject(this.idProfile, id).subscribe( (project: projectModel) => {
       this.project = project;
       console.log(project);
     });
   }
 
   deleteProject(id: number) {
-    this.projectService.deleteProject(id).subscribe((resp: any) => {
+    this.projectService.deleteProject(this.idProfile, id).subscribe((resp: any) => {
       console.log(resp);
-      this.viewProjects();
+      this.viewProjects(this.idProfile);
     });
   }
 }
