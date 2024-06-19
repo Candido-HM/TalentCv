@@ -39,11 +39,12 @@ export class FormacionComponent {
     this.idProfile = 0;
 
     // this.viewFormations();
-    this.viewCourses();
+    // this.viewCourses();
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
       this.viewFormations(this.idProfile);
+      this.viewCourses(this.idProfile);
     });
   }
 
@@ -82,10 +83,12 @@ export class FormacionComponent {
 
   cleanCourse() {
     this.courseForm.createCourse();
+    this.course.id = 0;
+    console.log('ID COURSE: ', this.formation.id);
   }
 
-  viewCourses() {
-    this.courseService.getCourses().subscribe((data: any) => {
+  viewCourses(idProfile: number) {
+    this.courseService.getCourses(idProfile).subscribe((data: any) => {
       this.courses = data.data;
       if(this.courses) {
         this.validationCourse = true;
@@ -94,15 +97,15 @@ export class FormacionComponent {
   }
 
   viewCourse(id: number) {
-    this.courseService.getCourse(id).subscribe( (course: courseModel) => {
+    this.courseService.getCourse(this.idProfile, id).subscribe( (course: courseModel) => {
       this.course = course;
     })
   }
 
   deleteCourse(id: number) {
-    this.courseService.deleteCourse(id).subscribe((data: any) => {
+    this.courseService.deleteCourse(this.idProfile, id).subscribe((data: any) => {
       console.log(data);
-      this.viewCourses();
+      this.viewCourses(this.idProfile);
     });
   }
 

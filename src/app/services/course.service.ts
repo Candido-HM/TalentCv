@@ -13,18 +13,18 @@ export class CourseService {
 
   constructor( private http: HttpClient ) { }
 
-  getCourses(): Observable<courseModel[]> {
-    let ruta = `${this.API_URL}course`;
+  getCourses(idProfile: number): Observable<courseModel[]> {
+    let ruta = `${this.API_URL}${idProfile}/course`;
     return this.http.get<courseModel[]>(ruta);
   }
 
-  saveCourse(course: courseModel): Observable<Response> {
-    let ruta = `${this.API_URL}course`;
+  saveCourse(idProfile: number, course: courseModel): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/course`;
     return this.http.post<Response>(ruta, course);
   }
 
-  getCourse(id: number): Observable<courseModel> { 
-    let ruta = `${this.API_URL}course/${id}`;
+  getCourse(idProfile: number, id: number): Observable<courseModel> { 
+    let ruta = `${this.API_URL}${idProfile}/course/${id}`;
     return this.http.get<courseModel>(ruta).pipe(
       map((resp: any) => {
         return new courseModel(resp.data);
@@ -32,13 +32,13 @@ export class CourseService {
     )
   } 
 
-  updateCourse(id: number, course: courseModel): Observable<Response> {
-    let ruta = `${this.API_URL}course/${id}`;
+  updateCourse(idProfile: number, id: number, course: courseModel): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/course/${id}`;
     return this.http.put<Response>(ruta, course);
    }
 
-  deleteCourse(id: number): Observable<Response> { 
-    let ruta = `${this.API_URL}course/${id}`;
+  deleteCourse(idProfile: number, id: number): Observable<Response> { 
+    let ruta = `${this.API_URL}${idProfile}/course/${id}`;
     return this.http.delete<Response>(ruta);
   }
 

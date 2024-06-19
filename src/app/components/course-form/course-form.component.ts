@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CourseService } from 'src/app/services/course.service';
 import { courseModel } from 'src/app/models/course.model';
@@ -13,11 +14,18 @@ export class CourseFormComponent implements OnChanges {
   @Output() loadingCourses = new EventEmitter();
 
   formCourse!: FormGroup;
+  idProfile: number;
 
-  constructor( private formBuilder: FormBuilder,
+  constructor( private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
     private courseService: CourseService
   ) {
     this.createCourse();
+    this.idProfile = 0;
+
+    this.route.params.subscribe( params => {
+      this.idProfile = params['id'];
+    });
   }
 
   ngOnChanges() {
@@ -36,7 +44,6 @@ export class CourseFormComponent implements OnChanges {
       start_date: this.dataCourse?.start_date,
       finish_date: this.dataCourse?.finish_date
     })
-    console.log(this.dataCourse?.company_training);
   }
 
   createCourse() {
@@ -56,16 +63,17 @@ export class CourseFormComponent implements OnChanges {
 
     if(this.formCourse.invalid) {
       this.formCourse.markAllAsTouched();
+      return;
     }
 
-    if(this.dataCourse && this.dataCourse.id) {
-      this.courseService.updateCourse(this.dataCourse.id, course).subscribe((res: any) => {
+    if(this.dataCourse && this.dataCourse.id != 0) {
+      this.courseService.updateCourse(this.idProfile, this.dataCourse.id, course).subscribe((res: any) => {
         console.log(res);
         this.dataCourse.id = null;
         this.loadingCourses.emit();
       });
     } else {
-      this.courseService.saveCourse(course).subscribe((res: any) => {
+      this.courseService.saveCourse(this.idProfile, course).subscribe((res: any) => {
         console.log(res);
         this.loadingCourses.emit();
       })
