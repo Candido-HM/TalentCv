@@ -1,5 +1,6 @@
 <header class="d-flex justify-content-center pt-3 mb-5">
-    <h1 class="text-center">TalentCv</h1>
+    <!-- <h1 class="text-center">TalentCv</h1> -->
+    <h1 class="text-center">Generador Cv</h1>
 </header>
 <article class="p-2 d-flex flex-column">
     <section style="width: 200px; height: 50px;" class="w-100">
@@ -8,29 +9,19 @@
             Nuevo Cv
         </button>  
     </section>
-    <section class="d-flex">
-        <div class="card" *ngFor="let profile of profiles">
+    <section class="d-flex flex-column flex-sm-row justify-content-sm-between flex-wrap">
+        <div class="card mb-3" *ngFor="let profile of profiles">
             <img src="..." class="card-img-top" alt="cv-captura">
             <div class="card-body">
                 <h5 class="card-title">{{ profile.title}}</h5>
                 <button class="btn btn-primary" (click)="viewProfile(profile.id)">Editar</button>
                 <button class="btn icon-edit" (click)="deleteProfile(profile.id)">
-                    <!-- (click)="deleteProject(project.id)" -->
                     <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
                 </button>
             </div>
-            <div class="card-footer">
+            <!-- <div class="card-footer">
                 <small class="text-body-secondary">Last updated 3 mins ago</small>
-            </div>
+            </div> -->
         </div>
     </section>
-    <!-- <div class="border rounded border-dashed">
-        Voy hacer la seccion principal de la pagina: <br>
-        Ideas para el dashboard <br>
-        *Mostrar las plantillas. <br>
-        *Acceso rápido a las diferentes secciones del Cv. <br>
-        *Recomendaciones de un buen CV. <br>
-        *Sugerencias a la app web. <br>
-        *Ajustes finales finales para generar el CV.
-    </div> -->
 </article>

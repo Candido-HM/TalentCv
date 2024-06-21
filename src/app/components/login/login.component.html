@@ -1,0 +1,27 @@
+<section class="p-3 rounded-3 module">
+    <h2 class="text-center fs-2 mb-3">Iniciar Sesión</h2>
+    <figure class="d-flex justify-content-center mb-4">
+        <img class="TalentCv-logo" width="60px" src="../../../assets/img/logo-TalentCv.svg" alt="TalentCv">
+    </figure>
+   <form class="p-2" [formGroup]="formLogin" (ngSubmit)="login()">
+        <div class="form-floating mb-4">
+            <input type="email" class="form-control" id="correoInput" placeholder="correo"
+                formControlName="email"
+                [class.is-invalid]="invalidField('email')">
+            <label for="emailInput">Correo Electronico</label>
+            <small *ngIf="invalidField('email')" class="invalid-feedback">
+                Ingresa un correo valido
+            </small>
+        </div>
+        <div class="form-floating mb-4">
+            <input type="password" class="form-control" id="passInput" placeholder="password"
+                formControlName="password"
+                [class.is-invalid]="invalidField('password')">
+            <label for="passInput">Contraseña</label>
+            <small *ngIf="invalidField('password')" class="invalid-feedback">
+                Ingresa tu contraseña
+            </small>
+        </div>
+        <button class="btn btn-primary w-100" type="submit">Acceder</button>
+    </form> 
+</section> 

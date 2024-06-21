@@ -8,13 +8,16 @@ import { ExperienciaComponent } from './views/experiencia/experiencia.component'
 import { FormacionComponent } from './views/formacion/formacion.component';
 import { WelcomeComponent } from './views/welcome/welcome.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
+  {path: 'registrarse', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: ProfileComponent, canActivate: [authGuard], children: [
     {path: 'home', component: HomeComponent },
     {path: 'profile/:id', component: AboutComponent },
-    // {path: 'about', component: AboutComponent},
     {path: 'experiencia/:id', component: ExperienciaComponent},
     {path: 'formacion/:id', component: FormacionComponent},
     {path: '', pathMatch: 'full', redirectTo: 'home'},

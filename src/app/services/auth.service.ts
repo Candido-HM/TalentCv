@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { loginModel } from '../models/loginUser.model';
+import { userRegisterModel } from '../models/registerUser.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,6 +14,11 @@ export class AuthService {
   userToken: any;
   constructor( private http: HttpClient) {
     this.userToken = '';
+  }
+
+  create(user: userRegisterModel): Observable<Response>{
+    let ruta = `${this.API_URL}create`;
+    return this.http.post<Response>(ruta, user);
   }
 
   login( user: loginModel): Observable<Response> {
