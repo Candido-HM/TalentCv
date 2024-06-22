@@ -14,6 +14,7 @@ import { ExperienciaComponent } from './views/experiencia/experiencia.component'
 import { AsideComponent } from './shared/aside/aside.component';
 import { WelcomeComponent } from './views/welcome/welcome.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { LandingPagesComponent } from './shared/landing-pages/landing-pages.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProfileComponent } from './views/profile/profile.component';
     ExperienciaComponent,
     AsideComponent,
     WelcomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    LandingPagesComponent
   ],
   imports: [
     BrowserModule,

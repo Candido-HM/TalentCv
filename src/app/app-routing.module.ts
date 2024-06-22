@@ -10,11 +10,14 @@ import { WelcomeComponent } from './views/welcome/welcome.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { LandingPagesComponent } from './shared/landing-pages/landing-pages.component';
 
 const routes: Routes = [
-  {path: '', component: WelcomeComponent},
-  {path: 'registrarse', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
+  {path: '', component: WelcomeComponent, children: [
+    {path: '', component: LandingPagesComponent},
+    {path: 'registrarse', component: RegisterComponent},
+    {path: 'login', component: LoginComponent},
+  ]}, 
   {path: 'dashboard', component: ProfileComponent, canActivate: [authGuard], children: [
     {path: 'home', component: HomeComponent },
     {path: 'profile/:id', component: AboutComponent },

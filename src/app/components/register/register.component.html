@@ -1,54 +1,64 @@
-<section class="p-3 rounded-3 module">
-    <h2 class="text-center fs-2 mb-3">Registrarse</h2>
-    <figure class="d-flex justify-content-center mb-4">
-        <img class="TalentCv-logo" width="60px" src="../../../assets/img/logo-TalentCv.svg" alt="TalentCv">
-    </figure>
-    <form class="p-2" [formGroup]="formRegister" (ngSubmit)="create()">
-        <div class="form-floating mb-4">
-            <input type="text" class="form-control" id="nombreInput" placeholder="nombre"
-                formControlName="name"
-                [class.is-invalid]="invalidField('name')">
-            <label for="nombreInput">Nombre</label>
-           <small *ngIf="invalidField('name')" class="invalid-feedback">
-                Ingresa un nombre
-            </small> 
-        </div>
-        <div class="form-floating mb-4">
-            <input type="text" class="form-control" id="apellidoInput" placeholder="apellidos"
-                formControlName="last_name"
-                [class.is-invalid]="invalidField('last_name')">
-            <label for="apellidoInput">Apellidos</label>
-            <small *ngIf="invalidField('last_name')" class="invalid-feedback">
-                Ingresar apellidos
-            </small> 
-        </div> 
-        <div class="form-floating mb-4">
-            <input type="email" class="form-control" id="correoInput" placeholder="correo"
-                formControlName="email"
-                [class.is-invalid]="invalidField('email')">
-            <label for="emailInput">Correo Electronico</label>
-            <small *ngIf="invalidField('email')" class="invalid-feedback">
-                Ingresa un correo valido
-            </small> 
-        </div>
-        <div class="form-floating mb-4">
-            <input type="password" class="form-control" id="passInput" placeholder="password"
-                formControlName="password"
-                [class.is-invalid]="invalidField('password')">
-            <label for="passInput">Contraseña</label>
-            <small *ngIf="invalidField('password')" class="invalid-feedback">
-                Ingresa tu contraseña
-            </small> 
-        </div>
-        <div class="form-floating mb-4">
-            <input type="password" class="form-control" id="passConfInput" placeholder="password"
-                formControlName="password_confirmation"
-                [class.is-invalid]="passwordConfirmationValido()">
-            <label for="passConfInput">Confirmar contraseña</label>
-            <small *ngIf="invalidField('password_confirmation')" class="invalid-feedback">
-                Ingresa la contraseña igual al anterior
-            </small> 
-        </div>
-        <button class="btn btn-primary w-100" type="submit">Registrarse</button>
-    </form> 
-</section> 
+<section class="min-vh-100 d-flex justify-content-center align-items-center">
+    <app-mode-toggle style="display: none;"></app-mode-toggle>
+    <section class="p-2 rounded-3 mt-3 mb-3 module">
+        <figure class="d-flex justify-content-center my-2">
+            <img class="TalentCv-logo" width="60px" src="../../../assets/img/logo-TalentCv.svg" alt="TalentCv">
+        </figure>
+        <h2 class="text-center fs-4 mb-1">Registrarse</h2>
+        <p class="text-center fs-6">Ingresa tus datos para crear una nueva cuenta.</p>
+        <form class="p-2" [formGroup]="formRegister" (ngSubmit)="create()">
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" id="nombreInput" placeholder="nombre"
+                            formControlName="name"
+                            [class.is-invalid]="invalidField('name')">
+                        <label class="fs-6" for="nombreInput">Nombre</label>
+                        <small *ngIf="invalidField('name')" class="invalid-feedback">
+                            Ingresa un nombre
+                        </small> 
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" id="apellidoInput" placeholder="apellidos"
+                            formControlName="last_name"
+                            [class.is-invalid]="invalidField('last_name')">
+                        <label class="fs-6" for="apellidoInput">Apellidos</label>
+                        <small *ngIf="invalidField('last_name')" class="invalid-feedback">
+                            Ingresar apellidos
+                        </small> 
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control form-control-sm" id="correoInput" placeholder="correo"
+                    formControlName="email"
+                    [class.is-invalid]="invalidField('email')">
+                <label class="fs-6" for="emailInput">Correo Electronico</label>
+                <small *ngIf="invalidField('email')" class="invalid-feedback">
+                    Ingresa un correo valido
+                </small> 
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control form-control-sm" id="passInput" placeholder="password"
+                    formControlName="password"
+                    [class.is-invalid]="invalidField('password')">
+                <label class="fs-6" for="passInput">Contraseña</label>
+                <small *ngIf="invalidField('password')" class="invalid-feedback">
+                    Ingresa tu contraseña
+                </small> 
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control form-control-sm" id="passConfInput" placeholder="password"
+                    formControlName="password_confirmation"
+                    [class.is-invalid]="passwordConfirmationValido()">
+                <label class="fs-6" for="passConfInput">Confirmar contraseña</label>
+                <small *ngIf="invalidField('password_confirmation')" class="invalid-feedback">
+                    Ingresa la contraseña igual al anterior
+                </small> 
+            </div>
+            <button class="btn btn-primary w-100" type="submit">Registrarse</button>
+        </form> 
+    </section> 
+</section>

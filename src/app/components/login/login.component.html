@@ -1,27 +1,31 @@
-<section class="p-3 rounded-3 module">
-    <h2 class="text-center fs-2 mb-3">Iniciar Sesión</h2>
-    <figure class="d-flex justify-content-center mb-4">
-        <img class="TalentCv-logo" width="60px" src="../../../assets/img/logo-TalentCv.svg" alt="TalentCv">
-    </figure>
-   <form class="p-2" [formGroup]="formLogin" (ngSubmit)="login()">
-        <div class="form-floating mb-4">
-            <input type="email" class="form-control" id="correoInput" placeholder="correo"
-                formControlName="email"
-                [class.is-invalid]="invalidField('email')">
-            <label for="emailInput">Correo Electronico</label>
-            <small *ngIf="invalidField('email')" class="invalid-feedback">
-                Ingresa un correo valido
-            </small>
-        </div>
-        <div class="form-floating mb-4">
-            <input type="password" class="form-control" id="passInput" placeholder="password"
-                formControlName="password"
-                [class.is-invalid]="invalidField('password')">
-            <label for="passInput">Contraseña</label>
-            <small *ngIf="invalidField('password')" class="invalid-feedback">
-                Ingresa tu contraseña
-            </small>
-        </div>
-        <button class="btn btn-primary w-100" type="submit">Acceder</button>
-    </form> 
-</section> 
+<section class="vh-100 d-flex justify-content-center align-items-center">
+    <app-mode-toggle style="display: none;"></app-mode-toggle>
+    <section class="p-2 rounded-3 module">
+        <figure class="d-flex justify-content-center my-3">
+            <img class="TalentCv-logo" width="60px" src="../../../assets/img/logo-TalentCv.svg" alt="TalentCv">
+        </figure>
+        <h2 class="text-center fs-4 mb-1">Iniciar sesión</h2>
+        <p class="text-center fs-6 px-2">Ingresa tu correo electrónico y contraseña para acceder a tu cuenta.</p>
+        <form class="p-2" [formGroup]="formLogin" (ngSubmit)="login()">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control form-control-sm" id="correoInput" placeholder="correo"
+                    formControlName="email"
+                    [class.is-invalid]="invalidField('email')">
+                <label class="fs-6" for="emailInput">Correo Electronico</label>
+                <small *ngIf="invalidField('email')" class="invalid-feedback">
+                    Ingresa un correo valido
+                </small>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control form-control-sm" id="passInput" placeholder="password"
+                    formControlName="password"
+                    [class.is-invalid]="invalidField('password')">
+                <label class="fs-6" for="passInput">Contraseña</label>
+                <small *ngIf="invalidField('password')" class="invalid-feedback">
+                    Ingresa tu contraseña
+                </small>
+            </div>
+            <button class="btn btn-primary w-100 my-1" type="submit">Iniciar sesión</button>
+        </form> 
+    </section> 
+</section>
