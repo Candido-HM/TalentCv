@@ -28,13 +28,13 @@ export class HomeComponent {
   }
 
   redirect() {
-    this.router.navigate(['dashboard/profile/new']);
+    this.router.navigate(['profile/new']);
   }
 
   viewProfile(id: number){
     this.profileService.getProfile(id).subscribe((profile: profileModel) => {
         this.profile = profile;
-        this.router.navigate(['dashboard/profile/', id]);
+        this.router.navigate(['profile/', id]);
     });
   }
 

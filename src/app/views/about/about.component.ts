@@ -34,11 +34,11 @@ export class AboutComponent implements OnInit {
   }
 
   returnHome() {
-    this.router.navigate(['dashboard/home']);
+    this.router.navigate(['home']);
   }
 
   nextExperience(id: number) {
-    this.router.navigate(['dashboard/experiencia', id]);
+    this.router.navigate(['experiencia', id]);
   }
 
   viewUser(){
@@ -54,7 +54,7 @@ export class AboutComponent implements OnInit {
       if(profile){
         this.profile = profile;
         this.idProfile = profile.id;
-        // console.log('TRUE: ',profile);
+        
         this.validatorProfile = true;
       } else {
         console.log('FALSE: ',profile);

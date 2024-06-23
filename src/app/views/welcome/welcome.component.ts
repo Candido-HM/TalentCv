@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-welcome',
@@ -7,10 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.component.sass']
 })
 export class WelcomeComponent {
-  // userToken: any;
-  // formLogin!: FormGroup; 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private auth: AuthService) { 
+      this.autenticado();
+    }
+
+    autenticado() {
+      this.auth.leerToken();
+      let verificado = this.auth.authenticated()
+      if( verificado === true){
+        this.router.navigate(['home']);
+      } else {
+        this.router.navigate(['']);
+      }
+      console.log(verificado);
+    }
+  
 
   redirect() {
     this.router.navigate(['login']);

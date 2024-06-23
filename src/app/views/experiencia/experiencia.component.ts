@@ -43,11 +43,11 @@ export class ExperienciaComponent {
   }
 
   returnProfile() {
-    this.router.navigate(['dashboard/profile', this.idProfile]);
+    this.router.navigate(['profile', this.idProfile]);
   }
 
   nextFormation() {
-    this.router.navigate(['dashboard/formacion', this.idProfile]);
+    this.router.navigate(['formacion', this.idProfile]);
   }
 
   cleanExperience() {

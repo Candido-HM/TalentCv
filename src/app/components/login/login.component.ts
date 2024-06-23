@@ -40,14 +40,14 @@ export class LoginComponent {
     this.auth.login(formData).subscribe((res: any) => {
       console.log(res);
       this.auth.saveToken(res.access_token);
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['home']);
     })
   }
 
   loadingToken() {
     let token = this.auth.leerToken();
     if(token !== ''){
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['home']);
     } else {
       this.router.navigate(['login']);
     }

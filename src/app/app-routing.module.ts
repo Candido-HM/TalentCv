@@ -18,7 +18,7 @@ const routes: Routes = [
     {path: 'registrarse', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
   ]}, 
-  {path: 'dashboard', component: ProfileComponent, canActivate: [authGuard], children: [
+  {path: '', component: ProfileComponent, canActivate: [authGuard], children: [
     {path: 'home', component: HomeComponent },
     {path: 'profile/:id', component: AboutComponent },
     {path: 'experiencia/:id', component: ExperienciaComponent},

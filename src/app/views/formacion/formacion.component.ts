@@ -38,9 +38,6 @@ export class FormacionComponent {
     this.validationCourse = false;
     this.idProfile = 0;
 
-    // this.viewFormations();
-    // this.viewCourses();
-
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
       this.viewFormations(this.idProfile);
@@ -49,7 +46,7 @@ export class FormacionComponent {
   }
 
   returnExperience() {
-    this.router.navigate(['dashboard/experiencia', this.idProfile]);
+    this.router.navigate(['experiencia', this.idProfile]);
   }
 
   cleanFormation() {

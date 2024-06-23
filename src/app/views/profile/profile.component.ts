@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,12 +9,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProfileComponent {
 
-  constructor( private auth: AuthService) {
+  constructor( private auth: AuthService,
+    private router: Router
+  ) {
     // this.autenticado();
   }
-  // autenticado() {
-  //   let auto = this.auth.authenticated();
-  //   // console.log('Result autenticado: '+auto);
-  // }
-
+  
 }
