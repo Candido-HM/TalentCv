@@ -7,6 +7,8 @@ import { courseModel } from 'src/app/models/course.model';
 import { FormacionFormComponent } from 'src/app/components/formacion-form/formacion-form.component';
 import { CourseFormComponent } from 'src/app/components/course-form/course-form.component';
 
+import { TemplatePdfService } from 'src/app/services/template-pdf.service';
+
 @Component({
   selector: 'app-formacion',
   templateUrl: './formacion.component.html',
@@ -29,7 +31,8 @@ export class FormacionComponent {
   constructor ( private formationService: FormationService,
                 private courseService: CourseService,
                 private router: Router,
-                private route: ActivatedRoute
+                private route: ActivatedRoute,
+                private pdfService: TemplatePdfService
   ) {
     this.formations = [];
     this.courses = [];
@@ -106,4 +109,12 @@ export class FormacionComponent {
     });
   }
 
+  generatePDF(){
+    this.pdfService.getTemplate(this.idProfile).subscribe( blob => {
+      const ruta =  window.URL.createObjectURL(blob);
+      window.open(ruta, '_blank');
+    });
+    // window.open(ruta, '_blank');
+    console.log('¡CLICK!', this.idProfile)
+  }
 }
