@@ -34,7 +34,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewUser();
-    // this.viewCountries();
+    this.viewCountries();
   }
 
   returnHome() {
@@ -68,9 +68,9 @@ export class AboutComponent implements OnInit {
   }
 
   /* Obtener datos de ubicacion */
-  // viewCountries() {
-  //   this.apiCountry.getCountries().subscribe((data : any) => {
-  //     console.log(data);
-  //   })
-  // }
+  viewCountries() {
+    this.apiCountry.getCountries().subscribe((data : any) => {
+      console.log(data);
+    })
+  }
 }
