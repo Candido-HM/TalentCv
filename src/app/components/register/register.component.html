@@ -58,7 +58,11 @@
                     Ingresa la contraseña igual al anterior
                 </small> 
             </div>
-            <button class="btn btn-primary w-100" type="submit">Registrarse</button>
+            <button class="btn btn-primary w-100" type="submit" [disabled]="loading">
+                <img width="25px" *ngIf="loading" src="../../../assets/img/icon_loading.svg" alt="cargando">
+                <span *ngIf="!loading">Registrarse</span>
+                <span *ngIf="loading">Espere por favor</span>
+            </button>
         </form> 
     </section> 
 </section>

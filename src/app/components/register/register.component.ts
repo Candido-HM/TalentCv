@@ -10,12 +10,13 @@ import { userRegisterModel } from 'src/app/models/registerUser.model';
   styleUrls: ['./register.component.sass']
 })
 export class RegisterComponent {
-
+  loading: boolean;
   formRegister!: FormGroup;
 
   constructor( private formBuilder: FormBuilder,
                 private router: Router,
                 private auth: AuthService) {
+    this.loading = false;
     this.createFormRegister();
   }
 
@@ -41,16 +42,19 @@ export class RegisterComponent {
   }
 
   create(){
+    this.loading = true;
     console.log(this.formRegister);
     const formData: userRegisterModel = this.formRegister.value;
 
     if(this.formRegister.invalid) {
+      this.loading = false;
       return this.formRegister.markAllAsTouched();
     }
     this.auth.create(formData).subscribe((res: any) => {
+      this.loading = true;
       console.log(res);
       this.auth.saveToken(res.access_token);
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['home']);
     })
   }
 

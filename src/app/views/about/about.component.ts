@@ -5,19 +5,22 @@ import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { profileModel } from 'src/app/models/profile.model';
 
+import { ApiCountryService } from 'src/app/services/api-country.service';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.sass']
 })
 export class AboutComponent implements OnInit {
-
+  countries!: any[];
   user!: userModel;
   profile!: profileModel;
   validatorProfile: boolean;
   idProfile: number;
   constructor(  private userService: UserService,
                 private profileService: ProfileService,
+                private apiCountry: ApiCountryService,
                 private route: ActivatedRoute,
                 private router: Router) {
     this.validatorProfile = false;
@@ -31,6 +34,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewUser();
+    // this.viewCountries();
   }
 
   returnHome() {
@@ -62,5 +66,11 @@ export class AboutComponent implements OnInit {
       }
     });
   }
-  
+
+  /* Obtener datos de ubicacion */
+  // viewCountries() {
+  //   this.apiCountry.getCountries().subscribe((data : any) => {
+  //     console.log(data);
+  //   })
+  // }
 }

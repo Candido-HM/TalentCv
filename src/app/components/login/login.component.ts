@@ -10,12 +10,14 @@ import { loginModel } from 'src/app/models/loginUser.model';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent {
+  loading: boolean;
   userToken: any;
   formLogin!: FormGroup; 
 
   constructor( private formBuilder: FormBuilder,
                 private router: Router,
                 private auth: AuthService) {
+    this.loading = false;
     this.userToken = '';
     this.createFormLogin();
     this.loadingToken();
@@ -33,11 +35,14 @@ export class LoginComponent {
   }
 
   login(){
+    this.loading = true;
     const formData: loginModel = this.formLogin.value;
     if(this.formLogin.invalid) {
+      this.loading = false;
       return this.formLogin.markAllAsTouched();
     } 
     this.auth.login(formData).subscribe((res: any) => {
+      this.loading = true;
       console.log(res);
       this.auth.saveToken(res.access_token);
       this.router.navigate(['home']);

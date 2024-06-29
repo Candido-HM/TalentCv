@@ -25,7 +25,11 @@
                     Ingresa tu contraseña
                 </small>
             </div>
-            <button class="btn btn-primary w-100 my-1" type="submit">Iniciar sesión</button>
+            <button class="btn btn-primary w-100 my-1" type="submit" [disabled]="loading">
+                <img width="25px" *ngIf="loading" src="../../../assets/img/icon_loading.svg" alt="img-cargando">
+                <span *ngIf="!loading" >Iniciar sesión</span>
+                <span *ngIf="loading">Espere por favor</span>
+            </button>
         </form> 
     </section> 
 </section>
