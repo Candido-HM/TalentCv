@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 
+import { SelectDropDownModule } from 'ngx-select-dropdown';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
@@ -15,6 +17,7 @@ import { AsideComponent } from './shared/aside/aside.component';
 import { WelcomeComponent } from './views/welcome/welcome.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { LandingPagesComponent } from './shared/landing-pages/landing-pages.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { LandingPagesComponent } from './shared/landing-pages/landing-pages.comp
     FormModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SelectDropDownModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}  

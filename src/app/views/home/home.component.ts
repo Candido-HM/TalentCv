@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild  } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { profileModel } from 'src/app/models/profile.model';
@@ -43,7 +43,8 @@ export class HomeComponent {
     this.profileService.deleteProfile(id).subscribe( (data: any) => {
       console.log(data);
       this.viewProfiles();
-    })
+    });
   }
+
 
 }
