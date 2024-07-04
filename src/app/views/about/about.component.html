@@ -30,6 +30,12 @@
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-location.svg" alt="location">
               {{ user && user.city }} ,{{ user && user.country }}
             </span>
+            <!-- Button trigger modal -->
+            <!-- *ngIf="!validatorProfile"  -->
+            <button type="button" class="w-25 btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalUbication">
+              <img class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
+              Ubicación
+            </button>
           </div>
         </div> 
       </div>
@@ -109,7 +115,8 @@
     </div>
     <app-about-form [dateUser]="user"
       (loadingUser)="viewUser()"></app-about-form>
-    <app-profile-form [dateProfile]="profile" (loadingProfile)="viewProfile($event)"></app-profile-form> 
+    <app-profile-form [dateProfile]="profile" (loadingProfile)="viewProfile($event)"></app-profile-form>
+    <app-ubication-form></app-ubication-form> 
   </article>
 </article>
 
@@ -121,6 +128,7 @@
     Siguiente
   </button>
 </article> 
-<ngx-select-dropdown class="ng-select" [config]="config" [options]="countries"
-      [(ngModel)]="selectedCountry" [multiple]="false" >
-</ngx-select-dropdown>
+<!-- <ngx-select-dropdown class="ng-select" [config]="config" [options]="countries"
+  (change)="onChange($event)" [multiple]="false"> -->
+  <!-- [(ngModel)]="selectedCountry($event)" -->
+<!-- </ngx-select-dropdown> -->

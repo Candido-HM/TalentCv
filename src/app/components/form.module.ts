@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 import { AboutFormComponent } from './about-form/about-form.component';
 import { ExperienciaFormComponent } from './experiencia-form/experiencia-form.component';
@@ -11,6 +12,7 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 import { CourseFormComponent } from './course-form/course-form.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { UbicationFormComponent } from './ubication-form/ubication-form.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { LoginComponent } from './login/login.component';
     ProjectFormComponent,
     CourseFormComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    UbicationFormComponent
   ],
   imports: [
     CommonModule,
     ModeToggleModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SelectDropDownModule
   ],
   exports: [
     AboutFormComponent,
@@ -38,6 +42,7 @@ import { LoginComponent } from './login/login.component';
     CourseFormComponent,
     RegisterComponent,
     LoginComponent,
+    UbicationFormComponent,
     ModeToggleModule
   ]
 })
