@@ -42,7 +42,6 @@ import { UbicationFormComponent } from './ubication-form/ubication-form.componen
     CourseFormComponent,
     RegisterComponent,
     LoginComponent,
-    UbicationFormComponent,
     ModeToggleModule
   ]
 })

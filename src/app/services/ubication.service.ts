@@ -13,22 +13,12 @@ export class UbicationService {
 
   constructor( private http: HttpClient) { }
 
-  getUbication(): Observable<ubicationModel[]> {
+  getUbication(): Observable<ubicationModel> {
     let ruta = `${this.API_URL}ubication`;
-    return this.http.get<ubicationModel[]>(ruta).pipe(
+    return this.http.get<ubicationModel>(ruta).pipe(
       map((resp: any) => {
-        // return new ubicationModel(resp.data);
-        return resp;
+        return new ubicationModel(resp.data);
       })
     );
   }
-
-  // getUser(): Observable<userModel> {
-  //   let ruta = this.API_URL+'dashboard-user';
-  //   return this.http.get<any>(ruta).pipe(
-  //     map((resp: any) => {
-  //       return new userModel(resp.data);
-  //     })
-  //   );
-  // }
 }

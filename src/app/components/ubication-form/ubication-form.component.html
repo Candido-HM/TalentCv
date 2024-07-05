@@ -1,44 +1,30 @@
 <!-- Inicia Modal -->
-<section class="modal fade" id="modalUbication" tabindex="-1" aria-labelledby="modalUbicationLabel" data-bs-backdrop="static" aria-hidden="true">
-    <article class="modal-dialog modal-dialog-centered">
-        <article class="modal-content">
-            <header class="modal-header">
-                <h1 class="modal-title fs-5" id="modalUbicationLabel">Ubicación</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </header>
-            <article class="modal-body">
-                <!-- [formGroup]="formAbout" (ngSubmit)="guardar()" -->
-                <form>
-                    <!-- formControlName="countrie" -->
-                    <ngx-select-dropdown class="ng-select" [config]="configCountrie" [options]="countries"
-                        (change)="onCountrieChange($event)" [multiple]="false">
-                        <!-- [(ngModel)]="selectedCountry($event)" -->
-                    </ngx-select-dropdown>
-                    <ngx-select-dropdown class="ng-select" [config]="configState" [options]="states"
-                        (change)="onStateChange($event)" [multiple]="false">
-                        <!-- [(ngModel)]="selectedCountry($event)" -->
-                    </ngx-select-dropdown>
-                    <ngx-select-dropdown class="ng-select" [config]="configCity" [options]="cities"
-                        (change)="onCityChange($event)" [multiple]="false">
-                        <!-- [(ngModel)]="selectedCountry($event)" -->
-                    </ngx-select-dropdown>
-                    <!-- <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="nombre"
-                            formControlName="name"
-                            [class.is-invalid]="campoNoValido('name')">
-                        <label for="floatingInput">Nombre*</label>
-                        <small *ngIf="campoNoValido('name')" class="invalid-feedback">
-                            Ingresa un nombre
-                        </small>
-                    </div> -->
-                    <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Guardar</button>
-                      </div>
-                </form>
-            </article>
-        </article>
-    </article>
-</section>
+<!-- [formGroup]="formAbout" (ngSubmit)="guardar()" -->
+<form>
+    <!-- formControlName="countrie" -->
+    <div class="mb-3">
+        <ngx-select-dropdown class="ng-select" [config]="configCountrie" [options]="countries"
+            (change)="onCountrieChange($event)" [multiple]="false">
+        <!-- [(ngModel)]="selectedCountry($event)" -->
+        </ngx-select-dropdown>
+    </div>
+    <div class="mb-3">
+        <ngx-select-dropdown class="ng-select" [config]="configState" [options]="states"
+            (change)="onStateChange($event)" [multiple]="false">
+            <!-- [(ngModel)]="selectedCountry($event)" -->
+        </ngx-select-dropdown>
+    </div>
+    <div class="mb-3">
+        <ngx-select-dropdown class="ng-select" [config]="configCity" [options]="cities"
+            (change)="onCityChange($event)" [multiple]="false">
+            <!-- [(ngModel)]="selectedCountry($event)" -->
+        </ngx-select-dropdown>
+    </div>
+
+    <!-- <div class="col-12">
+        <button class="btn btn-primary" type="submit">Guardar</button>
+    </div> -->
+</form>
             
 <!--Termina Modal -->
 

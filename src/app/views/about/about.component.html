@@ -26,16 +26,10 @@
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-email.svg" alt="email">
               {{ user && user.email }}
             </span>
-            <span>
+            <span *ngIf="validatorUbication">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-location.svg" alt="location">
-              {{ user && user.city }} ,{{ user && user.country }}
+              {{ ubication && ubication.country }} - {{ ubication && ubication.state }} - {{ ubication && ubication.city }}
             </span>
-            <!-- Button trigger modal -->
-            <!-- *ngIf="!validatorProfile"  -->
-            <button type="button" class="w-25 btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalUbication">
-              <img class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
-              Ubicación
-            </button>
           </div>
         </div> 
       </div>
@@ -116,7 +110,7 @@
     <app-about-form [dateUser]="user"
       (loadingUser)="viewUser()"></app-about-form>
     <app-profile-form [dateProfile]="profile" (loadingProfile)="viewProfile($event)"></app-profile-form>
-    <app-ubication-form></app-ubication-form> 
+    <!-- <app-ubication-form></app-ubication-form>  -->
   </article>
 </article>
 
