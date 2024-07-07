@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ApiCountryService } from 'src/app/services/api-country.service';
 
@@ -15,10 +16,23 @@ export class UbicationFormComponent {
   isoCountrie: string;
   isoState: string;
 
-  constructor( private apiCountry: ApiCountryService) {
+  formUbication!: FormGroup;
+
+  constructor(  private formBuilder: FormBuilder,
+                private apiCountry: ApiCountryService) {
     this.isoCountrie = '';
     this.isoState = '';
     this.viewCountries();
+
+    this.createUbication();
+  }
+
+  createUbication() {
+    this.formUbication = this.formBuilder.group({
+      country: ['', [Validators.required]],
+      state: [''],
+      city: ['']
+    });
   }
 
   viewCountries() {
@@ -48,7 +62,7 @@ export class UbicationFormComponent {
     displayKey:"description", //if objects array passed which key to be displayed defaults to description
     search:true, //true/false for the search functionlity defaults to false,
     height: '300px', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
-    placeholder:'Select', // text to be displayed when no item is selected defaults to Select,
+    placeholder:'Selecciona un pais', // text to be displayed when no item is selected defaults to Select,
     customComparator: (a: any, b: any) => {
       if (a.name > b.name) return 1;
       if (a.name < b.name) return -1;
@@ -74,7 +88,7 @@ export class UbicationFormComponent {
     displayKey:"description", //if objects array passed which key to be displayed defaults to description
     search:true, //true/false for the search functionlity defaults to false,
     height: 'auto', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
-    placeholder:'Select', // text to be displayed when no item is selected defaults to Select,
+    placeholder:'Selecciona un estado', // text to be displayed when no item is selected defaults to Select,
     customComparator: (a: any, b: any) => {
       if (a.name > b.name) return 1;
       if (a.name < b.name) return -1;
@@ -100,7 +114,7 @@ export class UbicationFormComponent {
     displayKey:"description", //if objects array passed which key to be displayed defaults to description
     search:true, //true/false for the search functionlity defaults to false,
     height: 'auto', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
-    placeholder:'Select', // text to be displayed when no item is selected defaults to Select,
+    placeholder:'Selecciona tu ciudad', // text to be displayed when no item is selected defaults to Select,
     customComparator: (a: any, b: any) => {
       if (a.name > b.name) return 1;
       if (a.name < b.name) return -1;

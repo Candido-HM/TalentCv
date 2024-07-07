@@ -1,22 +1,22 @@
 <!-- Inicia Modal -->
 <!-- [formGroup]="formAbout" (ngSubmit)="guardar()" -->
-<form>
+<form  [formGroup]="formUbication">
     <!-- formControlName="countrie" -->
     <div class="mb-3">
         <ngx-select-dropdown class="ng-select" [config]="configCountrie" [options]="countries"
-            (change)="onCountrieChange($event)" [multiple]="false">
+            formControlName="country" (change)="onCountrieChange($event)" [multiple]="false">
         <!-- [(ngModel)]="selectedCountry($event)" -->
         </ngx-select-dropdown>
     </div>
     <div class="mb-3">
         <ngx-select-dropdown class="ng-select" [config]="configState" [options]="states"
-            (change)="onStateChange($event)" [multiple]="false">
+            formControlName="state" (change)="onStateChange($event)" [multiple]="false">
             <!-- [(ngModel)]="selectedCountry($event)" -->
         </ngx-select-dropdown>
     </div>
     <div class="mb-3">
         <ngx-select-dropdown class="ng-select" [config]="configCity" [options]="cities"
-            (change)="onCityChange($event)" [multiple]="false">
+            formControlName="city" (change)="onCityChange($event)" [multiple]="false">
             <!-- [(ngModel)]="selectedCountry($event)" -->
         </ngx-select-dropdown>
     </div>

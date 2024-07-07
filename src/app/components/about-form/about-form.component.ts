@@ -38,9 +38,7 @@ export class AboutFormComponent implements OnChanges {
   createAbout() {
     this.formAbout = this.formBuider.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      last_name: ['', [Validators.required, Validators.minLength(5)]],
-      city: [''],
-      country: ['']
+      last_name: ['', [Validators.required, Validators.minLength(5)]]
     });
   }
 
