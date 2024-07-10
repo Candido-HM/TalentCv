@@ -1,0 +1,72 @@
+<!-- Inicia Modal -->
+<section class="modal fade" id="modalContact" tabindex="-1" aria-labelledby="modalContactLabel" data-bs-backdrop="static" aria-hidden="true">
+    <article class="modal-dialog modal-dialog-centered">
+        <article class="modal-content">
+            <header class="modal-header">
+                <h1 class="modal-title fs-5" id="modalContactLabel">Datos de contacto</h1>
+                <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close"></button>
+            </header>
+            <article class="modal-body">
+                <!-- [formGroup]="formCourse" (ngSubmit)="save()" -->
+                <form>
+                    <!-- <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="nombreInput" placeholder="Nombre"
+                        formControlName="course_name"
+                        [class.is-invalid]="campoNoValido('course_name')">
+                        <label for="nombreInput">Nombre</label>
+                        <small *ngIf="campoNoValido('course_name')" class="invalid-feedback">
+                            Campo requerido
+                        </small>
+                    </div>  -->
+                    <!-- <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="institucionInput" placeholder="Institucion"
+                        formControlName="company_training"
+                        [class.is-invalid]="campoNoValido('company_training')">
+                        <label for="institucionInput">Empresa emisora</label>
+                        <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
+                            Campo requerido
+                        </small>
+                    </div>  -->
+                    <!-- <div class="form-check mb-3 px-0">
+                        <label class="form-check-label" for="status">
+                            Actualmente está cursando
+                        </label>
+                        <div class="col-8">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio"
+                                formControlName="status"
+                                value="Cursando">
+                              <label class="form-check-label">Sí</label>
+                            </div>
+                      
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio"
+                                formControlName="status"
+                                value="Finalizado">
+                              <label class="form-check-label">No</label>
+                            </div>
+                          </div>
+                    </div> -->
+                    <!-- <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="cargoInput" placeholder="Cargo"
+                        formControlName="start_date"
+                        [class.is-invalid]="campoNoValido('start_date')">
+                        <label for="cargoInput">Fecha de inicio</label>
+                        <small *ngIf="campoNoValido('start_date')" class="invalid-feedback">
+                            Campo requerido
+                        </small>
+                    </div>  -->
+                    <!-- <div *ngIf="formCourse.value.status === 'Finalizado'" class="form-floating mb-3">
+                        <input type="date" class="form-control" id="cargoInput" placeholder="Cargo"
+                        formControlName="finish_date">
+                        <label for="cargoInput">Fecha de finalización</label>
+                    </div>  -->
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Guardar</button>
+                    </div> 
+                </form> 
+            </article>
+        </article>
+    </article>
+</section>       
+<!--Termina Modal -->

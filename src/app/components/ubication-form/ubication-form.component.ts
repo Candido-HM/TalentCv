@@ -38,7 +38,7 @@ export class UbicationFormComponent {
   viewCountries() {
     this.apiCountry.getCountries().subscribe((countries : any) => {
       this.countries = countries;
-      console.log(countries);
+      // console.log(countries);
     });
   }
 

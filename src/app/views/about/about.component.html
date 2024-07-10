@@ -53,30 +53,49 @@
             </p>
           </div>
         </div>
-        <div style="background-color: chocolate;">
-          <h5>Información de Contacto</h5>
+        <div>
+          <header class="d-flex justify-content-end">
+            <section class="flex-grow-1">
+              <h5><h5>Información de Contacto</h5></h5>
+            </section>
+            <section class="d-flex justify-content-end" *ngIf="contactInfo">
+              <!-- Button trigger modal (click)="viewExperiencie(experience.id)"-->
+              <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalContact">
+                <img style=" width: 22px;" src="../../../assets/img/icon-edit.svg" alt="icon-edit">
+              </button>
+            </section>
+          </header>
           <ul class="d-flex flex-wrap flex-row p-0">
-            <li class="me-2 p-1 list">
+            <li class="me-2 p-1 list" *ngIf="validatorPhone">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-phone.svg" alt="phone">
               <span>+52 123 456 7890</span>
             </li>
-            <li class="me-2 p-1 list">
+            <li class="me-2 p-1 list" *ngIf="validatorPortfolio">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-url.svg" alt="url-portfolio">
-              <span>portfolio_web.com</span>
+              <!-- <span>portfolio_web.com</span>  -->
+              <span>{{ user && user.portfolio.url_portfolio }}</span>
             </li>
-            <li class="me-2 p-1 list">
+            <li class="me-2 p-1 list" *ngIf="validatorLinkedin">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-linkedin.svg" alt="linkedin">
-              <span>linkedin.com/in/user-profile-link/</span>
+              <!-- <span>linkedin.com/in/user-profile-link/</span> -->
+              <span>{{ user && user.linkedin.url_linkedin }}</span>
             </li>
-            <li class="me-2 p-1 list">
+            <li class="me-2 p-1 list" *ngIf="validatorGithub">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-github.svg" alt="url-github">
-              <span>github.com/User-Link</span>
+              <!-- <span>github.com/User-Link</span> -->
+              <span>{{ user && user.github.url_github }}</span>
             </li>
-            <li class="me-2 p-1 list">
+            <li class="me-2 p-1 list" *ngIf="validatorLink">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-url.svg" alt="url">
               <span>linktr.ee/user_links</span>
             </li>
-          </ul> 
+          </ul>
+          <!-- Button trigger modal  *ngIf="!validatorProfile" -->
+          <button type="button" class="btn btn-primary mb-3" 
+            *ngIf="!contactInfo" data-bs-toggle="modal" data-bs-target="#modalContact">
+              <img class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
+              Medios de Contacto
+          </button> 
         </div> 
         <div class="mb-3">
           <h5 class="mb-3 text-left fs-4">Mis habilidades</h5>
@@ -110,6 +129,7 @@
     <app-about-form [dateUser]="user"
       (loadingUser)="viewUser()"></app-about-form>
     <app-profile-form [dateProfile]="profile" (loadingProfile)="viewProfile($event)"></app-profile-form>
+    <app-contact-form></app-contact-form>
     <!-- <app-ubication-form></app-ubication-form>  -->
   </article>
 </article>

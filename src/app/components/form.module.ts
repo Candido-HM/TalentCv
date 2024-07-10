@@ -13,6 +13,7 @@ import { CourseFormComponent } from './course-form/course-form.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UbicationFormComponent } from './ubication-form/ubication-form.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UbicationFormComponent } from './ubication-form/ubication-form.componen
     CourseFormComponent,
     RegisterComponent,
     LoginComponent,
-    UbicationFormComponent
+    UbicationFormComponent,
+    ContactFormComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ import { UbicationFormComponent } from './ubication-form/ubication-form.componen
     CourseFormComponent,
     RegisterComponent,
     LoginComponent,
+    ContactFormComponent,
     ModeToggleModule
   ]
 })
