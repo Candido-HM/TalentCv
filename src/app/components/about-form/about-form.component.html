@@ -7,7 +7,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </header>
             <article class="modal-body">
-                <form [formGroup]="formAbout" (ngSubmit)="guardar()">
+                <!-- (ngSubmit)="guardar()" -->
+                <form [formGroup]="formAbout">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="nombre"
                             formControlName="name"
@@ -42,13 +43,13 @@
                     </div> -->
                     <!-- <div class="col-12">
                         <button class="btn btn-primary" type="submit">Guardar</button>
-                    </div> -->
+                    </div>  -->
                 </form>
                 <h2 class="modal-title fs-5 mb-3">Ubicación</h2>
                 <app-ubication-form></app-ubication-form>
                 <div class="col-12">
-                    <button class="btn btn-primary" type="submit">Guardar</button>
-                </div>
+                    <button class="btn btn-primary" type="button" (click)="guardar()">Guardar</button>
+                </div> 
             </article>
         </article>
     </article>

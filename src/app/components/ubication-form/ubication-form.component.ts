@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ubicationModel } from 'src/app/models/ubication.model';
 
 import { ApiCountryService } from 'src/app/services/api-country.service';
 
@@ -45,14 +46,14 @@ export class UbicationFormComponent {
   viewStates(code: string) {
     this.apiCountry.getStates(code).subscribe((states: any) => {
       this.states = states;
-      console.log(states);
+      // console.log(states);
     });
   }
 
   viewCities(countrie: string, state:string) {
     this.apiCountry.getCities(countrie, state).subscribe((cities: any) => {
       this.cities = cities;
-      console.log(this.cities);
+      // console.log(this.cities);
     });
   }
 
@@ -77,7 +78,7 @@ export class UbicationFormComponent {
 
   onCountrieChange(event: any) {
     this.selectedCountry = event;
-    console.log(event.value.native);
+    // console.log(event.value.native);
     this.isoCountrie = event.value.iso2;
     this.viewStates(this.isoCountrie);
   }
@@ -103,7 +104,7 @@ export class UbicationFormComponent {
 
   onStateChange(event: any) {
     this.selectedState = event;
-    console.log(event.value.iso2);
+    // console.log(event.value.iso2);
     this.isoState = event.value.iso2;
     this.viewCities(this.isoCountrie, this.isoState);
   }
@@ -129,7 +130,12 @@ export class UbicationFormComponent {
 
   onCityChange(event: any) {
     this.selectedState = event;
-    console.log(event.value.iso2);
+    // console.log(event.value.iso2);
+  }
+
+  viewResult() {
+    return this.formUbication.value;
+    // console.log(this.formUbication);
   }
 
 }

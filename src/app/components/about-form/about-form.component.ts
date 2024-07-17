@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { UbicationFormComponent } from '../ubication-form/ubication-form.component';
 
 import { ApiCountryService } from 'src/app/services/api-country.service';
 
@@ -11,6 +12,7 @@ import { ApiCountryService } from 'src/app/services/api-country.service';
   styleUrls: ['./about-form.component.sass']
 })
 export class AboutFormComponent implements OnChanges {
+  @ViewChild(UbicationFormComponent) ubicationForm!: UbicationFormComponent;
   @Input() dateUser: any;
   @Output() loadingUser = new EventEmitter();
   countries!: any[];
@@ -54,16 +56,19 @@ export class AboutFormComponent implements OnChanges {
   }
 
   guardar() {
-    console.log(this.formAbout);
+    // console.log(this.formAbout);
     const formUser: userModel = this.formAbout.value; 
+    console.log('Aqui la info: ', formUser);
     const idUser = this.dateUser.id;
-    if( this.formAbout.invalid) {
-      return this.formAbout.markAllAsTouched();
-    }
-    this.userService.updateUser(idUser, formUser).subscribe((res: any) => {
-      console.log(res);
-      this.loadingUser.emit();
-    })
+    console.log(this.ubicationForm.viewResult());
+    // this.ubicationForm.viewResult();
+    // if( this.formAbout.invalid) {
+    //   return this.formAbout.markAllAsTouched();
+    // }
+    // this.userService.updateUser(idUser, formUser).subscribe((res: any) => {
+    //   console.log(res);
+    //   this.loadingUser.emit();
+    // })
   }
 
   /* Obtener datos de ubicacion */
