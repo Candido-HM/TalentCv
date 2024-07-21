@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ubicationModel } from 'src/app/models/ubication.model';
 
 import { ApiCountryService } from 'src/app/services/api-country.service';
 
@@ -9,7 +8,8 @@ import { ApiCountryService } from 'src/app/services/api-country.service';
   templateUrl: './ubication-form.component.html',
   styleUrls: ['./ubication-form.component.sass']
 })
-export class UbicationFormComponent {
+export class UbicationFormComponent implements OnChanges {
+  @Input() ubication: any;
   countries!: any[];
   states!: any[];
   cities!: any[];
@@ -28,12 +28,27 @@ export class UbicationFormComponent {
     this.createUbication();
   }
 
+  ngOnChanges(): void {
+    this.getUbication();
+    console.log('SALUDAZOSSS: ', this.ubication);
+  }
+
   createUbication() {
     this.formUbication = this.formBuilder.group({
       country: ['', [Validators.required]],
       state: [''],
       city: ['']
     });
+  }
+
+  getUbication() {
+    if (this.ubication) {
+      this.formUbication.reset({
+        country: this.ubication.country,
+        state: this.ubication.state,
+        city: this.ubication.city
+      })
+    }
   }
 
   viewCountries() {
@@ -59,7 +74,7 @@ export class UbicationFormComponent {
 
   selectedCountry: any;
   configCountrie = {
-    displayFn:(item: any) =>  `${item.name} - (${item.iso2})`, //a replacement ofr displayKey to support flexible text displaying for each item
+    displayFn:(item: any) =>  `${item.name}`, //a replacement ofr displayKey to support flexible text displaying for each item
     displayKey:"description", //if objects array passed which key to be displayed defaults to description
     search:true, //true/false for the search functionlity defaults to false,
     height: '300px', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
@@ -129,13 +144,17 @@ export class UbicationFormComponent {
   }
 
   onCityChange(event: any) {
-    this.selectedState = event;
-    // console.log(event.value.iso2);
+    this.selectedCity = event;
   }
 
   viewResult() {
-    return this.formUbication.value;
-    // console.log(this.formUbication);
-  }
+    this.formUbication.reset({
+      country: this.selectedCountry?.value.name,
+      state: this.selectedState?.value.name,
+      city: this.selectedCity?.value.name
+    })
 
+    return this.formUbication.value;
+    // console.log(this.formUbication.value);
+  }
 }

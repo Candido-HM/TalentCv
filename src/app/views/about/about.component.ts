@@ -78,21 +78,6 @@ export class AboutComponent implements OnInit {
       this.validatorLink = validateId(this.user.link);
 
       this.contactInfo = this.validatorPhone || this.validatorPortfolio || this.validatorLinkedin || this.validatorLinkedin || this.validatorGithub || this.validatorLink;
-      // if(this.user.phone.id !== null) {
-      //   this.validatorPhone = true;
-      // }
-      // if(this.user.portfolio.id !== null) {
-      //   this.validatorPortfolio = true;
-      // }
-      // if(this.user.linkedin.id !== null) {
-      //   this.validatorLinkedin = true;
-      // }
-      // if(this.user.github.id !== null) {
-      //   this.validatorGithub = true;
-      // }
-      // if(this.user.link.id !== null) {
-      //   this.validatorLink = true;
-      // }
     });
   }
 
