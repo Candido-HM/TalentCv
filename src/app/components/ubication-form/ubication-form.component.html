@@ -2,7 +2,7 @@
 <form  [formGroup]="formUbication">
     <!-- formControlName="countrie" -->
     <div class="mb-3">
-        <ngx-select-dropdown class="dropdown" [config]="configCountrie" [options]="countries"
+        <ngx-select-dropdown class="ng-select dropdown" [config]="configCountrie" [options]="countries"
             formControlName="country" (change)="onCountrieChange($event)" [multiple]="false"> 
         </ngx-select-dropdown>
     </div>
