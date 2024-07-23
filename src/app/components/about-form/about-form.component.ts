@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@a
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { UbicationService } from 'src/app/services/ubication.service';
 import { UbicationFormComponent } from '../ubication-form/ubication-form.component';
 
 
@@ -15,13 +16,15 @@ export class AboutFormComponent implements OnChanges {
   @Input() dateUser: any;
   @Input() dataUbication: any;
   @Output() loadingUser = new EventEmitter();
+  @Output() loadingUbication = new EventEmitter();
   countries!: any[];
   states!: any[];
 
   formAbout!: FormGroup;
 
   constructor( private formBuider: FormBuilder,
-                private userService: UserService) {
+                private userService: UserService,
+                private ubicationService: UbicationService) {
     this.createAbout();
 
     // this.viewCountries();
@@ -57,18 +60,27 @@ export class AboutFormComponent implements OnChanges {
   guardar() {
     // console.log(this.formAbout);
     const formUser: userModel = this.formAbout.value; 
-    console.log('Aqui la info: ', formUser);
+    // console.log('Aqui la info: ', formUser);
     const idUser = this.dateUser.id;
-    console.log(this.ubicationForm.viewResult());
-    // this.ubicationForm.viewResult();
-    // this.ubicationForm.viewResult();
-    // if( this.formAbout.invalid) {
-    //   return this.formAbout.markAllAsTouched();
-    // }
-    // this.userService.updateUser(idUser, formUser).subscribe((res: any) => {
-    //   console.log(res);
-    //   this.loadingUser.emit();
-    // })
+    // console.log(this.ubicationForm.viewResult());
+    const verifyUbication = this.ubicationForm.viewResult();
+    if( this.formAbout.invalid) {
+      return this.formAbout.markAllAsTouched();
+    }
+
+    this.userService.updateUser(idUser, formUser).subscribe((res: any) => {
+      console.log(res);
+      this.loadingUser.emit();
+    });
+
+    if (verifyUbication.id != undefined) {
+      console.log('UBICACION ACTUALIZAR....');
+    } else {
+      this.ubicationService.saveUbication( verifyUbication ).subscribe((res: any) => {
+        console.log('UBICACION A GUARDADO', res);
+        this.loadingUbication.emit();
+      });
+    }
   }
 
 }

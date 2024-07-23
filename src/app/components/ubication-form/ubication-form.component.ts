@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { ubicationModel } from 'src/app/models/ubication.model';
 import { ApiCountryService } from 'src/app/services/api-country.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class UbicationFormComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.getUbication();
-    console.log('SALUDAZOSSS: ', this.ubication);
+    // console.log('SALUDAZOSSS: ', this.ubication);
   }
 
   createUbication() {
@@ -154,7 +155,9 @@ export class UbicationFormComponent implements OnChanges {
       city: this.selectedCity?.value.name
     })
 
-    return this.formUbication.value;
+    const resultUbication: ubicationModel = this.formUbication.value; 
+    return resultUbication;
+    // return this.formUbication.value;
     // console.log(this.formUbication.value);
   }
 }

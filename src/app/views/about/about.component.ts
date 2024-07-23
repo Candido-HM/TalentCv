@@ -47,6 +47,8 @@ export class AboutComponent implements OnInit {
       this.idProfile = params['id'];
       this.viewProfile(this.idProfile);
     });
+
+    // this.viewUbication();
   }
 
   ngOnInit(): void {
@@ -99,9 +101,11 @@ export class AboutComponent implements OnInit {
 
   /******************Cargar Ubicacion ************/
   viewUbication() {
-    this.ubicationService.getUbication().subscribe((ubication: ubicationModel) => {
-      if(ubication) {
-        this.ubication = ubication;
+    this.ubicationService.getUbication().subscribe((ubication) => {
+      this.ubication = ubication;
+      console.log('SALUDOS CRACKS: ', ubication);
+      let verify = ubication.id;
+      if (verify != undefined) {
         this.validatorUbication = true;
       }
     });

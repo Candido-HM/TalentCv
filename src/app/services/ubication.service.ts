@@ -21,4 +21,9 @@ export class UbicationService {
       })
     );
   }
+
+  saveUbication( ubication: ubicationModel): Observable<Response> {
+    let ruta = `${this.API_URL}ubication`;
+    return this.http.post<Response>(ruta, ubication);
+  }
 }

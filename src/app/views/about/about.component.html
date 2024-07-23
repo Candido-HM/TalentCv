@@ -2,8 +2,8 @@
   <h1 class="text-center">Sobre tí</h1>
 </header>
 <!-- <article class="d-flex justify-content-center module mb-5">
-  {{profile1 | json }}
-</article> -->
+  {{ ubication | json }} 
+</article>  -->
 <article class="d-flex justify-content-center">
   <article class="w-100 rounded px-3 pt-3 p-lg-4 theme-card">
     <div class="main-module mt-1">
@@ -127,7 +127,7 @@
       </div>
     </div>
     <app-about-form [dateUser]="user" [dataUbication]="ubication"
-      (loadingUser)="viewUser()"></app-about-form>
+      (loadingUser)="viewUser()" (loadingUbication)="viewUbication()"></app-about-form>
     <app-profile-form [dateProfile]="profile" (loadingProfile)="viewProfile($event)"></app-profile-form>
     <app-contact-form></app-contact-form>
     <!-- <app-ubication-form></app-ubication-form>  -->
