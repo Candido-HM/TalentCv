@@ -67,9 +67,6 @@ export class AboutComponent implements OnInit {
   viewUser(){
     this.userService.getUser().subscribe( (user: userModel) => {
       this.user = user;
-      // console.log('DATA USER: ',this.user.portfolio);
-      // console.log('LINKEDIN: ', this.user.linkedin);
-      // Definimos una función auxiliar para validar
       const validateId = (item: any): boolean => {
         return item && item.id !== null;
       };

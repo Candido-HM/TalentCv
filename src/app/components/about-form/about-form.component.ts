@@ -59,21 +59,25 @@ export class AboutFormComponent implements OnChanges {
 
   guardar() {
     // console.log(this.formAbout);
-    const formUser: userModel = this.formAbout.value; 
-    // console.log('Aqui la info: ', formUser);
+    const formUser: userModel = this.formAbout.value;
     const idUser = this.dateUser.id;
-    // console.log(this.ubicationForm.viewResult());
     const verifyUbication = this.ubicationForm.viewResult();
+
     if( this.formAbout.invalid) {
       return this.formAbout.markAllAsTouched();
     }
 
     this.userService.updateUser(idUser, formUser).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.loadingUser.emit();
     });
+    console.log(this.dataUbication);
 
-    if (verifyUbication.id != undefined) {
+    if (this.dataUbication.id != undefined ) {
+      this.ubicationService.updateUbication( this.dataUbication.id, verifyUbication).subscribe((res: any) => {
+        console.log('ACTUALIZADO ALO SIGUIENTE: ', res);
+        this.loadingUbication.emit();
+      });
       console.log('UBICACION ACTUALIZAR....');
     } else {
       this.ubicationService.saveUbication( verifyUbication ).subscribe((res: any) => {

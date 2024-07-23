@@ -26,4 +26,9 @@ export class UbicationService {
     let ruta = `${this.API_URL}ubication`;
     return this.http.post<Response>(ruta, ubication);
   }
+
+  updateUbication(id: number, ubication: ubicationModel): Observable<Response> {
+    let ruta = `${this.API_URL}ubication/${id}`;
+    return this.http.put<any>(ruta, ubication);
+  }
 }
