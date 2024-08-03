@@ -2,6 +2,7 @@ import { Component, ViewChild  } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { profileModel } from 'src/app/models/profile.model';
+import { ConfirmationComponent } from 'src/app/shared/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-home',
@@ -9,14 +10,21 @@ import { profileModel } from 'src/app/models/profile.model';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent {
+  @ViewChild(ConfirmationComponent) modalClose!: ConfirmationComponent;
 
   public profiles: profileModel[];
   public profile!: profileModel;
+  public modalName: string;
+  public modalType: string;
+  
+  idPerfil:number = 0;
 
   constructor(private router: Router,
     private profileService: ProfileService
   ) {
     this.profiles = [];
+    this.modalName = '';
+    this.modalType = '';
 
     this.viewProfiles();
   }
@@ -39,12 +47,25 @@ export class HomeComponent {
   }
 
   deleteProfile(id: number){
-    console.log('EL PERFIL A ELIMINAR ES:', id);
     this.profileService.deleteProfile(id).subscribe( (data: any) => {
       console.log(data);
       this.viewProfiles();
+      this.modalClose.closeModal();
     });
+    console.log('EL PERFIL ELIMINADO FUE:', id);
   }
 
+  confirmationExperience(id: number, title: string){
+    this.modalType = 'perfil';
+    this.modalName = title;
+    this.idPerfil = id;
+  }
+
+  validationConfirmation(action: string) {
+    console.log('ACTION:',action)
+    if ( action === 'perfil') {
+      this.deleteProfile(this.idPerfil);
+    } 
+  }
 
 }

@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 declare var bootstrap: any; // Asegúrate de declarar bootstrap
-// import { Modal } from 'bootstrap';
-// import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-confirmation',

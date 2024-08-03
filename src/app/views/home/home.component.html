@@ -15,16 +15,16 @@
             <div class="card-body">
                 <h5 class="card-title">{{ profile.title}}</h5>
                 <button class="btn btn-primary" (click)="viewProfile(profile.id)">Editar</button>
-                <button class="btn icon-edit" (click)="deleteProfile(profile.id)">
+                <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
+                (click)="confirmationExperience(profile.id, profile.title)">
                     <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
                 </button>
             </div>
+            <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>
             <!-- <div class="card-footer">
                 <small class="text-body-secondary">Last updated 3 mins ago</small>
             </div> -->
         </div>
-        <!--- -->
-
-        <!-- [(ngModel)]="dataModel"-->
+        
     </section>
 </article>
