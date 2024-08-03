@@ -17,6 +17,7 @@ import { AsideComponent } from './shared/aside/aside.component';
 import { WelcomeComponent } from './views/welcome/welcome.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { LandingPagesComponent } from './shared/landing-pages/landing-pages.component';
+import { ConfirmationComponent } from './shared/confirmation/confirmation.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LandingPagesComponent } from './shared/landing-pages/landing-pages.comp
     AsideComponent,
     WelcomeComponent,
     ProfileComponent,
-    LandingPagesComponent
+    LandingPagesComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

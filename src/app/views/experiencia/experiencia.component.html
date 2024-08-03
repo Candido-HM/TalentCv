@@ -15,8 +15,9 @@
               (click)="viewExperiencie(experience.id)">
               <img style=" width: 22px;" src="../../../assets/img/icon-edit.svg" alt="icon-edit">
             </button>
-            <button class="btn icon-edit"
-              (click)="delete(experience.id)">
+            <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
+              (click)="confirmationExperience(experience.id ,experience.cargo)">
+              <!-- (click)="delete(experience.id, experience.cargo)" -->
               <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
             </button>
           </section>
@@ -54,8 +55,9 @@
             (click)="viewProject(project.id)">
               <img style=" width: 22px;" src="../../../assets/img/icon-edit.svg" alt="icon-edit">
             </button>
-            <button class="btn icon-edit"
-            (click)="deleteProject(project.id)">
+            <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
+            (click)="confirmationProject(project.id, project.project_name)">
+            <!-- (click)="deleteProject(project.id)" -->
               <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
             </button>
           </section>
@@ -76,10 +78,17 @@
       <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
       Proyectos personales
     </button>
+
+    <!-- Componente de confirmacion para eliminar -->
+    <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation> 
+    <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>
+
+    <!--Inicio componentes formularios -->
     <app-experiencia-form [dataExperiencie]="experiencie"
       (loadingExperience)="viewExperiencies(idProfile)"></app-experiencia-form>
     <app-project-form [dataProject]="project"
       (loadingProjects)="viewProjects(idProfile)"></app-project-form>
+    <!--Fin componentes formularios -->
   </article>
 </article>
 

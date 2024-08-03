@@ -18,15 +18,42 @@
                             Campo requerido
                         </small> -->
                     </div>  
-                    <!-- <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="institucionInput" placeholder="Institucion"
-                        formControlName="company_training"
-                        [class.is-invalid]="campoNoValido('company_training')">
-                        <label for="institucionInput">Empresa emisora</label>
-                        <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="portfolioInput" placeholder="Portfolio"
+                        formControlName="company_training">
+                        <!-- [class.is-invalid]="campoNoValido('company_training')" -->
+                        <label for="portfolioInput">Portfolio</label>
+                        <!-- <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
                             Campo requerido
-                        </small>
-                    </div>  -->
+                        </small> -->
+                    </div>  
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="linkedinInput" placeholder="Linkedin"
+                        formControlName="company_training">
+                        <!-- [class.is-invalid]="campoNoValido('company_training')" -->
+                        <label for="linkedinInput">Linkedin</label>
+                        <!-- <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
+                            Campo requerido
+                        </small> -->
+                    </div>  
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="githubInput" placeholder="Github"
+                        formControlName="company_training">
+                        <!-- [class.is-invalid]="campoNoValido('company_training')" -->
+                        <label for="githubInput">Github</label>
+                        <!-- <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
+                            Campo requerido
+                        </small> -->
+                    </div>  
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="linksInput" placeholder="Links"
+                        formControlName="company_training">
+                        <!-- [class.is-invalid]="campoNoValido('company_training')" -->
+                        <label for="linksInput">Enlace Bio</label>
+                        <!-- <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
+                            Campo requerido
+                        </small> -->
+                    </div>
                     <!-- <div class="form-check mb-3 px-0">
                         <label class="form-check-label" for="status">
                             Actualmente está cursando
@@ -55,11 +82,6 @@
                         <small *ngIf="campoNoValido('start_date')" class="invalid-feedback">
                             Campo requerido
                         </small>
-                    </div>  -->
-                    <!-- <div *ngIf="formCourse.value.status === 'Finalizado'" class="form-floating mb-3">
-                        <input type="date" class="form-control" id="cargoInput" placeholder="Cargo"
-                        formControlName="finish_date">
-                        <label for="cargoInput">Fecha de finalización</label>
                     </div>  -->
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Guardar</button>

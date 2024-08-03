@@ -75,13 +75,13 @@ export class AboutFormComponent implements OnChanges {
 
     if (this.dataUbication.id != undefined ) {
       this.ubicationService.updateUbication( this.dataUbication.id, verifyUbication).subscribe((res: any) => {
-        console.log('ACTUALIZADO ALO SIGUIENTE: ', res);
+        // console.log('ACTUALIZADO ALO SIGUIENTE: ', res);
         this.loadingUbication.emit();
       });
       console.log('UBICACION ACTUALIZAR....');
     } else {
       this.ubicationService.saveUbication( verifyUbication ).subscribe((res: any) => {
-        console.log('UBICACION A GUARDADO', res);
+        // console.log('UBICACION A GUARDADO', res);
         this.loadingUbication.emit();
       });
     }

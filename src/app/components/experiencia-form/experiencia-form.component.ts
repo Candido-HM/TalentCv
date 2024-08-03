@@ -60,7 +60,7 @@ export class ExperienciaFormComponent implements OnChanges {
   }
 
   save() {
-    console.log(this.formExperience);
+    // console.log(this.formExperience);
     console.log('EL ID DESDE EL MODAL->SAVE: ', this.idProfile);
     const experience: experienceModel = this.formExperience.value;
     if(this.formExperience.invalid) {
