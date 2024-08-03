@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CloseModalService } from 'src/app/services/complements/close-modal.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { projectModel } from 'src/app/models/project.model';
 
@@ -18,7 +19,8 @@ export class ProjectFormComponent implements OnChanges {
   
   constructor(  private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
-                private projectService: ProjectService) {
+                private projectService: ProjectService,
+                private closeModal: CloseModalService) {
     this.createProject();
     this.idProfile = 0;
 
@@ -68,11 +70,13 @@ export class ProjectFormComponent implements OnChanges {
         console.log(res);
         this.dataProject.id = null;
         this.loadingProjects.emit();
+        this.closeModal.close('modalProject');
       });
     } else {
       this.projectService.saveProject(this.idProfile, project).subscribe( (res: any) => {
         console.log(res);
         this.loadingProjects.emit();
+        this.closeModal.close('modalProject');
       });
     }
   }

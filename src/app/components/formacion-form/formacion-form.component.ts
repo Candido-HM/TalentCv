@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CloseModalService } from 'src/app/services/complements/close-modal.service';
 import { FormationService } from 'src/app/services/formation.service';
 import { formationModel } from 'src/app/models/formation.model';
 
@@ -18,7 +19,8 @@ export class FormacionFormComponent implements OnChanges {
 
   constructor(  private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
-                private formationService: FormationService) {
+                private formationService: FormationService,
+                private closeModal: CloseModalService) {
     this.createFormation();
     this.idProfile = 0;
 
@@ -69,12 +71,14 @@ export class FormacionFormComponent implements OnChanges {
         console.log(res);
         this.dataFormation.id = null;
         this.loadingFormations.emit();
+        this.closeModal.close('modalFormacion');
       });
       console.log('REGISTRO ACTUALIZADO');
     } else {
       this.formationService.saveFormation(this.idProfile, formation).subscribe((res: any) => {
         console.log(res);
         this.loadingFormations.emit();
+        this.closeModal.close('modalFormacion');
       });
       console.log('REGISTRO GUaRDADO');
     }

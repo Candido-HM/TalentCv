@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CloseModalService } from 'src/app/services/complements/close-modal.service';
 import { CourseService } from 'src/app/services/course.service';
 import { courseModel } from 'src/app/models/course.model';
 
@@ -18,7 +19,8 @@ export class CourseFormComponent implements OnChanges {
 
   constructor( private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private closeModal: CloseModalService
   ) {
     this.createCourse();
     this.idProfile = 0;
@@ -71,11 +73,13 @@ export class CourseFormComponent implements OnChanges {
         console.log(res);
         this.dataCourse.id = null;
         this.loadingCourses.emit();
+        this.closeModal.close('modalCourse');
       });
     } else {
       this.courseService.saveCourse(this.idProfile, course).subscribe((res: any) => {
         console.log(res);
         this.loadingCourses.emit();
+        this.closeModal.close('modalCourse');
       })
     }
   }

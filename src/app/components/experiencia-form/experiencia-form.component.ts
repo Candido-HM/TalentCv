@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CloseModalService } from 'src/app/services/complements/close-modal.service';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceModel } from 'src/app/models/experience.model';
 
@@ -18,7 +19,8 @@ export class ExperienciaFormComponent implements OnChanges {
 
   constructor( private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
-                private experienceService: ExperienceService) {
+                private experienceService: ExperienceService,
+                private closeModal: CloseModalService) {
     this.createExperiencie();
     this.idProfile = 0;
 
@@ -73,12 +75,14 @@ export class ExperienciaFormComponent implements OnChanges {
         console.log(res);
         this.dataExperiencie.id = null;
         this.loadingExperience.emit();
+        this.closeModal.close('modalExperiencia');
       });
       console.log('Registro actualizado', this.dataExperiencie);
     } else {
       console.log('GUARDAR REGISTRO');
       this.experienceService.saveExperience(this.idProfile, experience).subscribe((res: any) => {
         this.loadingExperience.emit(res);
+        this.closeModal.close('modalExperiencia');
       });
     }
   }

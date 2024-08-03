@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CloseModalService } from 'src/app/services/complements/close-modal.service';
 import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { UbicationService } from 'src/app/services/ubication.service';
@@ -24,11 +25,9 @@ export class AboutFormComponent implements OnChanges {
 
   constructor( private formBuider: FormBuilder,
                 private userService: UserService,
-                private ubicationService: UbicationService) {
+                private ubicationService: UbicationService,
+                private closeModal: CloseModalService) {
     this.createAbout();
-
-    // this.viewCountries();
-    // this.viewStates();
   }
 
   ngOnChanges(): void {
@@ -85,6 +84,7 @@ export class AboutFormComponent implements OnChanges {
         this.loadingUbication.emit();
       });
     }
+    this.closeModal.close('modalAbout');
   }
 
 }
