@@ -6,7 +6,7 @@
 </article>  -->
 <!-- <div class="position-fixed bottom-0 end-0 alert alert-dark m-4" style=" width: 300px;" role="alert">
   Registro guardado
-</div> -->
+</div>  -->
 <article class="d-flex justify-content-center">
   <article class="w-100 rounded px-3 pt-3 p-lg-4 theme-card">
     <div class="main-module mt-1">
@@ -130,7 +130,8 @@
       </div>
     </div>
     <app-about-form [dateUser]="user" [dataUbication]="ubication"
-      (loadingUser)="viewUser()" (loadingUbication)="viewUbication()"></app-about-form>
+      (loadingUser)="viewUser()" (loadingUbication)="viewUbication()">
+    </app-about-form>
     <app-profile-form [dateProfile]="profile" (loadingProfile)="viewProfile($event)"></app-profile-form>
     <app-contact-form></app-contact-form>
     <!-- <app-ubication-form></app-ubication-form>  -->

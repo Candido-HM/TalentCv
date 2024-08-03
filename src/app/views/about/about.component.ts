@@ -8,7 +8,6 @@ import { profileModel } from 'src/app/models/profile.model';
 import { UbicationService } from 'src/app/services/ubication.service';
 import { ubicationModel } from 'src/app/models/ubication.model';
 
-
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -107,5 +106,4 @@ export class AboutComponent implements OnInit {
       }
     });
   }
-
 }

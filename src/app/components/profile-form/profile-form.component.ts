@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CloseModalService } from 'src/app/services/complements/close-modal.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { profileModel } from 'src/app/models/profile.model';
 
@@ -8,6 +9,7 @@ import { profileModel } from 'src/app/models/profile.model';
   templateUrl: './profile-form.component.html',
   styleUrls: ['./profile-form.component.sass']
 })
+
 export class ProfileFormComponent implements OnChanges {
   @Input() dateProfile: any;
   @Output() loadingProfile = new EventEmitter<number>();
@@ -15,7 +17,8 @@ export class ProfileFormComponent implements OnChanges {
   formProfile!: FormGroup;
 
   constructor( private formBuilder: FormBuilder,
-                private profileService: ProfileService) {
+                private profileService: ProfileService,
+                private closeModal: CloseModalService) {
     this.createProfile();
   }
 
@@ -45,7 +48,7 @@ export class ProfileFormComponent implements OnChanges {
 
   guardar(){
     const formData: profileModel = this.formProfile.value;
-    console.log(this.formProfile);
+    // console.log(this.formProfile);
     if( this.formProfile.invalid) {
       return this.formProfile.markAllAsTouched();
     }
@@ -54,14 +57,16 @@ export class ProfileFormComponent implements OnChanges {
       this.profileService.updateProfile(this.dateProfile.id, formData).subscribe(( res: any) => {
         console.log('UPDATE EJECUTADO: ',res);
         this.loadingProfile.emit(this.dateProfile.id);
+        this.closeModal.close('modalProfile');
       });
     } else {
       this.profileService.createProfile(formData).subscribe((res: any) => {
         console.log('DEBERIA DE GUARDAR:', res.data);
         this.dateProfile = res.data.id;
         this.loadingProfile.emit(this.dateProfile);
+        this.closeModal.close('modalProfile');
       });
     }
-    
   }
+
 }
