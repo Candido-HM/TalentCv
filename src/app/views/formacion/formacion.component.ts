@@ -6,6 +6,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { courseModel } from 'src/app/models/course.model';
 import { FormacionFormComponent } from 'src/app/components/formacion-form/formacion-form.component';
 import { CourseFormComponent } from 'src/app/components/course-form/course-form.component';
+import { ConfirmationComponent } from 'src/app/shared/confirmation/confirmation.component';
 
 import { TemplatePdfService } from 'src/app/services/template-pdf.service';
 
@@ -17,16 +18,23 @@ import { TemplatePdfService } from 'src/app/services/template-pdf.service';
 export class FormacionComponent {
   @ViewChild(FormacionFormComponent) formationForm!: FormacionFormComponent;
   @ViewChild(CourseFormComponent) courseForm!: CourseFormComponent;
+  @ViewChild(ConfirmationComponent) modalClose!: ConfirmationComponent;
+
 
   public formations: formationModel[];
   public formation!: formationModel;
 
   public courses: courseModel[];
   public course!: courseModel;
+
+  public modalName: string;
+  public modalType: string;
   
   validationFormation: boolean;
   validationCourse: boolean;
   idProfile: number;
+  idFormation: number = 0;
+  idCurse: number = 0;
 
   constructor ( private formationService: FormationService,
                 private courseService: CourseService,
@@ -40,6 +48,8 @@ export class FormacionComponent {
     this.validationFormation = false;
     this.validationCourse = false;
     this.idProfile = 0;
+    this.modalName = '';
+    this.modalType = '';
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
@@ -74,11 +84,19 @@ export class FormacionComponent {
     })
   }
 
+  confirmationFormation(id: number, professional: string){
+    this.modalType = 'formación';
+    this.modalName = professional;
+    this.idFormation = id;
+  }
+
   deleteFormation(id: number) {
     this.formationService.deleteFormation(this.idProfile, id).subscribe( (data: any) => {
       console.log(data);
       this.viewFormations(this.idProfile);
+      this.modalClose.closeModal();
     })
+    console.log('FORMACION ELIMINADO CORRECTAMENTE');
   }
 
   cleanCourse() {
@@ -102,11 +120,28 @@ export class FormacionComponent {
     })
   }
 
+  confirmationCurse(id: number, name: string){
+    this.modalType = 'curso';
+    this.modalName = name;
+    this.idCurse = id;
+  }
+
   deleteCourse(id: number) {
     this.courseService.deleteCourse(this.idProfile, id).subscribe((data: any) => {
       console.log(data);
       this.viewCourses(this.idProfile);
+      this.modalClose.closeModal();
     });
+    console.log('CURSO ELIMINADO CORRECTAMENTE');
+  }
+
+  validationConfirmation(action: string) {
+    console.log('ACTION:',action)
+    if ( action === 'formación') {
+      this.deleteFormation(this.idFormation);
+    } else if ( action  === 'curso') {
+      this.deleteCourse(this.idCurse);
+    }
   }
 
   generatePDF(){
@@ -117,4 +152,5 @@ export class FormacionComponent {
     // window.open(ruta, '_blank');
     console.log('¡CLICK!', this.idProfile)
   }
+
 }

@@ -15,8 +15,9 @@
               (click)="viewFormation(formation.id)">
               <img style=" width: 22px;" src="../../../assets/img/icon-edit.svg" alt="icon-edit">
             </button>
-            <button class="btn icon-edit"
-              (click)="deleteFormation(formation.id)">
+            <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
+            (click)="confirmationFormation(formation.id, formation.professional_area)">
+              <!-- (click)="deleteFormation(formation.id)" -->
               <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
             </button>
           </section>
@@ -52,8 +53,9 @@
               (click)="viewCourse(course.id)">
               <img style=" width: 22px;" src="../../../assets/img/icon-edit.svg" alt="icon-edit">
             </button>
-            <button class="btn icon-edit"
-              (click)="deleteCourse(course.id)">
+            <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
+            (click)="confirmationCurse(course.id, course.course_name)">
+              <!-- (click)="deleteCourse(course.id)" -->
               <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
             </button>
           </section>
@@ -78,10 +80,17 @@
       <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
       Cursos o certificaciones
     </button>
+
+    <!-- Componente de confirmacion para eliminar -->
+    <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation> 
+    <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>
+
+    <!--Inicio componentes formularios -->
     <app-formacion-form [dataFormation]="formation"
       (loadingFormations)="viewFormations(idProfile)"></app-formacion-form>
     <app-course-form [dataCourse]="course"
       (loadingCourses)="viewCourses(idProfile)"></app-course-form>
+    <!--Fin componentes formularios -->
   </article>
 </article>
 
