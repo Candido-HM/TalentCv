@@ -18,6 +18,7 @@ import { WelcomeComponent } from './views/welcome/welcome.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { LandingPagesComponent } from './shared/landing-pages/landing-pages.component';
 import { ConfirmationComponent } from './shared/confirmation/confirmation.component';
+import { AlertsComponent } from './shared/alerts/alerts.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ConfirmationComponent } from './shared/confirmation/confirmation.compon
     WelcomeComponent,
     ProfileComponent,
     LandingPagesComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +41,7 @@ import { ConfirmationComponent } from './shared/confirmation/confirmation.compon
     FormModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    // SelectDropDownModule
+    HttpClientModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}  

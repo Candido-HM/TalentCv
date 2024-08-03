@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { userModel } from 'src/app/models/user.model';
@@ -7,6 +7,7 @@ import { profileModel } from 'src/app/models/profile.model';
 
 import { UbicationService } from 'src/app/services/ubication.service';
 import { ubicationModel } from 'src/app/models/ubication.model';
+import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
 
 @Component({
   selector: 'app-about',
@@ -14,6 +15,8 @@ import { ubicationModel } from 'src/app/models/ubication.model';
   styleUrls: ['./about.component.sass']
 })
 export class AboutComponent implements OnInit {
+  @ViewChild(AlertsComponent) showNotification!: AlertsComponent;
+
   countries!: any[];
   user!: userModel;
   profile!: profileModel;
@@ -27,6 +30,7 @@ export class AboutComponent implements OnInit {
   validatorLink: boolean;
   validatorGithub: boolean;
   idProfile: number;
+  resNotification: string;
   constructor(  private userService: UserService,
                 private profileService: ProfileService,
                 private ubicationService: UbicationService,
@@ -41,6 +45,7 @@ export class AboutComponent implements OnInit {
     this.validatorLink = false;
     this.validatorGithub = false;
     this.idProfile = 0;
+    this.resNotification = '';
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
@@ -105,5 +110,12 @@ export class AboutComponent implements OnInit {
         this.validatorUbication = true;
       }
     });
+  }
+
+
+  notificationAlert(data: string) {
+    this.resNotification = data;
+    console.log('RECIBI EL EVENTO DEL FORMULARIO: ', data);
+    this.showNotification.show();
   }
 }

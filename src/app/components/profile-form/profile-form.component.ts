@@ -13,12 +13,17 @@ import { profileModel } from 'src/app/models/profile.model';
 export class ProfileFormComponent implements OnChanges {
   @Input() dateProfile: any;
   @Output() loadingProfile = new EventEmitter<number>();
+  // @Output() notification = new EventEmitter<string>();
+  @Output() notification = new EventEmitter<string>();
 
   formProfile!: FormGroup;
+  resAlert: string;
 
   constructor( private formBuilder: FormBuilder,
                 private profileService: ProfileService,
                 private closeModal: CloseModalService) {
+    this.resAlert = '';
+              
     this.createProfile();
   }
 
@@ -55,15 +60,19 @@ export class ProfileFormComponent implements OnChanges {
 
     if(this.dateProfile && this.dateProfile.id) {
       this.profileService.updateProfile(this.dateProfile.id, formData).subscribe(( res: any) => {
-        console.log('UPDATE EJECUTADO: ',res);
+        this.resAlert = res.message;
         this.loadingProfile.emit(this.dateProfile.id);
+        this.notification.emit(this.resAlert);
         this.closeModal.close('modalProfile');
+        console.log('DESDE EL SERVE DIGO: ', this.resAlert);
       });
     } else {
       this.profileService.createProfile(formData).subscribe((res: any) => {
-        console.log('DEBERIA DE GUARDAR:', res.data);
+        // console.log('DEBERIA DE GUARDAR:', res.data);
+        this.resAlert = res.message;
         this.dateProfile = res.data.id;
         this.loadingProfile.emit(this.dateProfile);
+        this.notification.emit(this.resAlert);
         this.closeModal.close('modalProfile');
       });
     }
