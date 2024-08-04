@@ -13,7 +13,6 @@ import { profileModel } from 'src/app/models/profile.model';
 export class ProfileFormComponent implements OnChanges {
   @Input() dateProfile: any;
   @Output() loadingProfile = new EventEmitter<number>();
-  // @Output() notification = new EventEmitter<string>();
   @Output() notification = new EventEmitter<string>();
 
   formProfile!: FormGroup;
