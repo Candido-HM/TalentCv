@@ -13,9 +13,11 @@ import { projectModel } from 'src/app/models/project.model';
 export class ProjectFormComponent implements OnChanges {
   @Input() dataProject: any;
   @Output() loadingProjects = new EventEmitter;
+  @Output() notification = new EventEmitter<string>();
 
   idProfile: number;
   formProject!: FormGroup;
+  resAlert: string;
   
   constructor(  private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
@@ -23,6 +25,7 @@ export class ProjectFormComponent implements OnChanges {
                 private closeModal: CloseModalService) {
     this.createProject();
     this.idProfile = 0;
+    this.resAlert = '';
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
@@ -68,14 +71,18 @@ export class ProjectFormComponent implements OnChanges {
     if( this.dataProject && this.dataProject.id != 0) {
       this.projectService.updateProject(this.idProfile, this.dataProject.id, project).subscribe((res: any) => {
         console.log(res);
+        this.resAlert = res.message;
         this.dataProject.id = null;
         this.loadingProjects.emit();
+        this.notification.emit(this.resAlert);
         this.closeModal.close('modalProject');
       });
     } else {
       this.projectService.saveProject(this.idProfile, project).subscribe( (res: any) => {
         console.log(res);
+        this.resAlert = res.message;
         this.loadingProjects.emit();
+        this.notification.emit(this.resAlert);
         this.closeModal.close('modalProject');
       });
     }

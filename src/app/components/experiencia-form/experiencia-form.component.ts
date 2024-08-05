@@ -13,9 +13,11 @@ import { experienceModel } from 'src/app/models/experience.model';
 export class ExperienciaFormComponent implements OnChanges {
   @Input() dataExperiencie: any;
   @Output() loadingExperience = new EventEmitter();
+  @Output() notification = new EventEmitter<string>();
 
   idProfile: number;
   formExperience!: FormGroup;
+  resAlert: string;
 
   constructor( private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
@@ -23,6 +25,7 @@ export class ExperienciaFormComponent implements OnChanges {
                 private closeModal: CloseModalService) {
     this.createExperiencie();
     this.idProfile = 0;
+    this.resAlert = '';
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
@@ -62,7 +65,6 @@ export class ExperienciaFormComponent implements OnChanges {
   }
 
   save() {
-    // console.log(this.formExperience);
     console.log('EL ID DESDE EL MODAL->SAVE: ', this.idProfile);
     const experience: experienceModel = this.formExperience.value;
     if(this.formExperience.invalid) {
@@ -73,15 +75,19 @@ export class ExperienciaFormComponent implements OnChanges {
     if( this.dataExperiencie && this.dataExperiencie.id != 0) {
       this.experienceService.updateExperience( this.idProfile, this.dataExperiencie.id, experience).subscribe((res: any) => {
         console.log(res);
+        this.resAlert = res.message;
         this.dataExperiencie.id = null;
         this.loadingExperience.emit();
+        this.notification.emit(this.resAlert);
         this.closeModal.close('modalExperiencia');
       });
       console.log('Registro actualizado', this.dataExperiencie);
     } else {
       console.log('GUARDAR REGISTRO');
       this.experienceService.saveExperience(this.idProfile, experience).subscribe((res: any) => {
+        this.resAlert = res.message;
         this.loadingExperience.emit(res);
+        this.notification.emit(this.resAlert);
         this.closeModal.close('modalExperiencia');
       });
     }

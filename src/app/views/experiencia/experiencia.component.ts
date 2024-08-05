@@ -7,6 +7,7 @@ import { projectModel } from 'src/app/models/project.model';
 import { ExperienciaFormComponent } from 'src/app/components/experiencia-form/experiencia-form.component';
 import { ProjectFormComponent } from 'src/app/components/project-form/project-form.component';
 import { ConfirmationComponent } from 'src/app/shared/confirmation/confirmation.component';
+import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
 
 @Component({
   selector: 'app-experiencia',
@@ -17,6 +18,7 @@ export class ExperienciaComponent {
   @ViewChild(ExperienciaFormComponent) experiencieForm!: ExperienciaFormComponent;
   @ViewChild(ProjectFormComponent) projectForm!: ProjectFormComponent; 
   @ViewChild(ConfirmationComponent) modalClose!: ConfirmationComponent;
+  @ViewChild(AlertsComponent) showNotification!: AlertsComponent;
 
   public experiences: experienceModel[];
   public projects: projectModel[];
@@ -29,6 +31,7 @@ export class ExperienciaComponent {
   idProfile: number;
   idExperience: number = 0;
   idProject: number = 0;
+  resNotification: string;
 
   constructor( private experienceService: ExperienceService,
                 private projectService: ProjectService,
@@ -41,6 +44,7 @@ export class ExperienciaComponent {
     this.idProfile = 0;
     this.modalName = '';
     this.modalType = '';
+    this.resNotification = '';
 
     this.route.params.subscribe( params =>  {
       this.idProfile = params['id'];
@@ -87,10 +91,12 @@ export class ExperienciaComponent {
   }
 
   delete(id: number) {
-    this.experienceService.deleteExperience(this.idProfile, id).subscribe( (data: any) => {
-      console.log(data);
+    this.experienceService.deleteExperience(this.idProfile, id).subscribe( (res: any) => {
+      console.log(res);
+      this.resNotification = res.message;
       this.viewExperiencies(this.idProfile);
       this.modalClose.closeModal();
+      this.notificationAlert(this.resNotification);
       console.log('DELETE EXPERIENCIA: ',id);
     });
   }
@@ -125,10 +131,12 @@ export class ExperienciaComponent {
   }
 
   deleteProject(id: number) {
-    this.projectService.deleteProject(this.idProfile, id).subscribe((resp: any) => {
-      console.log(resp);
+    this.projectService.deleteProject(this.idProfile, id).subscribe((res: any) => {
+      console.log(res);
+      this.resNotification = res.message;
       this.viewProjects(this.idProfile);
       this.modalClose.closeModal();
+      this.notificationAlert(this.resNotification);
     });
     console.log('DELETE PROYECTO: ',id);
   }
@@ -140,5 +148,11 @@ export class ExperienciaComponent {
     } else if ( action  === 'proyecto') {
       this.deleteProject(this.idProject);
     }
+  }
+
+  notificationAlert(data: string) {
+    this.resNotification = data;
+    console.log('RECIBI EL EVENTO DEL FORMULARIO: ', data);
+    this.showNotification.show();
   }
 }
