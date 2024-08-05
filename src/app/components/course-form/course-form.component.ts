@@ -13,9 +13,11 @@ import { courseModel } from 'src/app/models/course.model';
 export class CourseFormComponent implements OnChanges {
   @Input() dataCourse: any;
   @Output() loadingCourses = new EventEmitter();
-
+  @Output() notification = new EventEmitter<string>();
+ 
   formCourse!: FormGroup;
   idProfile: number;
+  resAlert: string;
 
   constructor( private route: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -24,6 +26,7 @@ export class CourseFormComponent implements OnChanges {
   ) {
     this.createCourse();
     this.idProfile = 0;
+    this.resAlert = '';
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
@@ -71,14 +74,18 @@ export class CourseFormComponent implements OnChanges {
     if(this.dataCourse && this.dataCourse.id != 0) {
       this.courseService.updateCourse(this.idProfile, this.dataCourse.id, course).subscribe((res: any) => {
         console.log(res);
+        this.resAlert = res.message;
         this.dataCourse.id = null;
         this.loadingCourses.emit();
+        this.notification.emit(this.resAlert);
         this.closeModal.close('modalCourse');
       });
     } else {
       this.courseService.saveCourse(this.idProfile, course).subscribe((res: any) => {
         console.log(res);
+        this.resAlert = res.message;
         this.loadingCourses.emit();
+        this.notification.emit(this.resAlert);
         this.closeModal.close('modalCourse');
       })
     }

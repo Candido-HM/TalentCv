@@ -86,13 +86,17 @@
     <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>
 
     <!--Inicio componentes formularios -->
-    <app-formacion-form [dataFormation]="formation"
-      (loadingFormations)="viewFormations(idProfile)"></app-formacion-form>
+    <app-formacion-form [dataFormation]="formation" 
+      (loadingFormations)="viewFormations(idProfile)" (notification)="notificationAlert($event)">
+    </app-formacion-form>
     <app-course-form [dataCourse]="course"
-      (loadingCourses)="viewCourses(idProfile)"></app-course-form>
+      (loadingCourses)="viewCourses(idProfile)" (notification)="notificationAlert($event)"></app-course-form>
     <!--Fin componentes formularios -->
   </article>
 </article>
+
+<!-- Componente de alerta de notificacion -->
+<app-alerts [message]="resNotification"></app-alerts>
 
 <article class="d-flex justify-content-between mt-3 mb-5">
   <button class="btn btn-outline-primary btn-sm" (click)="returnExperience()">

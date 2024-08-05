@@ -9,6 +9,7 @@ import { CourseFormComponent } from 'src/app/components/course-form/course-form.
 import { ConfirmationComponent } from 'src/app/shared/confirmation/confirmation.component';
 
 import { TemplatePdfService } from 'src/app/services/template-pdf.service';
+import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
 
 @Component({
   selector: 'app-formacion',
@@ -19,7 +20,7 @@ export class FormacionComponent {
   @ViewChild(FormacionFormComponent) formationForm!: FormacionFormComponent;
   @ViewChild(CourseFormComponent) courseForm!: CourseFormComponent;
   @ViewChild(ConfirmationComponent) modalClose!: ConfirmationComponent;
-
+  @ViewChild(AlertsComponent) showNotification!: AlertsComponent;
 
   public formations: formationModel[];
   public formation!: formationModel;
@@ -35,6 +36,7 @@ export class FormacionComponent {
   idProfile: number;
   idFormation: number = 0;
   idCurse: number = 0;
+  resNotification: string;
 
   constructor ( private formationService: FormationService,
                 private courseService: CourseService,
@@ -50,6 +52,7 @@ export class FormacionComponent {
     this.idProfile = 0;
     this.modalName = '';
     this.modalType = '';
+    this.resNotification = '';
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
@@ -91,10 +94,12 @@ export class FormacionComponent {
   }
 
   deleteFormation(id: number) {
-    this.formationService.deleteFormation(this.idProfile, id).subscribe( (data: any) => {
-      console.log(data);
+    this.formationService.deleteFormation(this.idProfile, id).subscribe( (res: any) => {
+      console.log(res);
+      this.resNotification = res.message;
       this.viewFormations(this.idProfile);
       this.modalClose.closeModal();
+      this.notificationAlert(this.resNotification);
     })
     console.log('FORMACION ELIMINADO CORRECTAMENTE');
   }
@@ -127,10 +132,12 @@ export class FormacionComponent {
   }
 
   deleteCourse(id: number) {
-    this.courseService.deleteCourse(this.idProfile, id).subscribe((data: any) => {
-      console.log(data);
+    this.courseService.deleteCourse(this.idProfile, id).subscribe((res: any) => {
+      console.log(res);
+      this.resNotification = res.message;
       this.viewCourses(this.idProfile);
       this.modalClose.closeModal();
+      this.notificationAlert(this.resNotification);
     });
     console.log('CURSO ELIMINADO CORRECTAMENTE');
   }
@@ -142,6 +149,12 @@ export class FormacionComponent {
     } else if ( action  === 'curso') {
       this.deleteCourse(this.idCurse);
     }
+  }
+
+  notificationAlert(data: string) {
+    this.resNotification = data;
+    console.log('RECIBI EL EVENTO DEL FORMULARIO: ', data);
+    this.showNotification.show();
   }
 
   generatePDF(){
