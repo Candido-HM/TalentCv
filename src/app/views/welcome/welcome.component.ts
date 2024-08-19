@@ -22,7 +22,7 @@ export class WelcomeComponent {
       } else {
         this.router.navigate(['']);
       }
-      console.log(verificado);
+      // console.log(verificado);
     }
   
 

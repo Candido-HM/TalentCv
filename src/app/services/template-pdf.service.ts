@@ -10,9 +10,28 @@ export class TemplatePdfService {
 
   private API_URL: string = environment.apiURL;
 
-  constructor( private http: HttpClient) { }
+  private templateId: number;
+
+  constructor( private http: HttpClient) { 
+    this.templateId =  0;
+  }
+
+  getTemplates() {
+    let ruta = `${this.API_URL}templates`;
+    return this.http.get(ruta);
+  }
 
   getTemplate(id: number): Observable<Blob> {
     return this.http.get(`${this.API_URL}viewPDF/${id}`, { responseType: 'blob'});
   }
+
+  setTemplateId(id: number) {
+    this.templateId = id;
+  }
+
+  gettemplateId(): number {
+    return this.templateId;
+  }
+
+
 }

@@ -4,6 +4,8 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { profileModel } from 'src/app/models/profile.model';
 import { ConfirmationComponent } from 'src/app/shared/confirmation/confirmation.component';
 import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
+import { TemplatePdfService } from 'src/app/services/template-pdf.service';
+import { CloseModalService } from 'src/app/services/complements/close-modal.service';
 
 @Component({
   selector: 'app-home',
@@ -21,9 +23,12 @@ export class HomeComponent {
   
   idPerfil:number = 0;
   resNotification: string;
+  templates: any;
 
   constructor(private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private pdfService: TemplatePdfService,
+    private closeModal: CloseModalService
   ) {
     this.profiles = [];
     this.modalName = '';
@@ -31,6 +36,7 @@ export class HomeComponent {
     this.resNotification = '';
 
     this.viewProfiles();
+    this.listTemplates();
   }
 
   viewProfiles(){
@@ -39,8 +45,13 @@ export class HomeComponent {
     })
   }
 
-  redirect() {
-    this.router.navigate(['profile/new']);
+  redirect(name: string, id: number) {
+    // console.log(name);
+    this.pdfService.setTemplateId(id);
+    this.closeModal.close(name);
+    setTimeout(() => {
+      this.router.navigate(['profile/new']);
+    }, 500)
   }
 
   viewProfile(id: number){
@@ -78,5 +89,13 @@ export class HomeComponent {
     console.log('RECIBI EL EVENTO DEL FORMULARIO: ', this.resNotification);
     this.showNotification.show();
   }
+
+
+  listTemplates() {
+    this.pdfService.getTemplates().subscribe( (resp: any) => {
+    this.templates = resp.data;
+     console.log(resp);
+    }) 
+   }
 
 }

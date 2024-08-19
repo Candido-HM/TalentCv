@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { loginModel } from 'src/app/models/loginUser.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -41,13 +42,44 @@ export class LoginComponent {
       this.loading = false;
       return this.formLogin.markAllAsTouched();
     } 
-    this.auth.login(formData).subscribe((res: any) => {
-      this.loading = true;
-      console.log(res);
-      this.auth.saveToken(res.access_token);
-      this.router.navigate(['home']);
-    })
+    console.log('Soy el LOGIN:');
+    // this.auth.login(formData).subscribe((res: any) => {
+    //   this.loading = true;
+    //   if(res.status == true) {
+    //     this.auth.saveToken(res.access_token);
+    //     this.router.navigate(['home']);
+    //   }
+    //   else {
+    //     console.log('¡El usuario al que quiere ingresar no existe!');
+    //     this.loading = false;
+    //   }
+    // })
+
+    /************** */
+    this.auth.login(formData).subscribe({
+      next: (res: any) => {
+        // Maneja la respuesta exitosa aquí
+        this.loading = true;
+        if (res.status === true) {
+          this.auth.saveToken(res.access_token);
+          this.router.navigate(['home']);
+        } else {
+          console.log('¡El usuario al que quiere ingresar no existe!');
+          this.loading = false;
+        }
+      },
+      error: (err: HttpErrorResponse) => {
+        // Maneja el error aquí
+        this.loading = false;
+        if (err.status === 401) {
+          console.error('Error de autenticación:', err.error.message);
+        } else {
+          console.error('Otro tipo de error:', err);
+        }
+      }
+    });
   }
+
 
   loadingToken() {
     let token = this.auth.leerToken();

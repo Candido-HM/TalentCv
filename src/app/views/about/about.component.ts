@@ -31,6 +31,7 @@ export class AboutComponent implements OnInit {
   validatorGithub: boolean;
   idProfile: number;
   resNotification: string;
+
   constructor(  private userService: UserService,
                 private profileService: ProfileService,
                 private ubicationService: UbicationService,
@@ -58,6 +59,7 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.viewUser();
     this.viewUbication();
+    
   }
 
   returnHome() {
@@ -104,7 +106,7 @@ export class AboutComponent implements OnInit {
   viewUbication() {
     this.ubicationService.getUbication().subscribe((ubication) => {
       this.ubication = ubication;
-      console.log('SALUDOS CRACKS: ', ubication);
+      // console.log('SALUDOS CRACKS: ', ubication);
       let verify = ubication.id;
       if (verify != undefined) {
         this.validatorUbication = true;

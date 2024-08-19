@@ -71,6 +71,7 @@ export class ExperienciaComponent {
   viewExperiencies(idProfile: number) {
     this.experienceService.getExperiences(idProfile).subscribe( (data: any) => {
       this.experiences = data.data;
+      console.log(this.experiences);
       if(this.experiences) {
         this.validationExperience = true;
       }
