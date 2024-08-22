@@ -26,8 +26,9 @@
           <h6>{{ experience.company_name }}</h6>
           <figure>
             <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
-            <span>{{ experience.start_date }}</span> -
-            <span>{{ experience.finish_date }}</span>
+            <span> {{ experience.start_date }} - </span> 
+            <span *ngIf="!null">{{ experience.finish_date }}</span> 
+            <span *ngIf="experience.status == 'Laborando'" >{{ experience.status }}</span> 
           </figure>
           <p>{{ experience.description }}</p>
         </div>
@@ -65,8 +66,10 @@
         <div name="proyectos">
           <figure>
             <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
-              <span>{{ project.start_date }}</span> -
-              <span>{{ project.finish_date }}</span>
+              <span> {{ project.start_date }} - </span>
+              <!-- <span>{{ project.finish_date }}</span> -->
+              <span *ngIf="!null">{{ project.finish_date }}</span> 
+            <span *ngIf="project.status == 'Laborando'" >{{ project.status }}</span> 
           </figure>
           <p>{{project.description}}</p>
         </div>
