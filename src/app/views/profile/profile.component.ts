@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./profile.component.sass']
 })
 export class ProfileComponent {
-
+  
   constructor( private auth: AuthService,
     private router: Router
   ) {

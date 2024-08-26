@@ -24,13 +24,15 @@ export class CourseFormComponent implements OnChanges {
     private courseService: CourseService,
     private closeModal: CloseModalService
   ) {
-    this.createCourse();
+    
     this.idProfile = 0;
     this.resAlert = '';
 
     this.route.params.subscribe( params => {
       this.idProfile = params['id'];
     });
+    
+    this.createCourse();
   }
 
   ngOnChanges() {

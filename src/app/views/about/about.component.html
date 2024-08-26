@@ -1,9 +1,6 @@
-<header class="d-flex justify-content-center pt-3 mb-5">
-  <h1 class="text-center">Sobre tí</h1>
+<header class="d-flex justify-content-center pt-3 mb-4">
+  <h1 class="fs-3 text-center">Sobre tí</h1>
 </header>
-<!-- <article class="d-flex justify-content-center module mb-5">
-  {{ ubication | json }} 
-</article>  -->
 
 <article class="d-flex justify-content-center">
   <article class="w-100 rounded px-3 pt-3 p-lg-4 theme-card">
@@ -57,7 +54,7 @@
         <div>
           <header class="d-flex justify-content-end">
             <section class="flex-grow-1">
-              <h5><h5>Información de Contacto</h5></h5>
+              <h5>Información de Contacto</h5>
             </section>
             <section class="d-flex justify-content-end" *ngIf="contactInfo">
               <!-- Button trigger modal (click)="viewExperiencie(experience.id)"-->
@@ -140,9 +137,6 @@
 </article>
 
 <app-alerts [message]="resNotification"></app-alerts>
-<!-- <div class="position-fixed bottom-0 end-0 alert alert-dark m-4" style=" width: 300px;" role="alert">
-  Registro guardado
-</div>  -->
 
 <article class="d-flex justify-content-between mt-3 mb-5">
   <button class="btn btn-outline-primary btn-sm" (click)="returnHome()" [routerLink]="['home']">

@@ -1,70 +1,69 @@
-<header class="d-flex justify-content-center pt-3 mb-5">
-    <h1 class="text-center">TalentCv</h1> 
-    <!-- <h1 class="text-center">Generador Cv</h1> -->
-</header>
-<article class="p-2 d-flex flex-column">
-    <section style="width: 200px; height: 50px;" class="w-100">
-        <!-- (click)="redirect()" routerLink="profile/new" -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTemplates">
-            <img style="width: 22px; height: 22px;" src="../../../assets/img/icon-add.svg" alt="add">
-            Nuevo Cv
-        </button>  
-    </section>
-    <section class="d-flex flex-column flex-sm-row justify-content-sm-between flex-wrap">
-        <div class="card mb-3 theme-card" *ngFor="let profile of profiles">
-            <img src="..." class="card-img-top" alt="cv-captura">
-            <div class="card-body">
-                <h5 class="card-title">{{ profile.title}}</h5>
-                <button class="btn btn-primary" (click)="viewProfile(profile.id)">Editar</button>
-                <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
-                (click)="confirmationExperience(profile.id, profile.title)">
-                    <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
-                </button>
-            </div>
-            <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>
-            <!-- <div class="card-footer">
-                <small class="text-body-secondary">Last updated 3 mins ago</small>
-            </div> -->
-        </div>
-
-        <!-- Button trigger modal -->
-        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTemplates">
-            Launch demo modal
-        </button> -->
-
-        <!-- Modal -->
-        <div class="modal fade" id="modalTemplates" tabindex="-1" aria-labelledby="modalTemplatesLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalTemplatesLabel">Plantillas</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- <ng-container class="w-100 flex-grow-1" style="background-color: blue;">  -->
+    <header class="d-flex justify-content-center pt-3 mb-4">
+        <h1 class="fs-2 text-center">TalentCv</h1> 
+        <!-- <h1 class="text-center">Generador Cv</h1> -->
+    </header>
+    <article class="p-2 d-flex flex-column">
+        <section style="width: 200px; height: 50px;" class="w-100">
+            <!-- (click)="redirect()" routerLink="profile/new" -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTemplates">
+                <img style="width: 22px; height: 22px;" src="../../../assets/img/icon-add.svg" alt="add">
+                Nuevo Cv
+            </button>  
+        </section>
+        <section class="d-flex flex-column flex-sm-row justify-content-sm-between flex-wrap">
+            <div class="card mb-3 theme-card" *ngFor="let profile of profiles">
+                <img src="..." class="card-img-top" alt="cv-captura">
+                <div class="card-body">
+                    <h5 class="card-title">{{profile.title}}</h5>
+                    <button class="btn btn-primary" (click)="viewProfile(profile.id)">Editar</button>
+                    <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
+                    (click)="confirmationExperience(profile.id, profile.title)">
+                        <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
+                    </button>
                 </div>
-                <div class="modal-body">
-
-                    <div class="card" style="width: 18rem;" *ngFor="let template of templates">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">{{ template.name_template }}</h5>
-                          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                          <!-- <a class="btn btn-primary" routerLink="profile/new">Elegir plantilla</a> -->
-                          <!-- (click)="redirect()" routerLink="profile/new" -->
-                            <button type="button" (click)="redirect('modalTemplates', template.id)" class="btn btn-primary">
-                                <!-- <img style="width: 22px; height: 22px;" src="../../../assets/img/icon-add.svg" alt="add"> -->
-                                Elegir plantilla
-                            </button> 
-                        </div>
-                      </div>
-
-                </div>
-                <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>
+                <!-- <div class="card-footer">
+                    <small class="text-body-secondary">Last updated 3 mins ago</small>
                 </div> -->
             </div>
+
+            <!-- Button trigger modal -->
+            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTemplates">
+                Launch demo modal
+            </button> -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalTemplates" tabindex="-1" aria-labelledby="modalTemplatesLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalTemplatesLabel">Plantillas</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="card" style="width: 18rem;" *ngFor="let template of templates">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ template.name_template }}</h5>
+                                <button type="button" (click)="redirect('modalTemplates', template.id)" class="btn btn-primary">
+                                    <!-- <img style="width: 22px; height: 22px;" src="../../../assets/img/icon-add.svg" alt="add"> -->
+                                    Elegir plantilla
+                                </button> 
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+                </div>
             </div>
-        </div>
-        
-    </section>
-    <app-alerts [message]="resNotification"></app-alerts>
-</article>
+            
+        </section>
+        <app-alerts [message]="resNotification"></app-alerts>
+    </article>
+<!-- </ng-container>  -->
