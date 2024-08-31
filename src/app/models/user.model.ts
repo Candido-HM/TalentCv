@@ -10,10 +10,10 @@ export class userModel {
         prefix: string;
         phone_number: number;
     };
-    portfolio: {
-        id: number;
-        url_portfolio: string;
-    };
+    // portfolio: {
+    //     id: number;
+    //     url_portfolio: string;
+    // };
     linkedin: {
         id: number;
         url_linkedin: string;
@@ -39,10 +39,10 @@ export class userModel {
             prefix: null,
             phone_number: null
         };
-        this.portfolio = data.portfolio || { 
-            id: null, 
-            url_portfolio: null 
-        };
+        // this.portfolio = data.portfolio || { 
+        //     id: null, 
+        //     url_portfolio: null 
+        // };
         this.linkedin = data.linkedin || {
             id: null,
             url_linkedin: null

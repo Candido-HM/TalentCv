@@ -13,12 +13,12 @@
         </section>
         <section class="d-flex flex-column flex-sm-row justify-content-sm-between flex-wrap">
             <div class="card mb-3 theme-card" *ngFor="let profile of profiles">
-                <img src="..." class="card-img-top" alt="cv-captura">
+                <!-- <img src="..." class="card-img-top" alt="cv-captura"> -->
                 <div class="card-body">
                     <h5 class="card-title">{{profile.title}}</h5>
                     <button class="btn btn-primary" (click)="viewProfile(profile.id)">Editar</button>
                     <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
-                    (click)="confirmationExperience(profile.id, profile.title)">
+                    (click)="confirmationProfile(profile.id, profile.title)">
                         <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
                     </button>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="modal-body">
 
                         <div class="card" style="width: 18rem;" *ngFor="let template of templates">
-                            <img src="..." class="card-img-top" alt="...">
+                            <!-- <img src="..." class="card-img-top" alt="..."> -->
                             <div class="card-body">
                                 <h5 class="card-title">{{ template.name_template }}</h5>
                                 <button type="button" (click)="redirect('modalTemplates', template.id)" class="btn btn-primary">

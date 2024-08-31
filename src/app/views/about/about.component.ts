@@ -21,11 +21,12 @@ export class AboutComponent implements OnInit {
   user!: userModel;
   profile!: profileModel;
   ubication!: ubicationModel;
+  contacto!: any;
   validatorProfile: boolean;
   validatorUbication: boolean;
   contactInfo: boolean;
   validatorPhone: boolean;
-  validatorPortfolio: boolean;
+  // validatorPortfolio: boolean;
   validatorLinkedin: boolean;
   validatorLink: boolean;
   validatorGithub: boolean;
@@ -41,7 +42,7 @@ export class AboutComponent implements OnInit {
     this.validatorUbication = false;
     this.contactInfo = false;
     this.validatorPhone = false;
-    this.validatorPortfolio = false;
+    // this.validatorPortfolio = false;
     this.validatorLinkedin = false;
     this.validatorLink = false;
     this.validatorGithub = false;
@@ -73,16 +74,24 @@ export class AboutComponent implements OnInit {
   viewUser(){
     this.userService.getUser().subscribe( (user: userModel) => {
       this.user = user;
+      this.contacto = {
+        phone: user.phone,
+        link: user.link,
+        linkedin: user.linkedin,
+        github: user.github
+      };
+      // console.log('AQUI:::',user);
+      // console.log('SOY EL CONTACTO DETALLADO:::',this.contacto);
       const validateId = (item: any): boolean => {
         return item && item.id !== null;
       };
       this.validatorPhone = validateId(this.user.phone);
-      this.validatorPortfolio = validateId(this.user.portfolio);
+      // this.validatorPortfolio = validateId(this.user.portfolio);
       this.validatorLinkedin = validateId(this.user.linkedin);
       this.validatorGithub = validateId(this.user.github);
       this.validatorLink = validateId(this.user.link);
 
-      this.contactInfo = this.validatorPhone || this.validatorPortfolio || this.validatorLinkedin || this.validatorLinkedin || this.validatorGithub || this.validatorLink;
+      this.contactInfo = this.validatorPhone || this.validatorLinkedin || this.validatorLinkedin || this.validatorGithub || this.validatorLink;
     });
   }
 
@@ -93,7 +102,6 @@ export class AboutComponent implements OnInit {
       if(profile){
         this.profile = profile;
         this.idProfile = profile.id;
-        
         this.validatorProfile = true;
       } else {
         console.log('FALSE: ',profile);

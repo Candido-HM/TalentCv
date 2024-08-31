@@ -72,7 +72,7 @@ export class HomeComponent {
     console.log('EL PERFIL ELIMINADO FUE:', this.resNotification);
   }
 
-  confirmationExperience(id: number, title: string){
+  confirmationProfile(id: number, title: string){
     this.modalType = 'perfil';
     this.modalName = title;
     this.idPerfil = id;
@@ -94,7 +94,7 @@ export class HomeComponent {
   listTemplates() {
     this.pdfService.getTemplates().subscribe( (resp: any) => {
     this.templates = resp.data;
-     console.log(resp);
+    //  console.log(resp);
     }) 
    }
 

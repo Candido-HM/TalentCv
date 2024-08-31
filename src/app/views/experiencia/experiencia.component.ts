@@ -48,7 +48,7 @@ export class ExperienciaComponent {
 
     this.route.params.subscribe( params =>  {
       this.idProfile = params['id'];
-      console.log('IDPROFILE DESDE ABOUT: ',this.idProfile)
+      // console.log('IDPROFILE DESDE ABOUT: ',this.idProfile);
       this.viewExperiencies(this.idProfile);
       this.viewProjects(this.idProfile);
     });
@@ -71,7 +71,7 @@ export class ExperienciaComponent {
   viewExperiencies(idProfile: number) {
     this.experienceService.getExperiences(idProfile).subscribe( (data: any) => {
       this.experiences = data.data;
-      console.log('AQUI::::', this.experiences);
+      // console.log('AQUI::::', this.experiences);
       if(this.experiences) {
         this.validationExperience = true;
       }

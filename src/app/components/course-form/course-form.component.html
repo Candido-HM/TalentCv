@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close"></button>
             </header>
             <article class="modal-body">
-                <form [formGroup]="formCourse" (ngSubmit)="save()">
+                <form [formGroup]="formCourse" (ngSubmit)="save()"> 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="nombreInput" placeholder="Nombre"
                         formControlName="course_name"
@@ -22,7 +22,7 @@
                         formControlName="company_training"
                         [class.is-invalid]="campoNoValido('company_training')">
                         <label for="institucionInput">Empresa emisora</label>
-                        <small *ngIf="campoNoValido('company_training_2')" class="invalid-feedback">
+                        <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
                             Campo requerido
                         </small>
                     </div> 
@@ -63,7 +63,7 @@
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Guardar</button>
                     </div> 
-                </form> 
+                </form>  
             </article>
         </article>
     </article>

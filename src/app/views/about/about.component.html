@@ -13,13 +13,13 @@
           </button> 
         </header>
         <div class="d-flex flex-column flex-md-row flex-grow-1" style=" margin-inline-end: -48px;">
-          <div class="d-flex justify-content-center m-0 me-md-5">
+          <div class="d-flex justify-content-center m-0 me-md-3">
             <figure class="border border-secondary fig-user">
               <img src="../../../assets/img/icon-user.png" alt="user-img"> 
             </figure>
           </div>
           <div class="d-flex flex-column w-100 mt-2 mt-sm-0">
-            <h2 class="text-center fs-4">{{ user && user.name }} {{ user && user.last_name }}</h2>
+            <h2 class="fs-5 text-right text-xl-center ">{{ user && user.name }} {{ user && user.last_name }}</h2>
             <span>
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-email.svg" alt="email">
               {{ user && user.email }}
@@ -68,11 +68,11 @@
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-phone.svg" alt="phone">
               <span>+52 123 456 7890</span>
             </li>
-            <li class="me-2 p-1 list" *ngIf="validatorPortfolio">
+            <!-- <li class="me-2 p-1 list" *ngIf="validatorPortfolio">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-url.svg" alt="url-portfolio">
-              <!-- <span>portfolio_web.com</span>  -->
+              <span>portfolio_web.com</span>  
               <span>{{ user && user.portfolio.url_portfolio }}</span>
-            </li>
+            </li> -->
             <li class="me-2 p-1 list" *ngIf="validatorLinkedin">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-linkedin.svg" alt="linkedin">
               <!-- <span>linkedin.com/in/user-profile-link/</span> -->
@@ -85,7 +85,8 @@
             </li>
             <li class="me-2 p-1 list" *ngIf="validatorLink">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-url.svg" alt="url">
-              <span>linktr.ee/user_links</span>
+              <!-- <span>linktr.ee/user_links</span> -->
+               <span>{{ user.link.url_links }}</span>
             </li>
           </ul>
           <!-- Button trigger modal  *ngIf="!validatorProfile" -->
@@ -129,10 +130,8 @@
     </app-about-form>
     <app-profile-form [dateProfile]="profile" (loadingProfile)="viewProfile($event)"
       (notification)="notificationAlert($event)">
-
     </app-profile-form>
-    <app-contact-form></app-contact-form>
-    <!-- <app-ubication-form></app-ubication-form>  -->
+    <app-contact-form [dataContact]="contacto"></app-contact-form>
   </article>
 </article>
 

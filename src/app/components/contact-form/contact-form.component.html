@@ -8,9 +8,10 @@
             </header>
             <article class="modal-body">
                 <!-- [formGroup]="formCourse" (ngSubmit)="save()" -->
-                <form [formGroup]="formContact">
-                    <div class="form-floating mb-3">
-                        <input type="tel" class="form-control" formControlName="phone_number" pattern="[0-9]{10}" id="telefonoInput" placeholder="Telefono">
+                <form [formGroup]="formContact" (ngSubmit)="save()">
+                    <div class="form-floating mb-3" formGroupName="telefono">
+                        <input type="tel" class="form-control" 
+                        formControlName="phone_number" pattern="[0-9]{10}" id="telefonoInput" placeholder="Telefono">
                         <!-- formControlName="phone_number"> -->
                         <!-- [class.is-invalid]="campoNoValido('phone_number')" -->
                         <label for="telefonoInput">Telefono</label>
@@ -18,70 +19,33 @@
                             Campo requerido
                         </small> -->
                     </div>  
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="portfolioInput" placeholder="Portfolio"
-                        formControlName="company_training">
-                        <!-- [class.is-invalid]="campoNoValido('company_training')" -->
-                        <label for="portfolioInput">Sitio Web</label>
-                        <!-- <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
+                    <div class="form-floating mb-3" formGroupName="sitioweb">
+                        <input type="text" class="form-control" id="sitioInput" placeholder="Sitio Web"
+                        formControlName="url_links">
+                        <!-- [class.is-invalid]="campoNoValido('url_links')" -->
+                        <label for="sitioInput">Sitio Web</label>
+                        <!-- <small *ngIf="campoNoValido('url_links')" class="invalid-feedback">
                             Campo requerido
                         </small> -->
                     </div>  
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-3" formGroupName="linkedin">
                         <input type="text" class="form-control" id="linkedinInput" placeholder="Linkedin"
-                        formControlName="company_training">
-                        <!-- [class.is-invalid]="campoNoValido('company_training')" -->
+                        formControlName="url_linkedin">
+                        <!-- [class.is-invalid]="campoNoValido('url_linkedin')" -->
                         <label for="linkedinInput">Linkedin</label>
-                        <!-- <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
+                        <!-- <small *ngIf="campoNoValido('url_linkedin')" class="invalid-feedback">
                             Campo requerido
                         </small> -->
                     </div>  
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-3" formGroupName="github">
                         <input type="text" class="form-control" id="githubInput" placeholder="Github"
-                        formControlName="company_training">
-                        <!-- [class.is-invalid]="campoNoValido('company_training')" -->
+                        formControlName="url_github">
+                        <!-- [class.is-invalid]="campoNoValido('url_github')" -->
                         <label for="githubInput">Github</label>
-                        <!-- <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
+                        <!-- <small *ngIf="campoNoValido('url_github')" class="invalid-feedback">
                             Campo requerido
                         </small> -->
                     </div>  
-                    <!-- <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="linksInput" placeholder="Links"
-                        formControlName="company_training">
-                        <label for="linksInput">Enlace Bio</label>
-                        <small *ngIf="campoNoValido('company_training')" class="invalid-feedback">
-                            Campo requerido
-                        </small> 
-                    </div> -->
-                    <!-- <div class="form-check mb-3 px-0">
-                        <label class="form-check-label" for="status">
-                            Actualmente está cursando
-                        </label>
-                        <div class="col-8">
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio"
-                                formControlName="status"
-                                value="Cursando">
-                              <label class="form-check-label">Sí</label>
-                            </div>
-                      
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio"
-                                formControlName="status"
-                                value="Finalizado">
-                              <label class="form-check-label">No</label>
-                            </div>
-                          </div>
-                    </div> -->
-                    <!-- <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="cargoInput" placeholder="Cargo"
-                        formControlName="start_date"
-                        [class.is-invalid]="campoNoValido('start_date')">
-                        <label for="cargoInput">Fecha de inicio</label>
-                        <small *ngIf="campoNoValido('start_date')" class="invalid-feedback">
-                            Campo requerido
-                        </small>
-                    </div>  -->
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Guardar</button>
                     </div> 

@@ -30,7 +30,7 @@ export class ProfileFormComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.template_id = this.pdfService.gettemplateId(); 
-    console.log('TEMPLATE ID:', this.template_id);
+    // console.log('TEMPLATE ID:', this.template_id);
     this.createProfile();
   }
 
