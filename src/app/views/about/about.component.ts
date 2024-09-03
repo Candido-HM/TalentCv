@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
 import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -9,43 +10,54 @@ import { UbicationService } from 'src/app/services/ubication.service';
 import { ubicationModel } from 'src/app/models/ubication.model';
 import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
 
+import { SkillService } from 'src/app/services/skill.service';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.sass']
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, OnChanges {
   @ViewChild(AlertsComponent) showNotification!: AlertsComponent;
 
   countries!: any[];
+  talents!: any[];
+  editIndex: number | null = null;
+  skillBtn: boolean;
+
   user!: userModel;
   profile!: profileModel;
   ubication!: ubicationModel;
   contacto!: any;
+
   validatorProfile: boolean;
   validatorUbication: boolean;
   contactInfo: boolean;
   validatorPhone: boolean;
-  // validatorPortfolio: boolean;
   validatorLinkedin: boolean;
   validatorLink: boolean;
   validatorGithub: boolean;
+
   idProfile: number;
   resNotification: string;
+
+  formSkill!: FormGroup;
 
   constructor(  private userService: UserService,
                 private profileService: ProfileService,
                 private ubicationService: UbicationService,
+                private skillService: SkillService,
                 private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                private formBuilder: FormBuilder) {
     this.validatorProfile = false;
     this.validatorUbication = false;
     this.contactInfo = false;
     this.validatorPhone = false;
-    // this.validatorPortfolio = false;
     this.validatorLinkedin = false;
     this.validatorLink = false;
     this.validatorGithub = false;
+    this.skillBtn = true;
     this.idProfile = 0;
     this.resNotification = '';
 
@@ -53,14 +65,17 @@ export class AboutComponent implements OnInit {
       this.idProfile = params['id'];
       this.viewProfile(this.idProfile);
     });
-
-    // this.viewUbication();
+    this.createSkill();
   }
 
   ngOnInit(): void {
     this.viewUser();
     this.viewUbication();
-    
+    this.viewSkill();
+  }
+
+  ngOnChanges(): void {
+    // this.getSkill();
   }
 
   returnHome() {
@@ -80,13 +95,10 @@ export class AboutComponent implements OnInit {
         linkedin: user.linkedin,
         github: user.github
       };
-      // console.log('AQUI:::',user);
-      // console.log('SOY EL CONTACTO DETALLADO:::',this.contacto);
       const validateId = (item: any): boolean => {
         return item && item.id !== null;
       };
       this.validatorPhone = validateId(this.user.phone);
-      // this.validatorPortfolio = validateId(this.user.portfolio);
       this.validatorLinkedin = validateId(this.user.linkedin);
       this.validatorGithub = validateId(this.user.github);
       this.validatorLink = validateId(this.user.link);
@@ -96,7 +108,6 @@ export class AboutComponent implements OnInit {
   }
 
   viewProfile(id: number){
-    // console.log('VIEWPROFILE ES:', id);
 
     this.profileService.getProfile(id).subscribe((profile: profileModel) => {
       if(profile){
@@ -128,4 +139,35 @@ export class AboutComponent implements OnInit {
     console.log('RECIBI EL EVENTO DEL FORMULARIO: ', data);
     this.showNotification.show();
   }
+
+  /********************* Todo relacionado a TALENTS *******************/
+  viewSkill() {
+    this.skillService.getSkills(this.idProfile).subscribe((res: any) => {
+      // console.log('SOY UN CRACK CON LAS SKILLS:', res.data.talents);
+      this.talents = res.data.talents;
+      console.log('SOY UN CRACK CON LAS SKILLS:', this.talents);
+    });
+  }
+
+  editSkill(id: number) {
+    this.editIndex = id;
+    console.log('EL TALENTO ES EL:: ID', this.editIndex);
+    this.formSkill.reset({
+      skill: this.talents[this.editIndex]
+    });
+    // this.skillBtn = false;
+  }
+
+  createSkill() {
+    this.formSkill = this.formBuilder.group({
+      skill: ['']
+    });
+  }
+
+  saveSkill(){
+    this.editIndex = null;
+    this.skillBtn = true;
+    console.log('SKILL GUARDADO');
+  }
+
 }

@@ -68,11 +68,6 @@
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-phone.svg" alt="phone">
               <span>+52 123 456 7890</span>
             </li>
-            <!-- <li class="me-2 p-1 list" *ngIf="validatorPortfolio">
-              <img class="me-1 filter icon-url" src="../../../assets/img/icon-url.svg" alt="url-portfolio">
-              <span>portfolio_web.com</span>  
-              <span>{{ user && user.portfolio.url_portfolio }}</span>
-            </li> -->
             <li class="me-2 p-1 list" *ngIf="validatorLinkedin">
               <img class="me-1 filter icon-url" src="../../../assets/img/icon-linkedin.svg" alt="linkedin">
               <!-- <span>linkedin.com/in/user-profile-link/</span> -->
@@ -98,30 +93,85 @@
         </div> 
         <div class="mb-3">
           <h5 class="mb-3 text-left fs-4">Mis habilidades</h5>
-          <div class="btn-group me-2">
+          <!-- Modo vista -->
+           <ng-container *ngFor="let talent of talents; let idx = index;">
+            <div *ngIf="editIndex !== idx && skillBtn" class="btn-group me-2">
+              <span class="badge text-bg-primary p-1">
+                <span class="me-2">{{ talent }}</span>
+                <button (click)="editSkill(idx)" style="background-color: transparent; border: none;">
+                  <img src="../../../assets/img/icon-edit.svg" width="20px" alt="editar">
+                </button>
+                <button style="background-color: transparent; border: none;">
+                  <img src="../../../assets/img/btn-delete.svg" width="20px" alt="eliminar">
+                </button>
+              </span>
+            </div>
+            <!-- Modo editar --> 
+              <div class="btn-group me-2" *ngIf="editIndex === idx !skillBtn">
+                <span class="badge text-bg-primary p-1">
+                  <form class="d-flex" [formGroup]="formSkill">
+                      <input class="form-control form-control-sm" type="text"
+                      formControlName="skill">
+                          <!-- [class.is-invalid]="campoNoValido('name')" -->
+                        <!-- <small *ngIf="campoNoValido('name')" class="invalid-feedback">
+                          Ingresa un nombre
+                      </small> -->
+                      <button (click)="saveSkill()" style="background-color: transparent; border: none;">
+                        <img src="../../../assets/img/icon-save.svg" width="20px" alt="save">
+                      </button>
+                      <button (click)="skillBtn = true" style="background-color: transparent; border: none;" aria-label="Close">
+                        <img src="../../../assets/img/icon-delete.svg" width="20px" alt="cancel">
+                      </button>
+                  </form> 
+                </span>
+              </div>
+           </ng-container>
+          
+
+          <!-- Terminan las pruebas -->
+
+          <!-- <div class="btn-group me-2">
+            <span class="badge text-bg-primary p-1">
+              <span class="me-2">React Native</span>
+              <button style="background-color: transparent; border: none;">
+                <img src="../../../assets/img/icon-edit.svg" width="20px" alt="editar">
+              </button>
+              <button style="background-color: transparent; border: none;">
+                <img src="../../../assets/img/btn-delete.svg" width="20px" alt="eliminar">
+              </button>
+            </span>
+          </div> -->
+          <!-- <div class="btn-group me-2">
+            <span class="badge text-bg-primary p-1">
+              <span class="me-2">HTML</span>
+              <button style="background-color: transparent; border: none;">
+                <img src="../../../assets/img/icon-edit.svg" width="20px" alt="editar">
+              </button>
+              <button style="background-color: transparent; border: none;">
+                <img src="../../../assets/img/btn-delete.svg" width="20px" alt="eliminar">
+              </button>
+            </span>
+          </div> -->
+          <!-- <div class="btn-group me-2">
+            <span class="badge text-bg-primary p-1">
+              <span class="me-2">Sass</span>
+              <button style="background-color: transparent; border: none;">
+                <img src="../../../assets/img/icon-edit.svg" width="20px" alt="editar">
+              </button>
+              <button style="background-color: transparent; border: none;">
+                <img src="../../../assets/img/btn-delete.svg" width="20px" alt="eliminar">
+              </button>
+            </span>
+          </div> -->
+
+          <!-- <div class="btn-group me-2">
             <button class="btn btn-primary btn-sm" type="button">
               Angular
             </button>
             <button type="reset" class="btn btn-primary btn-sm" aria-label="Close">
               <img src="../../../assets/img/icon-delete.svg" alt="delete">
             </button>
-          </div>
-          <div class="btn-group me-2">
-            <span class="btn btn-primary btn-sm" type="button">
-              HTML
-            </span>
-            <button type="reset" class="btn btn-primary btn-sm" aria-label="Close">
-              <img src="../../../assets/img/icon-delete.svg" alt="delete">
-            </button>
-          </div>
-          <div class="btn-group me-2">
-            <button class="btn btn-primary btn-sm" type="button">
-              SASS
-            </button>
-            <button type="reset" class="btn btn-primary btn-sm" aria-label="Close">
-              <img src="../../../assets/img/icon-delete.svg" alt="delete">
-            </button>
-          </div>
+          </div>  -->
         </div>
       </div>
     </div>
