@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -13,6 +13,7 @@ export class AsideComponent implements OnInit {
 
   user!: userModel;
   constructor( private router: Router,
+                private activateRoute: ActivatedRoute,
               private auth: AuthService,
               private userService: UserService) { }
 
@@ -33,6 +34,5 @@ export class AsideComponent implements OnInit {
         this.router.navigateByUrl('/');
       }
     });
-    
   }
 }

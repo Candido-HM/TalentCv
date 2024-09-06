@@ -126,65 +126,22 @@
                 </span>
               </div>
            </ng-container>
-          
-
           <!-- Terminan las pruebas -->
-
-          <!-- <div class="btn-group me-2">
-            <span class="badge text-bg-primary p-1">
-              <span class="me-2">React Native</span>
-              <button style="background-color: transparent; border: none;">
-                <img src="../../../assets/img/icon-edit.svg" width="20px" alt="editar">
-              </button>
-              <button style="background-color: transparent; border: none;">
-                <img src="../../../assets/img/btn-delete.svg" width="20px" alt="eliminar">
-              </button>
-            </span>
-          </div> -->
-          <!-- <div class="btn-group me-2">
-            <span class="badge text-bg-primary p-1">
-              <span class="me-2">HTML</span>
-              <button style="background-color: transparent; border: none;">
-                <img src="../../../assets/img/icon-edit.svg" width="20px" alt="editar">
-              </button>
-              <button style="background-color: transparent; border: none;">
-                <img src="../../../assets/img/btn-delete.svg" width="20px" alt="eliminar">
-              </button>
-            </span>
-          </div> -->
-          <!-- <div class="btn-group me-2">
-            <span class="badge text-bg-primary p-1">
-              <span class="me-2">Sass</span>
-              <button style="background-color: transparent; border: none;">
-                <img src="../../../assets/img/icon-edit.svg" width="20px" alt="editar">
-              </button>
-              <button style="background-color: transparent; border: none;">
-                <img src="../../../assets/img/btn-delete.svg" width="20px" alt="eliminar">
-              </button>
-            </span>
-          </div> -->
-
-          <!-- <div class="btn-group me-2">
-            <button class="btn btn-primary btn-sm" type="button">
-              Angular
-            </button>
-            <button type="reset" class="btn btn-primary btn-sm" aria-label="Close">
-              <img src="../../../assets/img/icon-delete.svg" alt="delete">
-            </button>
-          </div>  -->
         </div>
       </div>
     </div>
-    <app-about-form [dateUser]="user" [dataUbication]="ubication"
+    <app-about-form [dateUser]="user" (notification)="notificationAlert($event)" [dataUbication]="ubication"
       (loadingUser)="viewUser()" (loadingUbication)="viewUbication()">
     </app-about-form>
     <app-profile-form [dateProfile]="profile" (loadingProfile)="viewProfile($event)"
       (notification)="notificationAlert($event)">
     </app-profile-form>
-    <app-contact-form [dataContact]="contacto"></app-contact-form>
+    <app-contact-form [dataContact]="contacto" (notification)="notificationAlert($event)"
+      (loadingContact)="viewUser()"></app-contact-form>
   </article>
 </article>
 
+<!-- Componente de alerta de notificacion -->
 <app-alerts [message]="resNotification"></app-alerts>
 
 <article class="d-flex justify-content-between mt-3 mb-5">

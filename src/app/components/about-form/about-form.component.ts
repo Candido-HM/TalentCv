@@ -5,8 +5,6 @@ import { userModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { UbicationService } from 'src/app/services/ubication.service';
 import { UbicationFormComponent } from '../ubication-form/ubication-form.component';
-// import { TemplatePdfService } from 'src/app/services/template-pdf.service';
-
 
 @Component({
   selector: 'app-about-form',
@@ -19,8 +17,10 @@ export class AboutFormComponent implements OnChanges {
   @Input() dataUbication: any;
   @Output() loadingUser = new EventEmitter();
   @Output() loadingUbication = new EventEmitter();
+  @Output() notification = new EventEmitter<string>();
   countries!: any[];
   states!: any[];
+  resAlert: string;
 
   formAbout!: FormGroup;
 
@@ -29,6 +29,7 @@ export class AboutFormComponent implements OnChanges {
                 private ubicationService: UbicationService,
                 private closeModal: CloseModalService) {
     this.createAbout();
+    this.resAlert = '';
   }
 
   ngOnChanges(): void {
@@ -69,6 +70,8 @@ export class AboutFormComponent implements OnChanges {
 
     this.userService.updateUser(idUser, formUser).subscribe((res: any) => {
       // console.log(res);
+      this.resAlert = res.message;
+      this.notification.emit(this.resAlert);
       this.loadingUser.emit();
     });
     console.log(this.dataUbication);

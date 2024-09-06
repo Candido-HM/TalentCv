@@ -145,13 +145,13 @@ export class AboutComponent implements OnInit, OnChanges {
     this.skillService.getSkills(this.idProfile).subscribe((res: any) => {
       // console.log('SOY UN CRACK CON LAS SKILLS:', res.data.talents);
       this.talents = res.data.talents;
-      console.log('SOY UN CRACK CON LAS SKILLS:', this.talents);
+      // console.log('SOY UN CRACK CON LAS SKILLS:', this.talents);
     });
   }
 
   editSkill(id: number) {
     this.editIndex = id;
-    console.log('EL TALENTO ES EL:: ID', this.editIndex);
+    // console.log('EL TALENTO ES EL:: ID', this.editIndex);
     this.formSkill.reset({
       skill: this.talents[this.editIndex]
     });

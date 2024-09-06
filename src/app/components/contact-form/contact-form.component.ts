@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { CloseModalService } from 'src/app/services/complements/close-modal.service';
 import { SitiowebService } from 'src/app/services/contact/sitioweb.service';
 import { LinkedinService } from 'src/app/services/contact/linkedin.service';
 import { GithubService } from 'src/app/services/contact/github.service';
@@ -11,16 +11,20 @@ import { GithubService } from 'src/app/services/contact/github.service';
   styleUrls: ['./contact-form.component.sass']
 })
 export class ContactFormComponent implements OnChanges {
-
+  @Output() loadingContact = new EventEmitter();
+  @Output() notification = new EventEmitter<string>();
   @Input() dataContact: any;
   formContact!: FormGroup;
+  resAlert: string;
 
   constructor( private formBuilder: FormBuilder,
               private sitioService: SitiowebService,
               private linkedinService: LinkedinService,
-              private githubService: GithubService
+              private githubService: GithubService,
+              private closeModal: CloseModalService
   ) {
     this.createContact();
+    this.resAlert = 'Información almacenado';
   }
 
   ngOnChanges(): void {
@@ -75,7 +79,9 @@ export class ContactFormComponent implements OnChanges {
       let idWeb = this.dataContact.link.id;
       if (idWeb != null) {
         this.sitioService.updateSiteWeb(idWeb, contacto.sitioweb).subscribe( (res: any) => {
-          // console.log('ACTUALIZACION SITIO', res);
+          // console.log('ACTUALIZACION SITIO', res.message);
+          // this.resAlert = res.message;
+          // this.notification.emit(this.resAlert);
         });
       } else {
         this.sitioService.createSiteWeb(contacto.sitioweb).subscribe( (res: any) => {
@@ -111,6 +117,8 @@ export class ContactFormComponent implements OnChanges {
         });
       }
     }
-
+    this.loadingContact.emit();
+    this.notification.emit(this.resAlert);
+    this.closeModal.close('modalContact');
   }
 }
