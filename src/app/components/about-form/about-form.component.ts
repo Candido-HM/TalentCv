@@ -6,6 +6,8 @@ import { UserService } from 'src/app/services/user.service';
 import { UbicationService } from 'src/app/services/ubication.service';
 import { UbicationFormComponent } from '../ubication-form/ubication-form.component';
 
+import { AsideComunicationService } from 'src/app/services/complements/aside-comunication.service';
+
 @Component({
   selector: 'app-about-form',
   templateUrl: './about-form.component.html',
@@ -27,6 +29,7 @@ export class AboutFormComponent implements OnChanges {
   constructor( private formBuider: FormBuilder,
                 private userService: UserService,
                 private ubicationService: UbicationService,
+                private asideName: AsideComunicationService,
                 private closeModal: CloseModalService) {
     this.createAbout();
     this.resAlert = '';
@@ -70,9 +73,11 @@ export class AboutFormComponent implements OnChanges {
 
     this.userService.updateUser(idUser, formUser).subscribe((res: any) => {
       // console.log(res);
+      let user_aside = res.data.name+' '+res.data.last_name;
       this.resAlert = res.message;
       this.notification.emit(this.resAlert);
       this.loadingUser.emit();
+      this.updateAside(user_aside);
     });
     console.log(this.dataUbication);
 
@@ -91,4 +96,7 @@ export class AboutFormComponent implements OnChanges {
     this.closeModal.close('modalAbout');
   }
 
+  updateAside(name: string) {
+    this.asideName.updateName(name);
+  }
 }
