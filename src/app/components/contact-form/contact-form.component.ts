@@ -74,49 +74,36 @@ export class ContactFormComponent implements OnChanges {
       console.log('TELEFONO CELULAR: ',contacto.telefono.phone_number);
     }
 
-    if(contacto.sitioweb) {
+    if(contacto.sitioweb.url_links) {
       /** Guardar y actualizar la url del Sitio Web o Portfolio **/
       let idWeb = this.dataContact.link.id;
       if (idWeb != null) {
-        this.sitioService.updateSiteWeb(idWeb, contacto.sitioweb).subscribe( (res: any) => {
-          // console.log('ACTUALIZACION SITIO', res.message);
-          // this.resAlert = res.message;
-          // this.notification.emit(this.resAlert);
-        });
+        this.sitioService.updateSiteWeb(idWeb, contacto.sitioweb).subscribe( (res: any) => {});
       } else {
-        this.sitioService.createSiteWeb(contacto.sitioweb).subscribe( (res: any) => {
-          // console.log('SOY EL RESSSSS::::',res);
-        });
+        this.sitioService.createSiteWeb(contacto.sitioweb).subscribe( (res: any) => {});
       }
     }
 
-    if(contacto.linkedin) {
+    if(contacto.linkedin.url_linkedin) {
       /** Guardar y actualizar la url del Linkedin **/
       let idLinkedin = this.dataContact.linkedin.id;
       if(idLinkedin != null) {
-        this.linkedinService.updateLinkedin(idLinkedin, contacto.linkedin).subscribe( (res: any) => {
-          // console.log('ACTUALIZACION LINKEDIN:', res);
-        });
+        this.linkedinService.updateLinkedin(idLinkedin, contacto.linkedin).subscribe( (res: any) => {});
       } else {
-        this.linkedinService.createLinkedin(contacto.linkedin).subscribe( (res: any) => {
-          // console.log('SOY EL LINKEDIN:::', res);
-        });
+        this.linkedinService.createLinkedin(contacto.linkedin).subscribe( (res: any) => {});
       }
     }
 
-    if(contacto.github) {
+    if(contacto.github.url_github) {
       /** Guardar y actualizar la url del perfil de Github **/
       let idGithub = this.dataContact.github.id;
       if(idGithub != null) {
-        this.githubService.updateGithub(idGithub, contacto.github).subscribe( (res: any) => {
-          // console.log('ACTUALIZACION GITHUB:', res)
-        });
+        this.githubService.updateGithub(idGithub, contacto.github).subscribe( (res: any) => {});
       } else {
-        this.githubService.createGithub(contacto.github).subscribe( (res: any) => {
-          // console.log('SOY EL GITHUB:::', res);
-        });
+        this.githubService.createGithub(contacto.github).subscribe( (res: any) => {});
       }
     }
+
     this.loadingContact.emit();
     this.notification.emit(this.resAlert);
     this.closeModal.close('modalContact');

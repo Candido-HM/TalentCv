@@ -43,7 +43,7 @@ export class RegisterComponent {
 
   create(){
     this.loading = true;
-    console.log(this.formRegister);
+    // console.log(this.formRegister);
     const formData: userRegisterModel = this.formRegister.value;
 
     if(this.formRegister.invalid) {

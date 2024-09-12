@@ -24,7 +24,6 @@ export class AsideComponent implements OnInit {
     this.viewUser();
     this.asideName.name.subscribe((name: string) => {
       this.userName = name;
-      console.log('ASIDE::->',this.userName);
     });
   }
 
