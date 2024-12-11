@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 
-import { HomeComponent } from './views/home/home.component';
+// import { HomeComponent } from './views/home/home.component';
 import { AboutComponent } from './views/about/about.component';
 import { ExperienciaComponent } from './views/experiencia/experiencia.component';
 import { FormacionComponent } from './views/formacion/formacion.component';
 import { WelcomeComponent } from './views/welcome/welcome.component';
-import { ProfileComponent } from './views/profile/profile.component';
+// import { ProfileComponent } from './views/profile/profile.component';
 // import { RegisterComponent } from './components/register/register.component';
 // import { LoginComponent } from './components/login/login.component';
 // import { LandingPagesComponent } from './shared/landing-pages/landing-pages.component';
@@ -16,6 +16,9 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { JumbotronComponent } from './landing/components/jumbotron/jumbotron.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
+
+import { ProfileComponent } from './user/pages/profile/profile.component';
+import { HomeComponent } from './user/pages/home/home.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent, children: [

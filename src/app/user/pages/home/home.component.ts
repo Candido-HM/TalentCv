@@ -1,4 +1,4 @@
-import { Component, ViewChild  } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { profileModel } from 'src/app/models/profile.model';
@@ -20,7 +20,7 @@ export class HomeComponent {
   public profile!: profileModel;
   public modalName: string;
   public modalType: string;
-  
+
   idPerfil:number = 0;
   resNotification: string;
   templates: any;

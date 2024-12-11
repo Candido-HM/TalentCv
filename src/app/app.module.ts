@@ -5,6 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 
+//Nueva estrutura para el proyecto
+import { LandingModule } from './landing/landing.module';
+import { AuthModule } from './auth/auth.module';
+// import { SharedModule } from './shared/shared.module';
+import { UserModule } from './user/user.module';
 // import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,16 +18,11 @@ import { HomeComponent } from './views/home/home.component';
 import { AboutComponent } from './views/about/about.component';
 import { FormacionComponent } from './views/formacion/formacion.component';
 import { ExperienciaComponent } from './views/experiencia/experiencia.component';
-import { AsideComponent } from './shared/aside/aside.component';
 import { WelcomeComponent } from './views/welcome/welcome.component';
 import { ProfileComponent } from './views/profile/profile.component';
-import { LandingPagesComponent } from './shared/landing-pages/landing-pages.component';
+// import { LandingPagesComponent } from './shared/landing-pages/landing-pages.component';
 import { ConfirmationComponent } from './shared/confirmation/confirmation.component';
 import { AlertsComponent } from './shared/alerts/alerts.component';
-
-//Nueva estrutura para el proyecto
-import { LandingModule } from './landing/landing.module';
-import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -32,10 +32,8 @@ import { AuthModule } from './auth/auth.module';
     AboutComponent,
     FormacionComponent,
     ExperienciaComponent,
-    AsideComponent,
     WelcomeComponent,
     ProfileComponent,
-    LandingPagesComponent,
     ConfirmationComponent,
     AlertsComponent
   ],
@@ -44,11 +42,13 @@ import { AuthModule } from './auth/auth.module';
     AppRoutingModule,
     LandingModule,
     AuthModule,
+    // SharedModule,
+    UserModule,
     FormModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-  ],
+],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}  
   ],
