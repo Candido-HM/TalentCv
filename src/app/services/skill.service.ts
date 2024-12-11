@@ -16,4 +16,9 @@ export class SkillService {
     let ruta = `${this.API_URL}${idSkill}/skill`;
     return this.http.get<Response>(ruta);
   }
+
+  saveSkill(idProfile: number, skill: string): Observable<Response> {
+    let ruta = `${this.API_URL}${idProfile}/skill`;
+    return this.http.post<Response>(ruta, skill);
+  }
 }

@@ -93,6 +93,18 @@
         </div> 
         <div class="mb-3">
           <h5 class="mb-3 text-left fs-4">Mis habilidades</h5>
+          <app-create></app-create>
+          <!-- <form class="d-flex">
+            <div class="mb-3">
+              <input class="form-control form-control-sm" style="height: 40px;" type="text" 
+                placeholder="Agregar habilidad" formControlName="skill">
+              [class.is-invalid]="campoNoValido('name')"> 
+              <label for="floatingInput">Agregar habilidad</label>   
+            </div>
+            <div class="ms-3">
+              <button class="btn btn-primary " type="button">Agregar</button>
+            </div>  
+          </form> -->
           <!-- Modo vista -->
            <ng-container *ngFor="let talent of talents; let idx = index;">
             <div *ngIf="editIndex !== idx && skillBtn" class="btn-group me-2">

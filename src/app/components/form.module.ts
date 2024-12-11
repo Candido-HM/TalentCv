@@ -14,6 +14,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UbicationFormComponent } from './ubication-form/ubication-form.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { CreateComponent } from './skill/create/create.component';
+import { UpdateComponent } from './skill/update/update.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     RegisterComponent,
     LoginComponent,
     UbicationFormComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    CreateComponent,
+    UpdateComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +49,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     RegisterComponent,
     LoginComponent,
     ContactFormComponent,
+    CreateComponent,
+    UpdateComponent,
     ModeToggleModule
   ]
 })

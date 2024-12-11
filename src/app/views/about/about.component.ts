@@ -95,7 +95,7 @@ export class AboutComponent implements OnInit, OnChanges {
         linkedin: user.linkedin,
         github: user.github
       };
-      console.log(this.contacto);
+      // console.log(this.contacto);
       const validateId = (item: any): boolean => {
         return item && item.id !== null;
       };
