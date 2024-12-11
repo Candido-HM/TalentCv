@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 
 // import { HomeComponent } from './views/home/home.component';
-import { AboutComponent } from './views/about/about.component';
+// import { AboutComponent } from './views/about/about.component';
 import { ExperienciaComponent } from './views/experiencia/experiencia.component';
 import { FormacionComponent } from './views/formacion/formacion.component';
 import { WelcomeComponent } from './views/welcome/welcome.component';
@@ -19,6 +19,7 @@ import { RegisterComponent } from './auth/components/register/register.component
 
 import { ProfileComponent } from './user/pages/profile/profile.component';
 import { HomeComponent } from './user/pages/home/home.component';
+import { AboutComponent } from './user/pages/about/about.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent, children: [

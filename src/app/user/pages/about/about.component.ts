@@ -17,6 +17,7 @@ import { SkillService } from 'src/app/services/skill.service';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.sass']
 })
+
 export class AboutComponent implements OnInit, OnChanges {
   @ViewChild(AlertsComponent) showNotification!: AlertsComponent;
 
@@ -44,29 +45,29 @@ export class AboutComponent implements OnInit, OnChanges {
   formSkill!: FormGroup;
 
   constructor(  private userService: UserService,
-                private profileService: ProfileService,
-                private ubicationService: UbicationService,
-                private skillService: SkillService,
-                private route: ActivatedRoute,
-                private router: Router,
-                private formBuilder: FormBuilder) {
-    this.validatorProfile = false;
-    this.validatorUbication = false;
-    this.contactInfo = false;
-    this.validatorPhone = false;
-    this.validatorLinkedin = false;
-    this.validatorLink = false;
-    this.validatorGithub = false;
-    this.skillBtn = true;
-    this.idProfile = 0;
-    this.resNotification = '';
+    private profileService: ProfileService,
+    private ubicationService: UbicationService,
+    private skillService: SkillService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder) {
+  this.validatorProfile = false;
+  this.validatorUbication = false;
+  this.contactInfo = false;
+  this.validatorPhone = false;
+  this.validatorLinkedin = false;
+  this.validatorLink = false;
+  this.validatorGithub = false;
+  this.skillBtn = true;
+  this.idProfile = 0;
+  this.resNotification = '';
 
-    this.route.params.subscribe( params => {
-      this.idProfile = params['id'];
-      this.viewProfile(this.idProfile);
-    });
-    this.createSkill();
-  }
+  this.route.params.subscribe( params => {
+  this.idProfile = params['id'];
+  this.viewProfile(this.idProfile);
+  });
+  this.createSkill();
+}
 
   ngOnInit(): void {
     this.viewUser();
@@ -133,7 +134,6 @@ export class AboutComponent implements OnInit, OnChanges {
       }
     });
   }
-
 
   notificationAlert(data: string) {
     this.resNotification = data;

@@ -27,7 +27,7 @@
           <figure>
             <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
             <span> {{ formation.start_date }} - </span> 
-            <span *ngIf="!null">{{ formation.finish_date }}</span>
+            <!-- <span *ngIf="!null">{{ formation.finish_date }}</span> -->
             <span *ngIf="formation.status == 'Cursando'"> {{ formation.status }}</span>
           </figure>
         </div>
@@ -66,7 +66,7 @@
           <figure>
             <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
             <span> {{ course.start_date }} - </span> 
-            <span *ngIf="!null">{{ course.finish_date }}</span>
+            <!-- <span *ngIf="!null">{{ course.finish_date }}</span> -->
             <span *ngIf="course.status == 'Cursando'">{{ course.status }}</span>
           </figure>
           <p>
@@ -84,21 +84,23 @@
     </button>
 
     <!-- Componente de confirmacion para eliminar -->
-    <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation> 
-    <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>
+    <!-- <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>  -->
+    <!-- <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation> -->
 
     <!--Inicio componentes formularios -->
-    <app-formacion-form [dataFormation]="formation" 
+
+    <!-- <app-formacion-form [dataFormation]="formation" 
       (loadingFormations)="viewFormations(idProfile)" (notification)="notificationAlert($event)">
     </app-formacion-form>
     <app-course-form [dataCourse]="course"
-      (loadingCourses)="viewCourses(idProfile)" (notification)="notificationAlert($event)"></app-course-form> 
+      (loadingCourses)="viewCourses(idProfile)" (notification)="notificationAlert($event)"></app-course-form>  -->
+
     <!--Fin componentes formularios -->
   </article>
 </article>
 
 <!-- Componente de alerta de notificacion -->
-<app-alerts [message]="resNotification"></app-alerts>
+<!-- <app-alerts [message]="resNotification"></app-alerts> -->
 
 <article class="d-flex justify-content-between mt-3 mb-5">
   <button class="btn btn-outline-primary btn-sm" (click)="returnExperience()">

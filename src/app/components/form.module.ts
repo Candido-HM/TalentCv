@@ -10,8 +10,6 @@ import { ModeToggleModule } from './mode-toggle/mode-toggle.module';
 import { ProfileFormComponent } from './profile-form/profile-form.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
 import { CourseFormComponent } from './course-form/course-form.component';
-// import { RegisterComponent } from './register/register.component';
-// import { LoginComponent } from './login/login.component';
 import { UbicationFormComponent } from './ubication-form/ubication-form.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { CreateComponent } from './skill/create/create.component';
@@ -25,8 +23,6 @@ import { UpdateComponent } from './skill/update/update.component';
     ProfileFormComponent,
     ProjectFormComponent,
     CourseFormComponent,
-    // RegisterComponent,
-    // LoginComponent,
     UbicationFormComponent,
     ContactFormComponent,
     CreateComponent,
