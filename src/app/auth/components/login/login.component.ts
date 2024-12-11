@@ -14,15 +14,15 @@ export class LoginComponent {
 
   loading: boolean;
   userToken: any;
-  formLogin!: FormGroup; 
+  formLogin!: FormGroup;
 
   constructor( private formBuilder: FormBuilder,
-                private router: Router,
-                private auth: AuthService) {
-    this.loading = false;
-    this.userToken = '';
-    this.createFormLogin();
-    this.loadingToken();
+    private router: Router,
+    private auth: AuthService) {
+      this.loading = false;
+      this.userToken = '';
+      this.createFormLogin();
+      this.loadingToken();
   }
 
   invalidField( campo: string){
@@ -80,7 +80,6 @@ export class LoginComponent {
       }
     });
   }
-
 
   loadingToken() {
     let token = this.auth.leerToken();

@@ -20,6 +20,10 @@ import { LandingPagesComponent } from './shared/landing-pages/landing-pages.comp
 import { ConfirmationComponent } from './shared/confirmation/confirmation.component';
 import { AlertsComponent } from './shared/alerts/alerts.component';
 
+//Nueva estrutura para el proyecto
+import { LandingModule } from './landing/landing.module';
+import { AuthModule } from './auth/auth.module';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +42,8 @@ import { AlertsComponent } from './shared/alerts/alerts.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    LandingModule,
+    AuthModule,
     FormModule,
     FormsModule,
     ReactiveFormsModule,
