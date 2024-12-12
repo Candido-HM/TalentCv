@@ -12,11 +12,11 @@ import { TemplatePdfService } from 'src/app/services/template-pdf.service';
 import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
 
 @Component({
-  selector: 'app-formacion',
-  templateUrl: './formacion.component.html',
-  styleUrls: ['./formacion.component.sass']
+  selector: 'app-training',
+  templateUrl: './training.component.html',
+  styleUrls: ['./training.component.sass']
 })
-export class FormacionComponent {
+export class TrainingComponent {
   @ViewChild(FormacionFormComponent) formationForm!: FormacionFormComponent;
   @ViewChild(CourseFormComponent) courseForm!: CourseFormComponent;
   @ViewChild(ConfirmationComponent) modalClose!: ConfirmationComponent;
@@ -30,7 +30,7 @@ export class FormacionComponent {
 
   public modalName: string;
   public modalType: string;
-  
+
   validationFormation: boolean;
   validationCourse: boolean;
   idProfile: number;
@@ -39,10 +39,10 @@ export class FormacionComponent {
   resNotification: string;
 
   constructor ( private formationService: FormationService,
-                private courseService: CourseService,
-                private router: Router,
-                private route: ActivatedRoute,
-                private pdfService: TemplatePdfService
+    private courseService: CourseService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private pdfService: TemplatePdfService
   ) {
     this.formations = [];
     this.courses = [];
@@ -55,9 +55,9 @@ export class FormacionComponent {
     this.resNotification = '';
 
     this.route.params.subscribe( params => {
-      this.idProfile = params['id'];
-      this.viewFormations(this.idProfile);
-      this.viewCourses(this.idProfile);
+    this.idProfile = params['id'];
+    this.viewFormations(this.idProfile);
+    this.viewCourses(this.idProfile);
     });
   }
 
@@ -165,5 +165,4 @@ export class FormacionComponent {
     // window.open(ruta, '_blank');
     console.log('¡CLICK!', this.idProfile)
   }
-
 }

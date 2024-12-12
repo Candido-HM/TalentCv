@@ -1,0 +1,113 @@
+<header class="d-flex justify-content-center pt-3 mb-4">
+    <h1 class="fs-3 text-center">Experiencia</h1>
+  </header>
+
+  <!-- style="height: 75vh; overflow-y: hidden;" -->
+<article class="d-flex justify-content-center">
+    <!-- style="overflow-y: scroll;" -->
+    <article class="w-100 rounded p-3 p-lg-4 theme-card"> 
+      <ng-container *ngIf="validationExperience">
+        <article *ngFor="let experience of experiences">
+          <header class="d-flex justify-content-end">
+            <section class="flex-grow-1">
+              <h5>{{ experience.cargo }} </h5>
+            </section>
+            <section class="d-flex justify-content-end">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalExperiencia"
+                (click)="viewExperiencie(experience.id)">
+                <img style=" width: 22px;" src="../../../assets/img/icon-edit.svg" alt="icon-edit">
+              </button>
+              <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
+                (click)="confirmationExperience(experience.id ,experience.cargo)">
+                <!-- (click)="delete(experience.id, experience.cargo)" -->
+                <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
+              </button>
+            </section>
+          </header>
+          <div name="experiencia-laboral">
+            <h6>{{ experience.company_name }}</h6>
+            <figure>
+              <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
+              <span> {{ experience.start_date }} - </span> 
+              <!-- <span *ngIf="!null">{{ experience.finish_date }}</span>  -->
+              <span *ngIf="experience.status == 'Laborando'" >{{ experience.status }}</span> 
+            </figure>
+            <p>{{ experience.description }}</p>
+          </div>
+        </article>
+      </ng-container>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalExperiencia"
+        (click)="cleanExperience()">
+        <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
+        Experiencia Laboral
+      </button>
+      
+      <section class="mb-3">
+        <h4>Proyectos</h4>
+      </section>
+      <ng-container *ngIf="validationProject">
+        <article *ngFor="let project of projects" class="main-module mt-1 mb-1">
+          <header class="d-flex justify-content-end">
+            <section class="flex-grow-1">
+              <h5>{{ project.project_name }}</h5>
+            </section>
+            <section class="d-flex justify-content-end">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalProject"
+              (click)="viewProject(project.id)">
+                <img style=" width: 22px;" src="../../../assets/img/icon-edit.svg" alt="icon-edit">
+              </button>
+              <button class="btn icon-edit" data-bs-toggle="modal" data-bs-target="#modalValidation"
+              (click)="confirmationProject(project.id, project.project_name)">
+              <!-- (click)="deleteProject(project.id)" -->
+                <img width="22px" height="22px" src="../../../assets/img/btn-delete.svg" alt="eliminar">
+              </button>
+            </section>
+          </header> 
+          <div name="proyectos">
+            <figure>
+              <img class="icon-url filter" src="../../../assets/img/icon-calendar.svg" alt="calendar">
+                <span> {{ project.start_date }} - </span>
+                <!-- <span>{{ project.finish_date }}</span> -->
+                <!-- <span *ngIf="!null">{{ project.finish_date }}</span>  -->
+              <span *ngIf="project.status == 'Laborando'" >{{ project.status }}</span> 
+            </figure>
+            <p>{{project.description}}</p>
+          </div>
+        </article>
+      </ng-container>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalProject"
+        (click)="cleanProject()">
+        <img width="22px" height="22px" class="icon-size" src="../../../assets/img/icon-add.svg" alt="add">
+        Proyectos personales
+      </button>
+  
+      <!-- Componente de confirmacion para eliminar -->
+      <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>
+      <app-confirmation [titleModal]="modalName" [action]="modalType" (confirmation)="validationConfirmation($event)"></app-confirmation>
+  
+      <!--Inicio componentes formularios -->
+      <app-experiencia-form [dataExperiencie]="experiencie"
+        (loadingExperience)="viewExperiencies(idProfile)" (notification)="notificationAlert($event)">
+      </app-experiencia-form>
+      <app-project-form [dataProject]="project" (notification)="notificationAlert($event)"
+        (loadingProjects)="viewProjects(idProfile)">
+      </app-project-form> 
+      <!--Fin componentes formularios -->
+    </article>
+</article>
+  
+<!-- Componente de alerta de notificacion -->
+    <app-alerts [message]="resNotification"></app-alerts> 
+  
+<article class="d-flex justify-content-between mt-3 mb-5">
+    <button class="btn btn-outline-primary btn-sm" (click)="returnProfile()">
+      Regresar
+    </button>
+    <button class="btn btn-outline-primary btn-sm" (click)="nextFormation()">
+      Siguiente
+    </button>
+</article> 

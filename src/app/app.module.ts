@@ -12,16 +12,12 @@ import { UserModule } from './user/user.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormacionComponent } from './views/formacion/formacion.component';
-import { ExperienciaComponent } from './views/experiencia/experiencia.component';
 import { WelcomeComponent } from './views/welcome/welcome.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormacionComponent,
-    ExperienciaComponent,
     WelcomeComponent
   ],
   imports: [

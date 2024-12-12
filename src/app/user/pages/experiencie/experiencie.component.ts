@@ -10,11 +10,12 @@ import { ConfirmationComponent } from 'src/app/shared/confirmation/confirmation.
 import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
 
 @Component({
-  selector: 'app-experiencia',
-  templateUrl: './experiencia.component.html',
-  styleUrls: ['./experiencia.component.sass']
+  selector: 'app-experiencie',
+  templateUrl: './experiencie.component.html',
+  styleUrls: ['./experiencie.component.sass']
 })
-export class ExperienciaComponent {
+export class ExperiencieComponent {
+
   @ViewChild(ExperienciaFormComponent) experiencieForm!: ExperienciaFormComponent;
   @ViewChild(ProjectFormComponent) projectForm!: ProjectFormComponent; 
   @ViewChild(ConfirmationComponent) modalClose!: ConfirmationComponent;
@@ -34,9 +35,10 @@ export class ExperienciaComponent {
   resNotification: string;
 
   constructor( private experienceService: ExperienceService,
-                private projectService: ProjectService,
-                private route: ActivatedRoute,
-                private router: Router){
+    private projectService: ProjectService,
+    private route: ActivatedRoute,
+    private router: Router){
+
     this.experiences = [];
     this.projects = [];
     this.validationExperience = false;
@@ -47,10 +49,10 @@ export class ExperienciaComponent {
     this.resNotification = '';
 
     this.route.params.subscribe( params =>  {
-      this.idProfile = params['id'];
-      // console.log('IDPROFILE DESDE ABOUT: ',this.idProfile);
-      this.viewExperiencies(this.idProfile);
-      this.viewProjects(this.idProfile);
+    this.idProfile = params['id'];
+    // console.log('IDPROFILE DESDE ABOUT: ',this.idProfile);
+    this.viewExperiencies(this.idProfile);
+    this.viewProjects(this.idProfile);
     });
   }
 
@@ -156,4 +158,5 @@ export class ExperienciaComponent {
     console.log('RECIBI EL EVENTO DEL FORMULARIO: ', data);
     this.showNotification.show();
   }
+
 }
